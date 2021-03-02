@@ -1,8 +1,6 @@
 const User = require('./user')
 const Product = require('./product')
-const Order = require('./order')
 const Pet = require('./pet')
-const Tag = require('./tag')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -20,7 +18,5 @@ const Tag = require('./tag')
 module.exports = {
   User,
   Product,
-  Order,
-  Pet,
-  Tag
+  Pet
 }
