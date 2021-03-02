@@ -3,11 +3,7 @@ const db = require('../db')
 
 const Pet = db.define('pet', {
   name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
   },
   age: {
     type: Sequelize.INTEGER

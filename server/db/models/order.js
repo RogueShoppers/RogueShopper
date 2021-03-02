@@ -2,8 +2,12 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-  userId: {},
-  productId: {}
+  inProcess: {
+    type: Sequelize.BOOLEAN
+  },
+  completed: {
+    type: Sequelize.BOOLEAN
+  }
 })
 
 module.exports = Order
