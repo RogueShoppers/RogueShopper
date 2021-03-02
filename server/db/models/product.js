@@ -40,9 +40,6 @@ const Product = db.define('product', {
   imageURL: {
     type: Sequelize.TEXT,
     defaultValue: 'https://iconscout.com/icon/bone-1640955'
-  },
-  tags: {
-    type: Sequelize.STRING
   }
 })
 
