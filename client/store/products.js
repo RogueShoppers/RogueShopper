@@ -25,7 +25,7 @@ export const fetchAllProducts = () => {
     }
   }
 }
-export const fetchSingleProducts = id => {
+export const fetchSingleProduct = id => {
   return async dispatch => {
     try {
       const {data: product} = await axios.get(`/api/products/${id}`)
