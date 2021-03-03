@@ -6,6 +6,8 @@ import {LogIn, SignUp, UserHome, MyUserAccount} from './components'
 import {getMe} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
+import allUsers from './components/allUsers'
+
 /**
  * COMPONENT
  */
