@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {LogIn, SignUp, UserHome} from './components'
 import {me} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
@@ -20,8 +20,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={LogIn} />
+        <Route path="/signup" component={SignUp} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
         {isLoggedIn && (
@@ -31,7 +31,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={LogIn} />
       </Switch>
     )
   }
@@ -44,7 +44,7 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.users.selected.id
   }
 }
 
