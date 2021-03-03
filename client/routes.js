@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Link, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {LogIn, SignUp, UserHome} from './components'
-import {me} from './store'
+import {LogIn, SignUp, UserHome, MyUserAccount} from './components'
+import {getMe} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
+import allUsers from './components/allUsers'
+
 /**
  * COMPONENT
  */
@@ -28,6 +30,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/me" component={MyUserAccount} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -51,7 +54,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me())
+      dispatch(getMe())
     }
   }
 }

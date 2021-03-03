@@ -1,4 +1,3 @@
-import {render} from 'enzyme'
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
