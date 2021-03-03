@@ -1,6 +1,8 @@
+const Sequelize = require('sequelize')
 const User = require('./user')
 const Product = require('./product')
 const Pet = require('./pet')
+const Tag = require('./tag')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -15,8 +17,18 @@ const Pet = require('./pet')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+User.hasMany(Pet, {
+  user_id: {
+    allowNull: false,
+    defaultValue: 0
+  }
+})
+
+Pet.belongsTo(User)
+
 module.exports = {
   User,
   Product,
-  Pet
+  Pet,
+  Tag
 }
