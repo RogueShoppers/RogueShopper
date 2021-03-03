@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
+//PUT /auth/login
 router.put('/login', async (req, res, next) => {
   try {
     console.log('inside put route')
@@ -20,6 +21,7 @@ router.put('/login', async (req, res, next) => {
   }
 })
 
+//POST /auth/signup
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
@@ -33,12 +35,14 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+//DELETE /auth/logout
 router.delete('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
   res.redirect('/')
 })
 
+//GET /auth/me
 router.get('/me', (req, res) => {
   res.json(req.user)
 })

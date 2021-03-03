@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {LogIn, SignUp, UserHome} from './components'
-import {me} from './store'
+import {getMe} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
 /**
@@ -51,7 +51,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me())
+      dispatch(getMe())
     }
   }
 }
