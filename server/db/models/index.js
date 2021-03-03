@@ -21,9 +21,9 @@ const OrderProduct = require('./order-product')
  */
 //one to many - user to pets
 User.hasMany(Pet, {
-  user_id: {
-    allowNull: false,
-    defaultValue: 0
+  foreignKey: {
+    name: 'user_id',
+    allowNull: false
   }
 })
 
