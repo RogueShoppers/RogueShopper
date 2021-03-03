@@ -3,7 +3,7 @@
 const db = require('../server/db')
 const {User, Product, Pet, Tag} = require('../server/db/models')
 
-async function seed() {
+const seed = async () => {
   await db.sync({force: true})
   console.log('db synced!')
 
@@ -51,11 +51,14 @@ async function seed() {
       email: 'chickencamp@rogue.com',
       password: 'chickenz',
       address: '1 Star Studded Pastures, ChickenVille, CO 66634',
-      isAdmin: false
+      isAdmin: true
     }
   ]
 
-  const [patricia, susan, sophia, kiko, terry] = await User.bulkCreate(patrons)
+  const [patricia, susan, sophia, kiko, terry] = await User.bulkCreate(
+    patrons,
+    {returning: ['id']}
+  )
 
   const pets = [
     {
@@ -108,7 +111,7 @@ async function seed() {
     fetch,
     tug,
     squishy
-  ] = await Tag.bulkCreate(tags)
+  ] = await Tag.bulkCreate(tags, {returning: ['id']})
 
   const products = [
     {
