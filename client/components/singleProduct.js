@@ -11,13 +11,13 @@ const singleProduct = props => {
     getSingleProduct(props.match.params.productId)
   }, [])
 
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const handleIncrease = () => {
     setQuantity(prevQuantity => prevQuantity + 1)
   }
   const handleDecrease = () => {
-    if (quantity === 0) {
-      setQuantity(0)
+    if (quantity === 1) {
+      setQuantity(1)
     } else {
       setQuantity(prevQuantity => prevQuantity - 1)
     }
@@ -38,7 +38,7 @@ const singleProduct = props => {
     <div>
       <h1>{name}</h1>
       <img src={imageUrl} alt="product image" />
-      <div>Price: {price}</div>
+      <div>Price: ${price}</div>
       <div>
         Quantity: {quantity}
         <button type="button" onClick={handleIncrease}>
