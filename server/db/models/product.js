@@ -39,7 +39,8 @@ const Product = db.define('product', {
   },
   imageURL: {
     type: Sequelize.TEXT,
-    defaultValue: 'https://iconscout.com/icon/bone-1640955'
+    defaultValue:
+      'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg'
   }
 })
 
