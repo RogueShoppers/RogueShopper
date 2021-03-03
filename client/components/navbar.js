@@ -32,15 +32,16 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  * CONTAINER
  */
 const mapState = state => {
+  console.log('state in Navbar', state)
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.users.selected.id
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(logout(history))
     }
   }
 }

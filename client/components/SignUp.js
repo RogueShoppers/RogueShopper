@@ -4,13 +4,18 @@ import {connect} from 'react-redux'
 import {signUp} from '../store/user'
 
 class SignUp extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    preferredName: '',
-    address: '',
-    email: '',
-    password: ''
+  constructor() {
+    super()
+    this.state = {
+      firstName: '',
+      lastName: '',
+      preferredName: '',
+      address: '',
+      email: '',
+      password: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(evt) {
@@ -73,9 +78,9 @@ class SignUp extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    signUp: newUser => dispatch(signUp(newUser))
+    signUp: newUser => dispatch(signUp(newUser, history))
   }
 }
 export default connect(null, mapDispatchToProps)(SignUp)
