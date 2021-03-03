@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {addProduct, fetchSingleProduct} from '../store/products'
+import {fetchSingleProduct} from '../store/products'
+import {postNewOrder} from '../store/orders'
+import MyChart from './myChart'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
   const {name, longDescription, imageUrl, price, tags} = product
+  const productId = props.match.params.productId
   //tags will be in array form? (Natalie)
 
   useEffect(() => {
-    getSingleProduct(props.match.params.productId)
+    getSingleProduct(productId)
   }, [])
 
   const [quantity, setQuantity] = useState(1)
@@ -23,14 +26,8 @@ const singleProduct = props => {
     }
   }
   const handleAddToCart = event => {
-    const productToAdd = {
-      name,
-      imageUrl,
-      price,
-      quantity
-    }
-    addToCart(productToAdd)
-    setQuantity(0)
+    event.preventDefault()
+    addToCart(productId, quantity)
   }
   console.log('STATE', quantity)
 
@@ -50,9 +47,10 @@ const singleProduct = props => {
       </div>
       <p>{longDescription}</p>
       <div>#{tags}</div>
-      <button type="button" onClick={handleAddToCart}>
+      <button type="submit" onClick={handleAddToCart}>
         Add To Cart
       </button>
+      <MyChart />
     </div>
   )
 }
@@ -65,8 +63,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getSingleProduct: id => dispatch(fetchSingleProduct(id))
-    // addToCart: (productToAdd) => dispatch(addProduct(productToAdd)),
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addToCart: (productId, quantity) =>
+      dispatch(postNewOrder(productId, quantity))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(singleProduct)
