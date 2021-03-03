@@ -18,9 +18,9 @@ const Tag = require('./tag')
  * instead of: const User = require('../db/models/user')
  */
 User.hasMany(Pet, {
-  user_id: {
-    allowNull: false,
-    defaultValue: 0
+  foreignKey: {
+    name: 'user_id',
+    allowNull: false
   }
 })
 
