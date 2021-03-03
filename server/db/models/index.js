@@ -17,6 +17,7 @@ const Tag = require('./tag')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+//one to many - user to pets
 User.hasMany(Pet, {
   user_id: {
     allowNull: false,
@@ -25,6 +26,14 @@ User.hasMany(Pet, {
 })
 
 Pet.belongsTo(User)
+
+//many to many product belongs to manyUsers
+Product.belongsToMany(User, {through: 'order'})
+User.belongsToMany(Product, {through: 'order'})
+
+//product belongs to many
+Product.belongsToMany(Tag, {through: 'product-tag'})
+Tag.belongsToMany(Product, {through: 'product-tag'})
 
 module.exports = {
   User,
