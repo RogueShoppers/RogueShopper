@@ -3,6 +3,8 @@ const User = require('./user')
 const Product = require('./product')
 const Pet = require('./pet')
 const Tag = require('./tag')
+const Order = require('./order')
+const OrderProduct = require('./order-product')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,6 +19,7 @@ const Tag = require('./tag')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+//one to many - user to pets
 User.hasMany(Pet, {
   foreignKey: {
     name: 'user_id',
@@ -25,6 +28,18 @@ User.hasMany(Pet, {
 })
 
 Pet.belongsTo(User)
+
+//one to many orders to user
+User.hasMany(Order)
+Order.belongsTo(User)
+
+//many to many product / order
+Product.belongsToMany(Order, {through: 'order-product'})
+Order.belongsToMany(Product, {through: 'order-product'})
+
+//product belongs to many
+Product.belongsToMany(Tag, {through: 'product-tag'})
+Tag.belongsToMany(Product, {through: 'product-tag'})
 
 module.exports = {
   User,

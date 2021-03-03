@@ -2,8 +2,9 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
-router.post('/login', async (req, res, next) => {
+router.put('/login', async (req, res, next) => {
   try {
+    console.log('inside put route')
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
       console.log('No such user found:', req.body.email)
@@ -32,7 +33,7 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.post('/logout', (req, res) => {
+router.delete('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
   res.redirect('/')
