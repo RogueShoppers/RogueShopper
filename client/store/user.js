@@ -52,8 +52,6 @@ export const getMe = () => {
   return async dispatch => {
     try {
       const res = await axios.get('/auth/me')
-      console.log('res inside getMe thunk-->', res)
-
       dispatch(gotUser(res.data))
     } catch (error) {
       console.log('Error fetching logged-in user!', error)
