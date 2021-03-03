@@ -56,6 +56,14 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false
+  },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      //need to test the preferred name || works
+      return `${this.firstName} ${this.lastName}, preferred name ${this
+        .preferredName || this.firstName}`
+    }
   }
 })
 
