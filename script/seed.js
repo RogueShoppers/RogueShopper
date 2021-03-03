@@ -90,6 +90,12 @@ const seed = async () => {
       age: 2,
       favoriteToy: 'avocado squishy',
       user_id: susan.id
+    },
+    {
+      name: 'Whiskey',
+      age: 3,
+      favoriteToy: 'whiskey squishy',
+      user_id: susan.id
     }
   ]
 
@@ -99,6 +105,7 @@ const seed = async () => {
     'destroy',
     'brain teaser',
     'fetch',
+    'feed',
     'tug',
     'squishy'
   ]
@@ -109,13 +116,14 @@ const seed = async () => {
     destroy,
     brainTeaser,
     fetch,
+    feed,
     tug,
     squishy
   ] = await Tag.bulkCreate(tags, {returning: ['id']})
 
   const products = [
     {
-      name: 'avocado squishy',
+      name: 'Avocado Squishy',
       shortDescription: 'For the pupster at heart',
       longDescription:
         'Aqua doggo yapper you are doing me a frighten heckin very jealous pupper, adorable doggo heckin angery woofer. Ur givin me a spook shooberino wrinkler length boy you are doing me the shock h*ck, clouds wrinkler he made many woofs ruff. Clouds heckin good boys adorable doggo what a nice floof vvv, long doggo such treat ur givin me a spook. wow such tempt mlem. Shoob long doggo I am bekom fat pupper pats, noodle horse wow very biscit.',
@@ -125,7 +133,7 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'carrot squishy',
+      name: 'Carrot Squishy',
       shortDescription: 'Get that beta carotene',
       longDescription:
         'Pats wow such tempt very taste wow clouds mlem, heck shoober. Corgo what a nice floof h*ck shoober, pats. Floofs doing me a frighten wrinkler bork aqua doggo, smol fluffer. borking doggo you are doin me a concern big ol. Blop such treat big ol heckin angery woofer very jealous pupper what a nice floof wow such tempt blep, such treat fat boi wow such tempt heck sub woofer heck.  Sub woofer heck porgo heckin angery woofer fat boi, very hand that feed shibe very good spot blep. Long bois bork vvv noodle horse, blop such treat very jealous pupper such treat, heckin length boy.',
@@ -135,7 +143,7 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'tuna squishy',
+      name: 'Tuna Squishy',
       shortDescription: 'Stink up that house',
       longDescription:
         'borkdrive, aqua doggo clouds. Heckin what a nice floof wow very biscit fat boi, heckin boof pupper blop, noodle horse very taste wow. super chub clouds. Borkdrive yapper very hand that feed shibe, woofer. Mlem big ol pupper ur givin me a spook very taste wow woofer, stop it fren shibe long water shoob he made many woofs you are doin me a concern, wrinkler such treat boofers. heckin good boys and girls length boy fat boi. What a nice floof heckin bork boof, very jealous pupper yapper. Very hand that feed shibe blop borkdrive heckin angery woofer big ol, much ruin diet pats.',
@@ -145,7 +153,7 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'whiskey squishy',
+      name: 'Whiskey Squishy',
       shortDescription: 'For the whiskered and weary',
       longDescription:
         'Clouds shoob wow such tempt heckin good boys doggo woofer, very good spot blop boof you are doing me a frighten puggorino, sub woofer what a nice floof boofers wrinkler. Very taste wow blop heckin good boys extremely cuuuuuute, very jealous pupper boofers. Tungg super chub you are doin me a concern, yapper. Smol borking doggo with a long snoot for pats length boy he made many woofs waggy wags smol borking doggo with a long snoot for pats, sub woofer shoob woofer the neighborhood pupper, heckin good boys and girls mlem shibe.',
@@ -155,7 +163,7 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'coffee squishy',
+      name: 'Coffee Squishy',
       shortDescription: 'Puppacino to the rescue',
       longDescription:
         'Fluffer shibe boof, thicc. Aqua doggo doing me a frighten big ol pupper borking doggo doge smol big ol pupper, wow very biscit sub woofer pupperino borkf. Bork heckin angery woofer boofers woofer porgo borkf h*ck, dat tungg tho fat boi heckin good boys boofers. Long bois doing me a frighten what a nice floof boofers thicc, you are doing me the shock doggo he made many woofs. Wrinkler such treat stop it fren woofer waggy wags, heckin angery woofer heckin good boys and girls. Sub woofer aqua doggo puggo clouds heck very jealous pupper wow such tempt, wrinkler noodle horse ur givin me a spook shoob. Blop long doggo much ruin diet smol shoob, much ruin diet thicc.',
@@ -163,6 +171,36 @@ const seed = async () => {
       quantity: 200,
       imageURL: '',
       tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Hipster Flirt',
+      shortDescription: 'Flirt pole fun',
+      longDescription:
+        'Multipurpose interactive toy that will give both you and your pup a workout. Build impulse control, harness prey drive, or just have fun!',
+      price: 150.0,
+      quantity: 75,
+      imageURL: '',
+      tags: [chase.id, brainTeaser.id, tug.id]
+    },
+    {
+      name: 'Party Panda Squishy',
+      shortDescription: "Party Panda. 'Nuf said",
+      longDescription:
+        "Get your dog, we're having a party. This colorful stuffed toy is the perfect squish that HOLDS MORE SQUISHES! Tuck the included smol squishes into Party Panda's belly, and watch your pup have a blast as they hunt for all those squished squishes.",
+      price: 45.5,
+      quantity: 75,
+      imageURL: '',
+      tags: [squishy.id, destroy.id, brainTeaser.id]
+    },
+    {
+      name: 'SnuffleMuffleGus',
+      shortDescription: 'Snuffle mat with a twist',
+      longDescription:
+        'Help your furry friend get their sniff on with this fully washable and intensely durable snuffle mat. Hide food and/or treats in the nooks and crannies created by the fabric folds, or tuck extra juicy yums into the waxed canvas pocket. Let your pup sniff and snuffle their way to happy!',
+      price: 75.5,
+      quantity: 200,
+      imageURL: '',
+      tags: [feed.id, brainTeaser.id]
     }
   ]
 
