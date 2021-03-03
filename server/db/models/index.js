@@ -3,6 +3,8 @@ const User = require('./user')
 const Product = require('./product')
 const Pet = require('./pet')
 const Tag = require('./tag')
+const Order = require('./order')
+const OrderProduct = require('./order-product')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -27,9 +29,13 @@ User.hasMany(Pet, {
 
 Pet.belongsTo(User)
 
-//many to many product belongs to manyUsers
-Product.belongsToMany(User, {through: 'order'})
-User.belongsToMany(Product, {through: 'order'})
+//one to many orders to user
+User.hasMany(Order)
+Order.belongsTo(User)
+
+//many to many product / order
+Product.belongsToMany(Order, {through: 'order-product'})
+Order.belongsToMany(Product, {through: 'order-product'})
 
 //product belongs to many
 Product.belongsToMany(Tag, {through: 'product-tag'})
