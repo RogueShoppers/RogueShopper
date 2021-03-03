@@ -59,12 +59,12 @@ class SignUp extends Component {
 
           <div className="input-field">
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" onChange={this.handleChange} />
+            <input type="email" id="email" onChange={this.handleChange} />
           </div>
 
           <div className="input-field">
             <label htmlFor="password">Password</label>
-            <input type="text" id="password" onChange={this.handleChange} />
+            <input type="password" id="password" onChange={this.handleChange} />
           </div>
 
           <div>

@@ -12,56 +12,13 @@ const GET_ALL_USERS = 'GET_ALL_USERS'
 //ACTION CREATORS
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-
-const signedUp = newUser => {
-  return {
-    type: SIGNUP_USER,
-    newUser
-  }
-}
-
-const loggedin = user => {
-  return {
-    type: LOGIN_USER,
-    user
-  }
-}
-
-const gotAllUsers = users => {
-  return {
-    type: GET_ALL_USERS,
-    users
-  }
-}
+const signedUp = newUser => ({type: SIGNUP_USER, newUser})
+const loggedIn = user => ({type: LOGIN_USER, user})
+const gotAllUsers = users => ({type: GET_ALL_USERS, users})
 
 //THUNK CREATORS
-export const me = () => async dispatch => {
-  try {
-    const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// export const auth = (email, password, method) => async dispatch => {
-//   let res
-//   try {
-//     res = await axios.post(`/auth/${method}`, {email, password})
-//   } catch (authError) {
-//     return dispatch(getUser({error: authError}))
-//   }
-
-//   try {
-//     dispatch(getUser(res.data))
-//     history.push('/home')
-//   } catch (dispatchOrHistoryErr) {
-//     console.error(dispatchOrHistoryErr)
-//   }
-// }
-
 export const signUp = newUser => {
-  console.log('newUser', newUser)
+  // console.log('newUser', newUser)
   return async dispatch => {
     try {
       const {data: created} = await axios.post('/auth/signup', newUser)
@@ -69,6 +26,32 @@ export const signUp = newUser => {
       historyFunc.push('/')
     } catch (error) {
       console.log('Error creating a new user!', error)
+    }
+  }
+}
+
+export const logout = () => async dispatch => {
+  try {
+    await axios.delete('/auth/logout')
+    dispatch(removeUser())
+    historyFunc.push('/login')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const logIn = user => {
+  console.log('user in logIn thunk', user)
+
+  return async dispatch => {
+    try {
+      console.log('inside try')
+      const {data: signedInUser} = await axios.put('/auth/login', user)
+      console.log('signedInUser', signedInUser)
+      dispatch(loggedIn(signedInUser))
+      historyFunc.push('/')
+    } catch (error) {
+      console.log('Error logging in!', error)
     }
   }
 }
@@ -84,11 +67,10 @@ export const getAllUsers = () => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const me = () => async dispatch => {
   try {
-    await axios.post('/auth/logout')
-    dispatch(removeUser())
-    historyFunc.push('/login')
+    const res = await axios.get('/auth/me')
+    dispatch(getUser(res.data))
   } catch (err) {
     console.error(err)
   }
@@ -113,17 +95,40 @@ export default function(state = initialState, action) {
         ...state,
         all: action.users
       }
-    case REMOVE_USER:
-      return state
     case SIGNUP_USER:
-      console.log('initialState', initialState)
-      console.log('state', state)
-
       return {
         ...state,
-        all: [...state.all, action.newUser]
+        selected: action.newUser
+      }
+    case LOGIN_USER:
+      console.log('action.user', action.user)
+      return {
+        ...state,
+        selected: action.user
+      }
+    case REMOVE_USER:
+      return {
+        ...state,
+        selected: {}
       }
     default:
       return state
   }
 }
+
+//Original BoilerMaker Code
+// export const auth = (email, password, method) => async dispatch => {
+//   let res
+//   try {
+//     res = await axios.post(`/auth/${method}`, {email, password})
+//   } catch (authError) {
+//     return dispatch(getUser({error: authError}))
+//   }
+
+//   try {
+//     dispatch(getUser(res.data))
+//     history.push('/home')
+//   } catch (dispatchOrHistoryErr) {
+//     console.error(dispatchOrHistoryErr)
+//   }
+// }
