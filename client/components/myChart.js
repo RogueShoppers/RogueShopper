@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllOrders} from '../store/orders'
+import {fetchAllOpenOrders} from '../store/orders'
 
 // const orders = [
 //   {id: 1, name: 'test', price: 30, quantity: 2},
@@ -9,10 +9,10 @@ import {fetchAllOrders} from '../store/orders'
 // ]
 
 const MyChart = props => {
-  const {orders, getAllOrders} = props
+  const {orders, getAllOpenOrders} = props
 
   useEffect(() => {
-    getAllOrders()
+    getAllOpenOrders()
   }, [])
 
   const cartNotEmpty = orders.length !== 0
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllOrders: () => dispatch(fetchAllOrders())
+    getAllOpenOrders: () => dispatch(fetchAllOpenOrders())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MyChart)
