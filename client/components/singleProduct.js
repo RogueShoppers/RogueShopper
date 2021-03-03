@@ -11,7 +11,7 @@ const singleProduct = props => {
     getSingleProduct(props.match.params.productId)
   }, [])
 
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(0) // typically you'll see quantity default to 1 on shopping sites
   const handleIncrease = () => {
     setQuantity(prevQuantity => prevQuantity + 1)
   }
@@ -30,7 +30,7 @@ const singleProduct = props => {
       quantity
     }
     addToCart(productToAdd)
-    setQuantity(0)
+    setQuantity(0) // same note here: back to 1?
   }
   console.log('STATE', quantity)
 

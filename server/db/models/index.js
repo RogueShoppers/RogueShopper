@@ -20,6 +20,7 @@ const Tag = require('./tag')
 User.hasMany(Pet, {
   user_id: {
     allowNull: false,
+    // what does a defaultValue of 0 mean?
     defaultValue: 0
   }
 })

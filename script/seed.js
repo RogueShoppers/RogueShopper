@@ -7,6 +7,7 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
+  // for ease of use, you'll probably also want to add code to seed an admin user
   const patrons = [
     {
       firstName: 'Patricia',

@@ -34,7 +34,7 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      min: 0
+      min: 0 // great validation here!
     }
   },
   imageURL: {
