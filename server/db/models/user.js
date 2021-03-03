@@ -60,9 +60,14 @@ const User = db.define('user', {
   fullName: {
     type: Sequelize.VIRTUAL,
     get() {
-      //need to test the preferred name || works
-      return `${this.firstName} ${this.lastName}, preferred name ${this
-        .preferredName || this.firstName}`
+      //need to test
+      let nameToReturn = `${this.firstName} ${this.lastName}`
+      if (this.preferredName) {
+        nameToReturn = `${this.firstName} ${this.lastName}, preferred name ${
+          this.preferredName
+        }`
+      }
+      return nameToReturn
     }
   }
 })
