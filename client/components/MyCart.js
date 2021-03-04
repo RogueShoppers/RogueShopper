@@ -1,13 +1,23 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllOpenOrders} from '../store/orders'
+import {fetchMyOpenOrders} from '../store/orders'
+import {getMe} from '../store/user'
 
 const MyCart = props => {
-  const {myOrder, getAllOpenOrders} = props
+  const {myOrder, getMyOpenOrders, getUser, user} = props
 
   useEffect(() => {
-    getAllOpenOrders()
+    console.log('GET USER USE EFFECT!')
+    getUser()
   }, [])
+
+  useEffect(
+    () => {
+      console.log('ORDERS USE EFFECT!')
+      getMyOpenOrders(user.id)
+    },
+    [user]
+  )
 
   const calculateTotalQty = () => {
     return myOrder.products.reduce((acc, product) => {
@@ -62,13 +72,16 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.selected
+    myOrder: state.orders.selected,
+    user: state.users.selected
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllOpenOrders: () => dispatch(fetchAllOpenOrders())
+    getUser: () => dispatch(getMe()),
+    getMyOpenOrders: userId => dispatch(fetchMyOpenOrders(userId))
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(MyCart)

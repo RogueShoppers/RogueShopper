@@ -17,14 +17,15 @@ export const createNewOrder = newOrder => ({
 })
 
 //THUNKS
-export const fetchAllOpenOrders = () => {
+export const fetchMyOpenOrders = userId => {
   return async dispatch => {
     try {
-      const {data: order} = await axios.get('/api/orders?status=open')
+      console.log('USER ID', userId)
+      const {data: order} = await axios.get(`/api/orders/${userId}?status=open`)
       console.log('ORDERS', order)
       dispatch(setOpenOrders(order))
     } catch (error) {
-      console.log('Error: Could not get all orders', error)
+      console.log('Error: Could not get my order details', error)
     }
   }
 }

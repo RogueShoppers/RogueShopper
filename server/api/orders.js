@@ -2,14 +2,18 @@ const router = require('express').Router()
 const {Order, Product} = require('../db/models')
 module.exports = router
 
-// GET /api/orders?status=(open or close)
-router.get('/', async (req, res, next) => {
+// GET /api/orders/:userId?status=(open or close)
+router.get('/:userId', async (req, res, next) => {
   try {
+    const {userId} = req.params
     const {status} = req.query
+    console.log('USER ID', userId)
+    console.log('STATUS', status)
     if (status === 'open') {
       const [allOpenOrders] = await Order.findAll({
         where: {
-          completed: false
+          completed: false,
+          userId: userId
         },
         include: [
           {
@@ -24,9 +28,10 @@ router.get('/', async (req, res, next) => {
       res.json(allOpenOrders)
     }
     if (status === 'close') {
-      const allClosedOrders = await Order.findAll({
+      const [allClosedOrders] = await Order.findAll({
         where: {
-          completed: true
+          completed: true,
+          userId: userId
         },
         include: [
           {
