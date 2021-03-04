@@ -2,13 +2,11 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {editCartQuantity} from '../store/orders'
-import MyCart from './MyCart'
 
 const MyCartSingleItem = props => {
-  const {product, initialQty, removeItemFromCart, user} = props
+  const {product, initialQty, removeItemFromCart, user, editQuantity} = props
   const [quantity, setQuantity] = useState(0)
 
-  console.log('SELECTED QTY', quantity)
   useEffect(() => {
     setQuantity(initialQty)
   }, [])
@@ -27,7 +25,7 @@ const MyCartSingleItem = props => {
 
   const afterQtyOptions = currentQty => {
     let arr = []
-    for (let i = currentQty + 1; i <= 10; i++) {
+    for (let i = currentQty + 1; i <= 20; i++) {
       arr.push(
         <option key={i} value={i}>
           Qty: {i}
@@ -37,18 +35,20 @@ const MyCartSingleItem = props => {
     return arr
   }
   const handleChangeQty = event => {
+    const orderInfo = {
+      quantity: event.target.value,
+      productId: product.id
+    }
+    editQuantity(user.id, orderInfo)
     setQuantity(event.target.value)
-    console.log(quantity)
   }
 
   return (
     <li key={product.id}>
       <div className="row">
-        Product Name:
         <Link to={`/products/${product.id}`}>{product.name}</Link>
       </div>
       <div className="row">Price: ${product.price}</div>
-      <div className="row">InitialQty: {initialQty}</div>
       <div className="row">
         <select
           className="browser-default"
@@ -74,12 +74,11 @@ const MyCartSingleItem = props => {
   )
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     editQuantity: (productId) => dispatch(editCartQuantity(productId)),
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    editQuantity: (userId, orderInfo) =>
+      dispatch(editCartQuantity(userId, orderInfo))
+  }
+}
 
-// export default connect(mapDispatchToProps)(MyCartSingleItem)
-
-export default MyCartSingleItem
+export default connect(null, mapDispatchToProps)(MyCartSingleItem)
