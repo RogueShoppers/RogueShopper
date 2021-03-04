@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, loggedInUser}) => (
   <div>
     <h1>RogueShopper</h1>
     <nav className="nav-wrapper grey darken-2">
@@ -13,11 +13,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/products">Products</Link>
-          <Link to="/me">My Account</Link>
           <Link to="/mycart">My Cart</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <NavLink to="/me" className="btn btn-floating pink lighten-1">
+            {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
+          </NavLink>
         </div>
       ) : (
         <div>
@@ -39,7 +41,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 const mapState = state => {
   // console.log('state in Navbar', state)
   return {
-    isLoggedIn: !!state.users.selected.id
+    isLoggedIn: !!state.users.selected.id,
+    loggedInUser: state.users.selected
   }
 }
 
