@@ -7,8 +7,6 @@ router.get('/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params
     const {status} = req.query
-    console.log('USER ID', userId)
-    console.log('STATUS', status)
     if (status === 'open') {
       const [allOpenOrders] = await Order.findAll({
         where: {

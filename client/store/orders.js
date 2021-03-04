@@ -20,9 +20,7 @@ export const createNewOrder = newOrder => ({
 export const fetchMyOpenOrders = userId => {
   return async dispatch => {
     try {
-      console.log('USER ID', userId)
       const {data: order} = await axios.get(`/api/orders/${userId}?status=open`)
-      console.log('ORDERS', order)
       dispatch(setOpenOrders(order))
     } catch (error) {
       console.log('Error: Could not get my order details', error)

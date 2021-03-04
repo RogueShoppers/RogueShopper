@@ -7,13 +7,11 @@ const MyCart = props => {
   const {myOrder, getMyOpenOrders, getUser, user} = props
 
   useEffect(() => {
-    console.log('GET USER USE EFFECT!')
     getUser()
   }, [])
 
   useEffect(
     () => {
-      console.log('ORDERS USE EFFECT!')
       getMyOpenOrders(user.id)
     },
     [user]
@@ -32,7 +30,7 @@ const MyCart = props => {
   }
 
   const cartNotEmpty = myOrder.id && myOrder.products.length !== 0
-  const disabled = myOrder.id && myOrder.products.length === 0
+  const disabled = myOrder.id ? false : true || myOrder.products.length === 0
 
   return (
     <div>

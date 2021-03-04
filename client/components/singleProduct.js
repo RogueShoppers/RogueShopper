@@ -49,7 +49,6 @@ const singleProduct = props => {
       <button type="submit" onClick={handleAddToCart}>
         Add To Cart
       </button>
-      <MyCart />
     </div>
   )
 }
