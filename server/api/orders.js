@@ -9,11 +9,18 @@ router.post('/:userId', async (req, res, next) => {
     const {userId} = req.params
     const {productId, quantity} = req.body
 
+    //create new order on Order Model
     let newOrder = await Order.create({completed: false}, {include: Product})
+
+    //set newOrder to associate with logged in user
     let user = await User.findByPk(userId)
     await newOrder.setUser(user)
+
+    //set newOrder to selected products & update the order quantity
     let product = await Product.findByPk(productId)
     await newOrder.setProducts(product, {through: {orderQuantity: quantity}})
+
+    //wait for all updates to be loaded to newOrder
     newOrder = await newOrder.reload()
 
     res.json(newOrder)

@@ -17,8 +17,6 @@ const MyCart = props => {
     [user]
   )
 
-  console.log('MY ORDERS', myOrders)
-
   const calculateTotalQty = () => {
     return myOrders.reduce((total, order) => {
       const subTotal = order.products.reduce((subTotal, product) => {
@@ -60,7 +58,7 @@ const MyCart = props => {
                           Product Name:<a> {product.name}</a>
                         </span>
                         <br />
-                        <span>Price: {product.price}</span>
+                        <span>Price: ${product.price}</span>
                         <br />
                         <span>
                           Qty: {product['order-product'].orderQuantity}

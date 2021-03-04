@@ -44,11 +44,11 @@ const singleProduct = props => {
       <div>Price: ${price}</div>
       <div>
         Quantity: {quantity}
-        <button type="button" onClick={handleIncrease}>
-          +
-        </button>
         <button type="button" onClick={handleDecrease}>
           -
+        </button>
+        <button type="button" onClick={handleIncrease}>
+          +
         </button>
       </div>
       <p>{longDescription}</p>
@@ -67,12 +67,12 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
     getUser: () => dispatch(getMe()),
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
     addToCart: (productId, quantity) =>
-      dispatch(createNewOpenOrder(productId, quantity))
+      dispatch(createNewOpenOrder(productId, quantity, history))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(singleProduct)

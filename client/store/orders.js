@@ -29,16 +29,15 @@ export const fetchMyOpenOrders = userId => {
     }
   }
 }
-export const createNewOpenOrder = (userId, orderInfo) => {
+export const createNewOpenOrder = (userId, orderInfo, history) => {
   return async dispatch => {
     try {
-      console.log('(THUNK) UserId', userId)
-      console.log('(THUNK orderInfo', orderInfo)
       const {data: newOrder} = await axios.post(
         `/api/orders/${userId}`,
         orderInfo
       )
       dispatch(createNewOrder(newOrder))
+      history.push('/mycart')
     } catch (error) {
       console.log('Error: Could not add new order to database', error)
     }
