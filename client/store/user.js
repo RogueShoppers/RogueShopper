@@ -6,12 +6,14 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SIGNUP_USER = 'SIGNUP_USER'
 const LOGIN_USER = 'LOGIN_USER'
+const EDIT_USER = 'EDIT_USER'
 
 //ACTION CREATORS
 const gotUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const signedUp = newUser => ({type: SIGNUP_USER, newUser})
 const loggedIn = user => ({type: LOGIN_USER, user})
+const updatedUser = user => ({type: EDIT_USER, user})
 
 //THUNK CREATORS
 export const signUp = newUser => {
@@ -59,6 +61,17 @@ export const getMe = () => {
   }
 }
 
+export const editMe = user => {
+  return async dispatch => {
+    try {
+      const {data: updated} = await axios.put('/auth/me', user)
+      dispatch(updatedUser(updated))
+    } catch (error) {
+      console.log('Error editing logged-in user!', error)
+    }
+  }
+}
+
 //INITIAL STATE
 const initialState = {
   all: [],
@@ -73,13 +86,18 @@ export default function(state = initialState, action) {
         ...state,
         selected: action.user
       }
+    case EDIT_USER:
+      return {
+        ...state,
+        selected:
+          state.selected.id === action.user.id ? action.user : state.selected
+      }
     case SIGNUP_USER:
       return {
         ...state,
         selected: action.newUser
       }
     case LOGIN_USER:
-      console.log('action.user', action.user)
       return {
         ...state,
         selected: action.user
