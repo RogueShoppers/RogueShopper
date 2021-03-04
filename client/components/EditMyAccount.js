@@ -121,7 +121,7 @@ class EditMyAccount extends Component {
               placeholder="******"
               type="password"
               id="password"
-              value={password}
+              defaultValue={password}
               onChange={this.handleChange}
             />
           </div>

@@ -68,6 +68,7 @@ export const editMe = user => {
     try {
       const {data: updated} = await axios.put('/auth/me', user)
       dispatch(updatedUser(updated))
+      historyFunc.push('/me')
     } catch (error) {
       console.log('Error editing logged-in user!', error)
     }
