@@ -13,6 +13,7 @@ import {getMe} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
 import allUsers from './components/allUsers'
+import MyCart from './components/MyCart'
 
 /**
  * COMPONENT
@@ -38,6 +39,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/me" component={MyUserAccount} />
             <Route path="/me/edit" component={EditMyAccount} />
+            <Route path="/mycart" component={MyCart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

@@ -45,5 +45,6 @@ module.exports = {
   User,
   Product,
   Pet,
-  Tag
+  Tag,
+  Order
 }
