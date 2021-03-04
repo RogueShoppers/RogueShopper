@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchAllUsers} from '../store/allUsers.js'
+import {fetchAllUsers} from '../store/user.js'
 
 const AllUsers = props => {
   const {users, getUsers} = props
@@ -11,6 +12,7 @@ const AllUsers = props => {
 
   return (
     <div>
+      {/* {isAdmin ? ( )} */}
       <h1>All Users</h1>
       <tbody>
         {users.length !== 0
@@ -28,9 +30,12 @@ const AllUsers = props => {
   )
 }
 
+//CONTAINER
+
 const mapStateToProps = state => {
   return {
-    users: state.users.all
+    users: state.users.all,
+    isAdmin: state.users.selected.isAdmin
   }
 }
 
@@ -41,3 +46,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllUsers)
+
+//PROP TYPES
+AllUsers.propTypes = {
+  isAdmin: PropTypes.bool.isRequired
+}
