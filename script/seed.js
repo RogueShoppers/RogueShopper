@@ -241,7 +241,7 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Rope with Squeaking Ball',
+      name: 'Rope With Squeaking Ball',
       shortDescription:
         'Get ready for some high-flying fun with the Rope with Squeaking Ball Dog Toy',
       longDescription:
