@@ -19,10 +19,23 @@ router.post('/:userId', async (req, res, next) => {
     let user = await User.findByPk(userId)
     await newOrder.setUser(user)
 
-    //add selected products & the order quantity to newOrder
+    //check if existing openOrder already has product with same id
+    let currentProducts = await newOrder.getProducts()
+    let [existedOrderProduct] = currentProducts.filter(
+      item => item.id === Number(productId)
+    )
     let product = await Product.findByPk(productId)
 
-    await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
+    //if product with same id exists, update the orderQuantity to current + added quantity
+    if (existedOrderProduct) {
+      let currentQty = existedOrderProduct['order-product'].orderQuantity
+      await newOrder.addProduct(product, {
+        through: {orderQuantity: currentQty + quantity}
+      })
+    } else {
+      //if product with sane id doesn't exist, add product with quantity
+      await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
+    }
 
     //wait for all updates to be loaded to newOrder
     newOrder = await newOrder.reload()
