@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
+import {Link} from 'react-router-dom'
 
 const AllProducts = props => {
   const {products, getProducts} = props
@@ -16,7 +17,9 @@ const AllProducts = props => {
         ? products.map(product => (
             <div key={product.id}>
               <img src={product.imageURL} />
-              <h2>{product.name}</h2>
+              <Link to={`/products/${product.id}`}>
+                <h2>{product.name}</h2>
+              </Link>
               <p>{product.shortDescription}</p>
               <h3>{product.price}</h3>
             </div>
