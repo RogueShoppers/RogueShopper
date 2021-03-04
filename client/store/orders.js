@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 //ACTION TYPES
-const SET_CART_ORDERS = 'SET_CART_ORDERS'
+const SET_OPEN_ORDERS = 'SET_OPEN_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
 
 //ACTION CREATOR
-export const setOpenOrders = orders => {
+export const setOpenOrders = order => {
   return {
-    type: SET_CART_ORDERS,
-    orders
+    type: SET_OPEN_ORDERS,
+    order
   }
 }
 export const createNewOrder = newOrder => ({
@@ -20,9 +20,9 @@ export const createNewOrder = newOrder => ({
 export const fetchAllOpenOrders = () => {
   return async dispatch => {
     try {
-      const {data: orders} = await axios.get('/api/orders?status=open')
-      console.log('ORDERS', orders)
-      dispatch(setOpenOrders(orders))
+      const {data: order} = await axios.get('/api/orders?status=open')
+      console.log('ORDERS', order)
+      dispatch(setOpenOrders(order))
     } catch (error) {
       console.log('Error: Could not get all orders', error)
     }
@@ -48,8 +48,8 @@ const initialState = {
 //REDUCER
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CART_ORDERS:
-      return {...state, all: action.orders}
+    case SET_OPEN_ORDERS:
+      return {...state, selected: action.order}
     case CREATE_ORDER:
       return {...state, all: [...state.all, action.order]}
     default:

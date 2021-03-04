@@ -7,15 +7,16 @@ router.get('/', async (req, res, next) => {
   try {
     const {status} = req.query
     if (status === 'open') {
-      const allOpenOrders = await Order.findAll({
+      const [allOpenOrders] = await Order.findAll({
         where: {
           completed: false
         },
         include: [
           {
             model: Product,
+            attributes: ['id', 'name', 'imageURL', 'price'],
             through: {
-              attributes: ['name', 'imageURL', 'price', 'order-product']
+              attributes: ['orderQuantity']
             }
           }
         ]
@@ -29,13 +30,17 @@ router.get('/', async (req, res, next) => {
         },
         include: [
           {
-            model: Product
+            model: Product,
+            attributes: ['name', 'imageURL', 'price'],
+            through: {
+              attributes: ['orderQuantity']
+            }
           }
         ]
       })
       res.json(allClosedOrders)
     }
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 })

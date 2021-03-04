@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/products'
 import {postNewOrder} from '../store/orders'
-import MyChart from './myChart'
+import MyCart from './MyCart'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
@@ -29,7 +29,6 @@ const singleProduct = props => {
     event.preventDefault()
     addToCart(productId, quantity)
   }
-  console.log('STATE', quantity)
 
   return (
     <div>
@@ -50,7 +49,7 @@ const singleProduct = props => {
       <button type="submit" onClick={handleAddToCart}>
         Add To Cart
       </button>
-      <MyChart />
+      <MyCart />
     </div>
   )
 }
