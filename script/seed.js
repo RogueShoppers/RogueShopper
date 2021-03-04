@@ -42,7 +42,7 @@ const seed = async () => {
       email: 'kikopup@rogue.com',
       password: 'recordDogs',
       address: '64 Sunny Blvd, #4, Los Angeles, CA 32548',
-      isAdmin: false
+      isAdmin: true
     },
     {
       firstName: 'Terry',
