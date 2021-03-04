@@ -7,6 +7,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const SIGNUP_USER = 'SIGNUP_USER'
 const LOGIN_USER = 'LOGIN_USER'
 const EDIT_USER = 'EDIT_USER'
+const SET_USERS = 'SET_USERS'
 
 //ACTION CREATORS
 const gotUser = user => ({type: GET_USER, user})
@@ -14,6 +15,7 @@ const removeUser = () => ({type: REMOVE_USER})
 const signedUp = newUser => ({type: SIGNUP_USER, newUser})
 const loggedIn = user => ({type: LOGIN_USER, user})
 const updatedUser = user => ({type: EDIT_USER, user})
+const setUsers = users => ({type: SET_USERS, users})
 
 //THUNK CREATORS
 export const signUp = newUser => {
@@ -72,6 +74,17 @@ export const editMe = user => {
   }
 }
 
+export const fetchAllUsers = () => {
+  return async dispatch => {
+    try {
+      const {data: users} = await axios.get('/api/users')
+      dispatch(setUsers(users))
+    } catch (error) {
+      console.log('Error: Could not get all users', error)
+    }
+  }
+}
+
 //INITIAL STATE
 const initialState = {
   all: [],
@@ -107,6 +120,8 @@ export default function(state = initialState, action) {
         ...state,
         selected: {}
       }
+    case SET_USERS:
+      return {...state, all: action.users}
     default:
       return state
   }
