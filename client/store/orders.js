@@ -5,10 +5,10 @@ const SET_OPEN_ORDERS = 'SET_OPEN_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
 
 //ACTION CREATOR
-export const setOpenOrders = order => {
+export const setOpenOrders = orders => {
   return {
     type: SET_OPEN_ORDERS,
-    order
+    orders
   }
 }
 export const createNewOrder = newOrder => ({
@@ -20,18 +20,25 @@ export const createNewOrder = newOrder => ({
 export const fetchMyOpenOrders = userId => {
   return async dispatch => {
     try {
-      const {data: order} = await axios.get(`/api/orders/${userId}?status=open`)
-      dispatch(setOpenOrders(order))
+      const {data: orders} = await axios.get(
+        `/api/orders/${userId}?status=open`
+      )
+      dispatch(setOpenOrders(orders))
     } catch (error) {
       console.log('Error: Could not get my order details', error)
     }
   }
 }
-export const postNewOrder = newOrder => {
+export const createNewOpenOrder = (userId, orderInfo) => {
   return async dispatch => {
     try {
-      const {data: order} = await axios.post('/api/orders', newOrder)
-      dispatch(createNewOrder(order))
+      console.log('(THUNK) UserId', userId)
+      console.log('(THUNK orderInfo', orderInfo)
+      const {data: newOrder} = await axios.post(
+        `/api/orders/${userId}`,
+        orderInfo
+      )
+      dispatch(createNewOrder(newOrder))
     } catch (error) {
       console.log('Error: Could not add new order to database', error)
     }
@@ -48,9 +55,9 @@ const initialState = {
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_OPEN_ORDERS:
-      return {...state, selected: action.order}
+      return {...state, all: action.orders}
     case CREATE_ORDER:
-      return {...state, all: [...state.all, action.order]}
+      return {...state, all: [...state.all, action.newOrder]}
     default:
       return state
   }

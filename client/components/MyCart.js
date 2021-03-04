@@ -4,7 +4,7 @@ import {fetchMyOpenOrders} from '../store/orders'
 import {getMe} from '../store/user'
 
 const MyCart = props => {
-  const {myOrder, getMyOpenOrders, getUser, user} = props
+  const {myOrders, getMyOpenOrders, getUser, user} = props
 
   useEffect(() => {
     getUser()
@@ -17,20 +17,28 @@ const MyCart = props => {
     [user]
   )
 
+  console.log('MY ORDERS', myOrders)
+
   const calculateTotalQty = () => {
-    return myOrder.products.reduce((acc, product) => {
-      return acc + product['order-product'].orderQuantity
+    return myOrders.reduce((total, order) => {
+      const subTotal = order.products.reduce((subTotal, product) => {
+        return subTotal + product['order-product'].orderQuantity
+      }, 0)
+      return total + subTotal
     }, 0)
   }
 
   const calculateTotalPrice = () => {
-    return myOrder.products.reduce((acc, product) => {
-      return acc + product.price * product['order-product'].orderQuantity
+    return myOrders.reduce((total, order) => {
+      const subTotal = order.products.reduce((subTotal, product) => {
+        return subTotal + product.price * product['order-product'].orderQuantity
+      }, 0)
+      return total + subTotal
     }, 0)
   }
 
-  const cartNotEmpty = myOrder.id && myOrder.products.length !== 0
-  const disabled = myOrder.id ? false : true || myOrder.products.length === 0
+  const cartNotEmpty = myOrders.length !== 0
+  const disabled = myOrders.length === 0
 
   return (
     <div>
@@ -42,16 +50,24 @@ const MyCart = props => {
             {calculateTotalPrice()}
           </h2>
           <ol>
-            {myOrder.products.map(product => {
+            {myOrders.map(order => {
               return (
-                <li key={product.id}>
-                  <span>
-                    Product Name:<a> {product.name}</a>
-                  </span>
-                  <br />
-                  <span>Price: {product.price}</span>
-                  <br />
-                  <span>Qty: {product['order-product'].orderQuantity}</span>
+                <li key={order.id}>
+                  {order.products.map(product => {
+                    return (
+                      <div key={product.id}>
+                        <span>
+                          Product Name:<a> {product.name}</a>
+                        </span>
+                        <br />
+                        <span>Price: {product.price}</span>
+                        <br />
+                        <span>
+                          Qty: {product['order-product'].orderQuantity}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </li>
               )
             })}
@@ -70,7 +86,7 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.selected,
+    myOrders: state.orders.all,
     user: state.users.selected
   }
 }
