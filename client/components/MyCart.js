@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {fetchMyOpenOrder, removeItemFromOrder} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
+import MyCartSingleItem from './MyCartSingleItem'
 
 const MyCart = props => {
   const {myOrder, getMyOpenOrder, getUser, user, removeItemFromCart} = props
-  const [quantity, setQuantity] = useState(0)
 
   useEffect(() => {
     getUser()
@@ -18,8 +18,6 @@ const MyCart = props => {
     },
     [user]
   )
-
-  console.log('MY ORDER', myOrder)
 
   const calculateTotalQty = () => {
     return myOrder.products.reduce((total, product) => {
@@ -36,34 +34,6 @@ const MyCart = props => {
   const cartNotEmpty = myOrder.id && myOrder.products.length !== 0
   const disabled = myOrder.id ? false : true || myOrder.products.length === 0
 
-  const beforeQtyOptions = currentQty => {
-    let arr = []
-    for (let i = 1; i < currentQty; i++) {
-      arr.push(
-        <option key={i} value={i}>
-          Qty: {i}
-        </option>
-      )
-    }
-    return arr
-  }
-
-  const afterQtyOptions = currentQty => {
-    let arr = []
-    for (let i = currentQty + 1; i <= 10; i++) {
-      arr.push(
-        <option key={i} value={i}>
-          Qty: {i}
-        </option>
-      )
-    }
-    return arr
-  }
-
-  const handleChangeQty = event => {
-    setQuantity(event.target.value)
-  }
-
   return (
     <div>
       <h1>My Cart</h1>
@@ -76,35 +46,13 @@ const MyCart = props => {
             {myOrder.products.map(product => {
               const initialQty = product['order-product'].orderQuantity
               return (
-                <li key={product.id}>
-                  <div className="row">
-                    Product Name:
-                    <Link to={`/products/${product.id}`}>{product.name}</Link>
-                  </div>
-                  <div className="row">Price: ${product.price}</div>
-                  <div className="row">InitialQty: {initialQty}</div>
-                  <div className="row">
-                    <select
-                      className="browser-default"
-                      value={quantity}
-                      onChange={handleChangeQty}
-                    >
-                      {beforeQtyOptions(initialQty)}
-                      <option value={initialQty}>Qty: {initialQty}</option>
-                      {afterQtyOptions(initialQty)}
-                      {initialQty}
-                    </select>
-                  </div>
-                  <div className="row">
-                    <button
-                      type="button"
-                      className="waves-effect waves-light btn-small"
-                      onClick={() => removeItemFromCart(user.id, product.id)}
-                    >
-                      Remove {product.name}
-                    </button>
-                  </div>
-                </li>
+                <MyCartSingleItem
+                  key={product.id}
+                  product={product}
+                  initialQty={initialQty}
+                  removeItemFromCart={removeItemFromCart}
+                  user={user}
+                />
               )
             })}
           </ol>

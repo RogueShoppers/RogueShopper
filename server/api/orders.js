@@ -123,3 +123,28 @@ router.delete('/:userId/products/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+// PUT /api/orders/:userId/
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const {userId} = req.params
+    const {productId, quantity} = req.body
+
+    let currentOpenOrder = await Order.findOne({
+      where: {
+        completed: false,
+        userId: userId
+      },
+      include: Product
+    })
+    let product = await Product.findByPk(productId)
+    await currentOpenOrder.addProduct(product, {
+      through: {orderQuantity: quantity}
+    })
+    currentOpenOrder = await currentOpenOrder.reload()
+
+    res.json(currentOpenOrder)
+  } catch (error) {
+    next(error)
+  }
+})
