@@ -33,7 +33,6 @@ const AllUsers = props => {
 //CONTAINER
 
 const mapStateToProps = state => {
-  console.log(state.users.all, '===> state.users.all')
   return {
     users: state.users.all,
     isAdmin: state.users.selected.isAdmin
