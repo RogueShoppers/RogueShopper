@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchMyOpenOrder} from '../store/orders'
+import {fetchMyOpenOrder, removeItemFromOrder} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 
 const MyCart = props => {
-  const {myOrder, getMyOpenOrder, getUser, user} = props
-  // const [quantity, setQuantity] = useState(0)
+  const {myOrder, getMyOpenOrder, getUser, user, removeItemFromCart} = props
+  const [quantity, setQuantity] = useState(0)
 
   useEffect(() => {
     getUser()
@@ -20,7 +20,6 @@ const MyCart = props => {
   )
 
   console.log('MY ORDER', myOrder)
-  console.log('USER', user)
 
   const calculateTotalQty = () => {
     return myOrder.products.reduce((total, product) => {
@@ -40,7 +39,11 @@ const MyCart = props => {
   const beforeQtyOptions = currentQty => {
     let arr = []
     for (let i = 1; i < currentQty; i++) {
-      arr.push(<option>Qty:{i}</option>)
+      arr.push(
+        <option key={i} value={i}>
+          Qty: {i}
+        </option>
+      )
     }
     return arr
   }
@@ -48,9 +51,17 @@ const MyCart = props => {
   const afterQtyOptions = currentQty => {
     let arr = []
     for (let i = currentQty + 1; i <= 10; i++) {
-      arr.push(<option>Qty: {i}</option>)
+      arr.push(
+        <option key={i} value={i}>
+          Qty: {i}
+        </option>
+      )
     }
     return arr
+  }
+
+  const handleChangeQty = event => {
+    setQuantity(event.target.value)
   }
 
   return (
@@ -63,7 +74,7 @@ const MyCart = props => {
           </h2>
           <ol className="container">
             {myOrder.products.map(product => {
-              const currentQty = product['order-product'].orderQuantity
+              const initialQty = product['order-product'].orderQuantity
               return (
                 <li key={product.id}>
                   <div className="row">
@@ -71,19 +82,24 @@ const MyCart = props => {
                     <Link to={`/products/${product.id}`}>{product.name}</Link>
                   </div>
                   <div className="row">Price: ${product.price}</div>
-                  <div className="row">InitialQty: {currentQty}</div>
+                  <div className="row">InitialQty: {initialQty}</div>
                   <div className="row">
-                    <select className="browser-default" value={currentQty}>
-                      {beforeQtyOptions(currentQty)}
-                      <option selected>Qty: {currentQty}</option>
-                      {afterQtyOptions(currentQty)}
-                      {currentQty}
+                    <select
+                      className="browser-default"
+                      value={quantity}
+                      onChange={handleChangeQty}
+                    >
+                      {beforeQtyOptions(initialQty)}
+                      <option value={initialQty}>Qty: {initialQty}</option>
+                      {afterQtyOptions(initialQty)}
+                      {initialQty}
                     </select>
                   </div>
                   <div className="row">
                     <button
                       type="button"
                       className="waves-effect waves-light btn-small"
+                      onClick={() => removeItemFromCart(user.id, product.id)}
                     >
                       Remove {product.name}
                     </button>
@@ -111,7 +127,7 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.openOrder,
+    myOrder: state.orders.myOrder,
     user: state.users.selected
   }
 }
@@ -119,7 +135,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(getMe()),
-    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId))
+    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId)),
+    removeItemFromCart: (userId, productId) =>
+      dispatch(removeItemFromOrder(userId, productId))
   }
 }
 
