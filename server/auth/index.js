@@ -49,7 +49,6 @@ router.get('/me', (req, res) => {
 //PUT /auth/me
 router.put('/me', async (req, res, next) => {
   try {
-    console.log('req.body inside put route-->', req.body)
     res.json(await req.user.update(req.body))
   } catch (error) {
     console.log('Error editing my user data!', error)

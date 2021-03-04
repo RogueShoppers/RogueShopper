@@ -8,14 +8,7 @@ class MyUserAccount extends Component {
     this.props.getMe()
   }
   render() {
-    const {
-      firstName,
-      lastName,
-      preferredName,
-      address,
-      email,
-      password
-    } = this.props.user
+    const {firstName, lastName, preferredName, address, email} = this.props.user
 
     return (
       <div className="container">
@@ -31,7 +24,7 @@ class MyUserAccount extends Component {
                   <p>Preferred Name: {preferredName}</p>
                   <p>Address: {address}</p>
                   <p>Email: {email}</p>
-                  <p>Password: {password}</p>
+                  <p>Password: ******</p>
                 </div>
               </div>
               <div className="card-action">

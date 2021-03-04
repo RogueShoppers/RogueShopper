@@ -24,8 +24,8 @@ class EditMyAccount extends Component {
       lastName: this.props.user.lastName,
       preferredName: this.props.user.preferredName,
       address: this.props.user.address,
-      email: this.props.user.email
-      //   password: this.props.user.password,
+      email: this.props.user.email,
+      password: this.props.user.password
     })
   }
 
@@ -118,6 +118,7 @@ class EditMyAccount extends Component {
               Password
             </label>
             <input
+              placeholder="******"
               type="password"
               id="password"
               value={password}
