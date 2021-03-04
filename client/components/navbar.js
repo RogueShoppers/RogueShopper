@@ -33,7 +33,7 @@ const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, user, myOrder}) => {
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
             <Link to="/me">My Account</Link>
-            <Link to="/mycart">My Cart({calculateTotalQty()})</Link>
+            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
