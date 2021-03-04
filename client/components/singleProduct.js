@@ -1,56 +1,59 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {addProduct, fetchSingleProduct} from '../store/products'
+import {fetchSingleProduct} from '../store/products'
+import {createNewOpenOrder} from '../store/orders'
+import {getMe} from '../store/user'
 
 const singleProduct = props => {
-  const {product, addToCart, getSingleProduct} = props
+  const {product, addToCart, getSingleProduct, getUser, user} = props
   const {name, longDescription, imageUrl, price, tags} = product
+  const productId = props.match.params.productId
   //tags will be in array form? (Natalie)
 
   useEffect(() => {
-    getSingleProduct(props.match.params.productId)
+    getSingleProduct(productId)
+    getUser()
   }, [])
 
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const handleIncrease = () => {
     setQuantity(prevQuantity => prevQuantity + 1)
   }
   const handleDecrease = () => {
-    if (quantity === 0) {
-      setQuantity(0)
+    if (quantity === 1) {
+      setQuantity(1)
     } else {
       setQuantity(prevQuantity => prevQuantity - 1)
     }
   }
   const handleAddToCart = event => {
-    const productToAdd = {
-      name,
-      imageUrl,
-      price,
+    event.preventDefault()
+    const orderInfo = {
+      productId,
       quantity
     }
-    addToCart(productToAdd)
-    setQuantity(0)
+    console.log('USER ID', user.id)
+    console.log('ORDER INFO', orderInfo)
+    addToCart(user.id, orderInfo)
   }
-  console.log('STATE', quantity)
 
   return (
     <div>
       <h1>{name}</h1>
       <img src={imageUrl} alt="product image" />
-      <div>Price: {price}</div>
+      <div>Price: ${price}</div>
       <div>
         Quantity: {quantity}
-        <button type="button" onClick={handleIncrease}>
-          +
-        </button>
         <button type="button" onClick={handleDecrease}>
           -
+        </button>
+        <button type="button" onClick={handleIncrease}>
+          +
         </button>
       </div>
       <p>{longDescription}</p>
       <div>#{tags}</div>
-      <button type="button" onClick={handleAddToCart}>
+      <button type="submit" onClick={handleAddToCart}>
         Add To Cart
       </button>
     </div>
@@ -59,14 +62,17 @@ const singleProduct = props => {
 
 const mapStateToProps = state => {
   return {
-    product: state.products.selected
+    product: state.products.selected,
+    user: state.users.selected
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    getSingleProduct: id => dispatch(fetchSingleProduct(id))
-    // addToCart: (productToAdd) => dispatch(addProduct(productToAdd)),
+    getUser: () => dispatch(getMe()),
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addToCart: (productId, quantity) =>
+      dispatch(createNewOpenOrder(productId, quantity, history))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(singleProduct)
