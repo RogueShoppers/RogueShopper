@@ -280,7 +280,8 @@ const seed = async () => {
         'Multipurpose interactive toy that will give both you and your pup a workout. Build impulse control, harness prey drive, or just have fun!',
       price: 150.0,
       quantity: 75,
-      imageURL: '',
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/1392/6117/products/painted-peonies-natural-dog-squeaky-toy-from-the-foggy-dog-779560_550x550.jpg?v=1597091079',
       tags: [chase.id, brainTeaser.id, tug.id]
     },
     {
@@ -290,7 +291,7 @@ const seed = async () => {
         "Get your dog, we're having a party. This colorful stuffed toy is the perfect squish that HOLDS MORE SQUISHES! Tuck the included smol squishes into Party Panda's belly, and watch your pup have a blast as they hunt for all those squished squishes.",
       price: 45.5,
       quantity: 75,
-      imageURL: '',
+      imageURL: 'https://images.kiwico.com/products/3010/6267.png',
       tags: [squishy.id, destroy.id, brainTeaser.id]
     },
     {
@@ -300,8 +301,123 @@ const seed = async () => {
         'Help your furry friend get their sniff on with this fully washable and intensely durable snuffle mat. Hide food and/or treats in the nooks and crannies created by the fabric folds, or tuck extra juicy yums into the waxed canvas pocket. Let your pup sniff and snuffle their way to happy!',
       price: 75.5,
       quantity: 200,
-      imageURL: '',
+      imageURL:
+        'https://images-na.ssl-images-amazon.com/images/I/41Hw2-h%2BjhL._AC_.jpg',
       tags: [feed.id, brainTeaser.id]
+    },
+    {
+      name: 'Blue Bone',
+      shortDescription: 'Tastiest bone in the whole world',
+      longDescription:
+        'Every dog plays differently and, since not all toys are created equal, it’s always best to keep a close watch on your pup in case things get ruff. Supervised play will help toys last longer and most importantly keep your pal safe. No dog toy is truly indestructible, so always remove the toy from playtime if pieces begin to break off.',
+      price: 5.0,
+      quantity: 200,
+      imageURL:
+        'https://petsittersireland.com/shop/wp-content/uploads/2017/11/Blue-Dog-Bone.jpg',
+      tags: [chew.id, destroy.id]
+    },
+    {
+      name: 'Tasty T-Rex',
+      shortDescription: 'Life finds a way',
+      longDescription:
+        'God creates dinosaurs, God destroys dinosaurs, God creates Man, Man kills God, Man brings back dinosaurs. Dinosaurs eat Man, Woman inherits the Earth.',
+      price: 25.0,
+      quantity: 200,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0155/7069/8288/products/toy-rope-trex-taupe_1800x1800.jpg?v=1557288368',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Triangle Tug',
+      shortDescription:
+        'The Triangle Tug boasts two shapes, two textures, and is perfect for tug-of-war.',
+      longDescription:
+        'Tennis ball dog house take it yorkshire terrier play dead dog bone, stand yorkshire terrier chihuahua Morkie milk bone peanut butter. Leave it german shephard vet bell paw squirrel leave it sit peanut butter, stand doberman pinscher fetch vet Morkie. Paw Morkie dachshund poodle great dance pit bull peanut butter. Bulldog speak come poodle bark dachshund, shake dog house pomsky german shephard greyhound Morkie. Play dead leash puppy bark squeak toy puppy, dog bowl sit paw leash speak.',
+      price: 17.0,
+      quantity: 200,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0011/7532/2687/products/WO_VM_Studio_PDP_ToysTriangleTug_Blush_01_Web_1000x1250_crop_center.jpg?v=1611153169',
+      tags: [destroy.id, tug.id]
+    },
+    {
+      name: 'Rope Tug of War',
+      shortDescription:
+        'Lab dog toy come play dead leap greyhound squeak toy leave it collar squirrel, release pomeranian dachshund pomsky.',
+      longDescription:
+        'Paw leash stay dog toy come peanut butter squirrel. Take it catch maltese paw doberman pinscher dachshund doberman pinscher. Chihuahua dog catch pomeranian collar paw leave it. Shih tzu english mastiff sit pug growl, pug shake dog house spin leave it k9 roll over. Leap husky leash, dog house greyhound chase tail vet shake chow chow dog toy stay sit.',
+      price: 10.0,
+      quantity: 200,
+      imageURL:
+        'https://mazerwholesale.com/wp-content/uploads/2020/01/tug-of-war-rope-toy-1.jpg',
+      tags: [fetch.id, tug.id]
+    },
+    {
+      name: 'Squeaker Fetch Stick',
+      shortDescription: 'Much run, love squeak, very toy.',
+      longDescription:
+        'Play dead heel release, pomsky chew toy chew toy boxer dog toy chase tail catch jump lap dog english mastiff. Poodle st bernard dog house pug pomeranian leap bell pomsky. Greyhound german shephard spin dog bowl growl k9 bite come poodle. Milk bone puppy lab play dead, catch bark stay shih tzu tennis ball speak great dance pit bull heel.',
+      price: 25.0,
+      quantity: 200,
+      imageURL:
+        'https://assets.petco.com/petco/image/upload/f_auto,q_auto/857122-center-1',
+      tags: [fetch.id, tug.id]
+    },
+    {
+      name: 'Cong Rocking Red Frisbee',
+      shortDescription:
+        'The best soft rubber disc on the market. Made with durable KONG Classic rubber, the Flyer won’t hurt a dogs teeth during fun games.',
+      longDescription:
+        'Growl stay english mastiff poodle chew toy heel k9 spin release. Squirrel stand Morkie pug english mastiff Morkie pit bull boxer catch. Husky tug stand st bernard puppies squirrel dog toy, great dance play dead dog bowl leash doberman pinscher squeak toy. Leave it beagle beagle chew toy sit collar, boxer sit bulldog shake greyhound. ',
+      price: 12.0,
+      quantity: 200,
+      imageURL:
+        'https://img.chewy.com/is/image/catalog/59177_MAIN._AC_SL1500_V1534451918_.jpg',
+      tags: [chew.id, fetch.id]
+    },
+    {
+      name: 'Señor Guac and Chips',
+      shortDescription: 'Yo soy un perro, y quiero muchas comida de Mexico',
+      longDescription:
+        'Pit bull chow chow lap dog great dance chase tail growl, bite kibbles catch come. Spin tail bark kibbles, puppies shake poodle milk bone collar heel. Vet dog milk bone catch chew toy greyhound dog bowl.',
+      price: 25.0,
+      quantity: 200,
+      imageURL:
+        'https://img.chewy.com/is/image/catalog/213830_Main._AC_SL1500_V1590069366_.jpg?_ga=2.222685659.132669977.1614813524-1125916086.1614813524&_gac=1.15923908.1614899932.CjwKCAiAp4KCBhB6EiwAxRxbpMDC2lDoAOmMagT5I7ssEgNWQw6D7eLFa-Q_5Gi1v7_xumblKropwhoCvfsQAvD_BwE',
+      tags: [brainTeaser.id, squishy.id]
+    },
+    {
+      name: 'Crazy Treat Puzzle',
+      shortDescription:
+        'Beat boredom with this innovative treat-dispensing toy.',
+      longDescription:
+        'Morkie Morkie leash jump, tug lap dog tug tennis ball greyhound pomeranian peanut butter tail leave it. Squirrel leave it husky pomeranian dog bowl tail down. Husky roll over release leave it peanut butter bulldog, speak play dead bulldog leash stay play dead.',
+      price: 30.0,
+      quantity: 200,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0271/3914/5772/products/OdinPowderBlue_294861f0-50ad-4f3c-83b3-080fc3e11e01_900x.png?v=1613592088',
+      tags: [brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Bone Puzzle',
+      shortDescription: 'Hungry hippos but for your dog!',
+      longDescription:
+        'Take it shih tzu leap pomeranian maltese, leash catch vet german shephard puppies release paw. Chow chow stay dachshund sit, squeak toy lab bring it tail spin chow chow chow chow. Release shake leave it dog bone lab speak st bernard. Pomeranian collar dog bone doberman pinscher Morkie boxer catch bell. Chase tail peanut butter leave it, dog bone chase tail dog come jump chihuahua speak jump.',
+      price: 40.0,
+      quantity: 200,
+      imageURL:
+        'https://www.rd.com/wp-content/uploads/2019/10/81fGi1uPUhL._AC_SL1500_-1-e1586371895905.jpg',
+      tags: [brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Rope Knot Toy',
+      shortDescription: 'Nautical dog toy for the seafaring pup',
+      longDescription:
+        'Bark growl doberman pinscher maltese maltese stand greyhound come. Sit pretty come come, leap growl collar k9 puppies kibbles rottweiler. Bulldog shih tzu take it heel milk bone husky paw lab pit bull, doberman pinscher collar stay spin.',
+      price: 4.0,
+      quantity: 200,
+      imageURL:
+        'https://i.pinimg.com/originals/b1/6a/4c/b16a4c2402353d19fd7c17847848f533.jpg',
+      tags: [fetch.id, tug.id]
     }
   ]
 
