@@ -18,6 +18,7 @@ const MyCart = props => {
   )
 
   console.log('MY ORDER', myOrder)
+  console.log('USER', user)
 
   const calculateTotalQty = () => {
     return myOrder.products.reduce((total, product) => {

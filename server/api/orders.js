@@ -11,7 +11,10 @@ router.post('/:userId', async (req, res, next) => {
 
     //create new open order on Order Model (if order id already exist, find that order)
     let [newOrder] = await Order.findOrCreate({
-      where: {completed: false},
+      where: {
+        completed: false,
+        userId: userId
+      },
       include: Product
     })
 
