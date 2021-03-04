@@ -11,7 +11,10 @@ router.post('/:userId', async (req, res, next) => {
 
     //create new open order on Order Model (if order id already exist, find that order)
     let [newOrder] = await Order.findOrCreate({
-      where: {completed: false},
+      where: {
+        completed: false,
+        userId: userId
+      },
       include: Product
     })
 
@@ -33,7 +36,7 @@ router.post('/:userId', async (req, res, next) => {
         through: {orderQuantity: currentQty + quantity}
       })
     } else {
-      //if product with sane id doesn't exist, add product with quantity
+      //if product with same id doesn't exist, add product with quantity
       await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
     }
 

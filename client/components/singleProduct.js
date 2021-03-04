@@ -6,7 +6,7 @@ import {getMe} from '../store/user'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct, getUser, user} = props
-  const {name, longDescription, imageUrl, price, tags} = product
+  const {name, longDescription, imageURL, price, tags} = product
   const productId = props.match.params.productId
   //tags will be in array form? (Natalie)
 
@@ -40,7 +40,7 @@ const singleProduct = props => {
   return (
     <div>
       <h1>{name}</h1>
-      <img src={imageUrl} alt="product image" />
+      <img src={imageURL} alt="product image" />
       <div>Price: ${price}</div>
       <div>
         Quantity: {quantity}
