@@ -5,7 +5,6 @@ module.exports = router
 //PUT /auth/login
 router.put('/login', async (req, res, next) => {
   try {
-    console.log('inside put route')
     const user = await User.findOne({where: {email: req.body.email}})
     if (!user) {
       console.log('No such user found:', req.body.email)
@@ -14,10 +13,10 @@ router.put('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', req.body.email)
       res.status(401).send('Wrong username and/or password')
     } else {
-      req.login(user, err => (err ? next(err) : res.json(user)))
+      req.login(user, error => (error ? next(error) : res.json(user)))
     }
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -25,12 +24,12 @@ router.put('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
-    req.login(user, err => (err ? next(err) : res.json(user)))
-  } catch (err) {
-    if (err.name === 'SequelizeUniqueConstraintError') {
+    req.login(user, error => (error ? next(error) : res.json(user)))
+  } catch (error) {
+    if (error.name === 'SequelizeUniqueConstraintError') {
       res.status(401).send('User already exists')
     } else {
-      next(err)
+      next(error)
     }
   }
 })
@@ -45,6 +44,15 @@ router.delete('/logout', (req, res) => {
 //GET /auth/me
 router.get('/me', (req, res) => {
   res.json(req.user)
+})
+
+//PUT /auth/me
+router.put('/me', async (req, res, next) => {
+  try {
+    res.json(await req.user.update(req.body))
+  } catch (error) {
+    console.log('Error editing my user data!', error)
+  }
 })
 
 router.use('/google', require('./google'))
