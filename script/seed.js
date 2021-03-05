@@ -280,7 +280,8 @@ const seed = async () => {
         'Multipurpose interactive toy that will give both you and your pup a workout. Build impulse control, harness prey drive, or just have fun!',
       price: 150.0,
       quantity: 75,
-      imageURL: '',
+      imageURL:
+        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
       tags: [chase.id, brainTeaser.id, tug.id]
     },
     {
@@ -290,7 +291,8 @@ const seed = async () => {
         "Get your dog, we're having a party. This colorful stuffed toy is the perfect squish that HOLDS MORE SQUISHES! Tuck the included smol squishes into Party Panda's belly, and watch your pup have a blast as they hunt for all those squished squishes.",
       price: 45.5,
       quantity: 75,
-      imageURL: '',
+      imageURL:
+        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
       tags: [squishy.id, destroy.id, brainTeaser.id]
     },
     {
@@ -300,7 +302,8 @@ const seed = async () => {
         'Help your furry friend get their sniff on with this fully washable and intensely durable snuffle mat. Hide food and/or treats in the nooks and crannies created by the fabric folds, or tuck extra juicy yums into the waxed canvas pocket. Let your pup sniff and snuffle their way to happy!',
       price: 75.5,
       quantity: 200,
-      imageURL: '',
+      imageURL:
+        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
       tags: [feed.id, brainTeaser.id]
     }
   ]
