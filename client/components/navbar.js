@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchMyOpenOrder} from '../store/orders'
 
-const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, user, myOrder}) => {
+
+const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, myOrder, loggedInUser}) => {
   useEffect(
     () => {
-      getMyOpenOrder(user.id)
+      getMyOpenOrder(loggedInUser.id)
     },
-    [user]
+    [loggedInUser]
   )
 
   const calculateTotalQty = () => {
@@ -32,11 +33,13 @@ const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, user, myOrder}) => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/me">My Account</Link>
             <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
+          <NavLink to="/me" className="btn btn-floating pink lighten-1">
+            {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
+          </NavLink>
           </div>
         ) : (
           <div>
@@ -60,7 +63,7 @@ const mapState = state => {
   // console.log('state in Navbar', state)
   return {
     isLoggedIn: !!state.users.selected.id,
-    user: state.users.selected,
+    loggedInUser: state.users.selected
     myOrder: state.orders.myOrder
   }
 }

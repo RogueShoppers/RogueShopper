@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
 import {Link} from 'react-router-dom'
+import M from 'materialize-css'
 
 class Home extends Component {
   componentDidMount() {
+    let elements = document.querySelectorAll('.parallax')
+    M.Parallax.init(elements)
     this.props.getAllProducts()
   }
   render() {
@@ -15,7 +18,7 @@ class Home extends Component {
           <div className="parallax">
             <img
               src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/happy-and-cheerful-dog-playing-fetch-with-toy-bone-royalty-free-image-1590068781.jpg"
-              alt=""
+              alt="homepage background_1"
               className="responsive-img"
             />
           </div>
