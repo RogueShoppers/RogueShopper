@@ -281,11 +281,7 @@ const seed = async () => {
       price: 150.0,
       quantity: 75,
       imageURL:
-<<<<<<< HEAD
-        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
-=======
         'https://cdn.shopify.com/s/files/1/1392/6117/products/painted-peonies-natural-dog-squeaky-toy-from-the-foggy-dog-779560_550x550.jpg?v=1597091079',
->>>>>>> master
       tags: [chase.id, brainTeaser.id, tug.id]
     },
     {
@@ -295,12 +291,7 @@ const seed = async () => {
         "Get your dog, we're having a party. This colorful stuffed toy is the perfect squish that HOLDS MORE SQUISHES! Tuck the included smol squishes into Party Panda's belly, and watch your pup have a blast as they hunt for all those squished squishes.",
       price: 45.5,
       quantity: 75,
-<<<<<<< HEAD
-      imageURL:
-        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
-=======
       imageURL: 'https://images.kiwico.com/products/3010/6267.png',
->>>>>>> master
       tags: [squishy.id, destroy.id, brainTeaser.id]
     },
     {
@@ -311,11 +302,7 @@ const seed = async () => {
       price: 75.5,
       quantity: 200,
       imageURL:
-<<<<<<< HEAD
-        'https://fishsubsidy.org/wp-content/uploads/2020/01/dog-begging3.jpg',
-=======
         'https://images-na.ssl-images-amazon.com/images/I/41Hw2-h%2BjhL._AC_.jpg',
->>>>>>> master
       tags: [feed.id, brainTeaser.id]
     },
     {

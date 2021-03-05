@@ -63,15 +63,12 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-<<<<<<< HEAD
   app.use((req, res, next) => {
     // comment for debug, delete when done: req.user && req.user.isAdmin
     next()
   })
 
   // auth and api routes
-=======
->>>>>>> master
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
