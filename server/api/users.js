@@ -18,7 +18,7 @@ const adminsOnly = (req, res, next) => {
 router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'fullName', 'email', 'address', 'isAdmin']
+      attributes: ['id', 'firstName', 'email', 'address', 'isAdmin']
     })
     res.json(users)
   } catch (error) {
