@@ -148,3 +148,27 @@ router.put('/:userId', async (req, res, next) => {
     next(error)
   }
 })
+
+// GET /api/orders/myorders
+router.get('/myorders', async (req, res, next) => {
+  try {
+    const allMyClosedOrders = Order.findAll({
+      where: {
+        userId: 1
+      }
+    })
+    res.send(allMyClosedOrders)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// PUT /api/orders/myorders/:orderId
+router.put('/myorders/:orderId', async (req, res, next) => {
+  try {
+    const {orderId} = req.params
+    const {myOrder} = req.body
+  } catch (error) {
+    next(error)
+  }
+})
