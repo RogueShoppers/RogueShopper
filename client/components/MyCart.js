@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchMyOpenOrder, removeItemFromOrder} from '../store/orders'
+import {
+  fetchMyOpenOrder,
+  removeItemFromOrder,
+  closeOpenOrder
+} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
 
 const MyCart = props => {
-  const {myOrder, getMyOpenOrder, getUser, user, removeItemFromCart} = props
+  const {myOpenOrder, getMyOpenOrder, getUser, user, removeItemFromCart} = props
 
   useEffect(() => {
     getUser()
@@ -20,18 +24,23 @@ const MyCart = props => {
   )
 
   const calculateTotalQty = () => {
-    return myOrder.products.reduce((total, product) => {
+    return myOpenOrder.products.reduce((total, product) => {
       return total + product['order-product'].orderQuantity
     }, 0)
   }
 
   const calculateTotalPrice = () => {
-    return myOrder.products.reduce((total, product) => {
+    return myOpenOrder.products.reduce((total, product) => {
       return total + product.price * product['order-product'].orderQuantity
     }, 0)
   }
 
-  const cartNotEmpty = myOrder.id && myOrder.products.length !== 0
+  const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
+
+  const handleCheckout = event => {
+    event.preventDefault()
+    checkout(myOrder)
+  }
 
   return (
     <div className="container" id="myCart">
@@ -47,7 +56,7 @@ const MyCart = props => {
                 <span id="totalPrice">${calculateTotalPrice()}</span>
               </h2>
               <ul className="collection">
-                {myOrder.products.map(product => {
+                {myOpenOrder.products.map(product => {
                   const initialQty = product['order-product'].orderQuantity
                   return (
                     <MyCartSingleItem
@@ -81,7 +90,8 @@ const MyCart = props => {
         <div className="col s6">
           <button
             className="right btn btn-large waves-effect waves-light #ff8a80 red accent-1"
-            type="button"
+            type="submit"
+            onClick={handleCheckout}
           >
             Checkout
             <i className="material-icons right">send</i>
@@ -94,7 +104,7 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.myOrder,
+    myOpenOrder: state.orders.myOpenOrder,
     user: state.users.selected
   }
 }
@@ -104,7 +114,8 @@ const mapDispatchToProps = dispatch => {
     getUser: () => dispatch(getMe()),
     getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId)),
     removeItemFromCart: (userId, productId) =>
-      dispatch(removeItemFromOrder(userId, productId))
+      dispatch(removeItemFromOrder(userId, productId)),
+    checkout: myOrder => closeOpenOrder(myOrder)
   }
 }
 
