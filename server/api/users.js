@@ -4,7 +4,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 const adminsOnly = (req, res, next) => {
-  console.log('req', req)
+  console.log('req', req.user)
   if (req.user && req.user.isAdmin) next()
   else {
     const error = new Error('Unauthorized access attempt')

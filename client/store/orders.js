@@ -32,31 +32,26 @@ export const editQuantity = updatedOpenOrder => {
   }
 }
 
-export const closeOrder = myClosedOrders => ({
+export const closeOrder = myClosedOrder => ({
   type: CLOSE_ORDER,
-  myClosedOrders
+  myClosedOrder
 })
 
 //THUNKS
-export const fetchMyOpenOrder = userId => {
+export const fetchMyOpenOrder = () => {
   return async dispatch => {
     try {
-      const {data: openOrder} = await axios.get(
-        `/api/orders/${userId}?status=open`
-      )
+      const {data: openOrder} = await axios.get(`/api/orders/?status=open`)
       dispatch(setOpenOrder(openOrder))
     } catch (error) {
       console.log('Error: Could not get my order details', error)
     }
   }
 }
-export const createNewOpenOrder = (userId, orderInfo, history) => {
+export const createNewOpenOrder = (orderInfo, history) => {
   return async dispatch => {
     try {
-      const {data: newOrder} = await axios.post(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: newOrder} = await axios.post(`/api/orders`, orderInfo)
       dispatch(createNewOrder(newOrder))
       history.push('/mycart')
     } catch (error) {
@@ -65,11 +60,11 @@ export const createNewOpenOrder = (userId, orderInfo, history) => {
   }
 }
 
-export const removeItemFromOrder = (userId, productId) => {
+export const removeItemFromOrder = productId => {
   return async dispatch => {
     try {
       const {data: updatedOpenOrder} = await axios.delete(
-        `/api/orders/${userId}/products/${productId}`
+        `/api/orders/products/${productId}`
       )
       dispatch(removeItem(updatedOpenOrder))
     } catch (error) {
@@ -78,13 +73,10 @@ export const removeItemFromOrder = (userId, productId) => {
   }
 }
 
-export const editCartQuantity = (userId, orderInfo) => {
+export const editCartQuantity = orderInfo => {
   return async dispatch => {
     try {
-      const {data: updatedOpenOrder} = await axios.put(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: updatedOpenOrder} = await axios.put(`/api/orders`, orderInfo)
       dispatch(editQuantity(updatedOpenOrder))
     } catch (error) {
       console.log('Error: Could not update quantity in database', error)
@@ -95,9 +87,8 @@ export const editCartQuantity = (userId, orderInfo) => {
 export const closeOpenOrder = myOrder => {
   return async dispatch => {
     try {
-      const {data: closedOrder} = await axios.put(
-        `/api/orders/myOrder/${myOrder.id}`
-      )
+      console.log('IN THUNK!!')
+      const {data: closedOrder} = await axios.put(`/api/orders/${myOrder.id}`)
       dispatch(closeOrder(closedOrder))
     } catch (error) {
       console.log('Error: Could not close order', error)
@@ -108,7 +99,7 @@ export const closeOpenOrder = myOrder => {
 //INITIAL STATE
 const initialState = {
   myOpenOrder: {},
-  myClosedOrders: []
+  myClosedOrder: {}
 }
 
 //REDUCER
@@ -134,7 +125,7 @@ export default function ordersReducer(state = initialState, action) {
     case CLOSE_ORDER:
       return {
         ...state,
-        myClosedOrders: action.myClosedOrders
+        myClosedOrder: action.myClosedOrder
       }
     default:
       return state

@@ -5,23 +5,15 @@ import {
   removeItemFromOrder,
   closeOpenOrder
 } from '../store/orders'
-import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
 
 const MyCart = props => {
-  const {myOpenOrder, getMyOpenOrder, getUser, user, removeItemFromCart} = props
+  const {myOpenOrder, getMyOpenOrder, removeItemFromCart, checkout} = props
 
   useEffect(() => {
-    getUser()
+    getMyOpenOrder()
   }, [])
-
-  useEffect(
-    () => {
-      getMyOpenOrder(user.id)
-    },
-    [user]
-  )
 
   const calculateTotalQty = () => {
     return myOpenOrder.products.reduce((total, product) => {
@@ -37,9 +29,12 @@ const MyCart = props => {
 
   const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
 
+  console.log('MY ORDER', myOpenOrder)
+
   const handleCheckout = event => {
+    console.log('CLICKED!')
     event.preventDefault()
-    checkout(myOrder)
+    checkout(myOpenOrder)
   }
 
   return (
@@ -64,7 +59,6 @@ const MyCart = props => {
                       product={product}
                       initialQty={initialQty}
                       removeItemFromCart={removeItemFromCart}
-                      user={user}
                     />
                   )
                 })}
@@ -104,18 +98,15 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOpenOrder: state.orders.myOpenOrder,
-    user: state.users.selected
+    myOpenOrder: state.orders.myOpenOrder
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: () => dispatch(getMe()),
-    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId)),
-    removeItemFromCart: (userId, productId) =>
-      dispatch(removeItemFromOrder(userId, productId)),
-    checkout: myOrder => closeOpenOrder(myOrder)
+    getMyOpenOrder: () => dispatch(fetchMyOpenOrder()),
+    removeItemFromCart: productId => dispatch(removeItemFromOrder(productId)),
+    checkout: myOrder => dispatch(closeOpenOrder(myOrder))
   }
 }
 
