@@ -5,8 +5,13 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchMyOpenOrder} from '../store/orders'
 
-
-const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, myOrder, loggedInUser}) => {
+const Navbar = ({
+  handleClick,
+  isLoggedIn,
+  getMyOpenOrder,
+  myOrder,
+  loggedInUser
+}) => {
   useEffect(
     () => {
       getMyOpenOrder(loggedInUser.id)
@@ -37,9 +42,9 @@ const Navbar = ({handleClick, isLoggedIn, getMyOpenOrder, myOrder, loggedInUser}
             <a href="#" onClick={handleClick}>
               Logout
             </a>
-          <NavLink to="/me" className="btn btn-floating pink lighten-1">
-            {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
-          </NavLink>
+            <NavLink to="/me" className="btn btn-floating pink lighten-1">
+              {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
+            </NavLink>
           </div>
         ) : (
           <div>
@@ -63,7 +68,7 @@ const mapState = state => {
   // console.log('state in Navbar', state)
   return {
     isLoggedIn: !!state.users.selected.id,
-    loggedInUser: state.users.selected
+    loggedInUser: state.users.selected,
     myOrder: state.orders.myOrder
   }
 }
