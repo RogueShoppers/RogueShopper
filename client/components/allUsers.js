@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store/user.js'
 
@@ -12,20 +11,30 @@ const AllUsers = props => {
 
   return (
     <div>
-      {/* {isAdmin ? ( )} */}
       <h1>All Users</h1>
-      <tbody>
-        {users.length !== 0
-          ? users.map(user => (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Admin Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.length !== 0 &&
+            users.map(user => (
               <tr key={user.id}>
-                <td>{user.fullName}</td>
+                <td>
+                  {user.firstName} {user.lastName}
+                </td>
                 <td>{user.email}</td>
                 <td>{user.address}</td>
-                <td>{user.isAdmin}</td>
+                <td>{String(user.isAdmin)}</td>
               </tr>
-            ))
-          : 'No Users on Database'}
-      </tbody>
+            ))}
+        </tbody>
+      </table>
     </div>
   )
 }
@@ -46,8 +55,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllUsers)
-
-//PROP TYPES
-AllUsers.propTypes = {
-  isAdmin: PropTypes.bool.isRequired
-}
