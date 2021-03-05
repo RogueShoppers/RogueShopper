@@ -16,7 +16,11 @@ const AllProducts = props => {
       {products.length !== 0
         ? products.map(product => (
             <div key={product.id}>
-              <img src={product.imageURL} />
+              <img
+                src={product.imageURL}
+                alt="product img"
+                style={{height: 200, width: 200}}
+              />
               <Link to={`/products/${product.id}`}>
                 <h2>{product.name}</h2>
               </Link>

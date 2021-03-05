@@ -3,7 +3,7 @@ const {User, Product} = require('../db/models')
 module.exports = router
 const adminsOnly = require('../utils/adminsOnly')
 
-//GET /api/admin (shows all users for admin use)
+//GET /api/users (shows all users for admin use)
 router.get('/', adminsOnly(), async (req, res, next) => {
   try {
     const allUsers = await User.findAll({

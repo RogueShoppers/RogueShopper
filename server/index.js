@@ -69,6 +69,7 @@ const createApp = () => {
   })
 
   // auth and api routes
+
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
