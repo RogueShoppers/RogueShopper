@@ -45,7 +45,7 @@ export const logIn = user => {
     try {
       const {data: signedInUser} = await axios.put('/auth/login', user)
       dispatch(loggedIn(signedInUser))
-      historyFunc.push('/')
+      historyFunc.push('/home')
     } catch (error) {
       console.log('Error logging in!', error)
     }
