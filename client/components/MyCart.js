@@ -29,10 +29,7 @@ const MyCart = props => {
 
   const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
 
-  console.log('MY ORDER', myOpenOrder)
-
   const handleCheckout = event => {
-    console.log('CLICKED!')
     event.preventDefault()
     checkout(myOpenOrder)
   }

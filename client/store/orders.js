@@ -87,7 +87,6 @@ export const editCartQuantity = orderInfo => {
 export const closeOpenOrder = myOrder => {
   return async dispatch => {
     try {
-      console.log('IN THUNK!!')
       const {data: closedOrder} = await axios.put(`/api/orders/${myOrder.id}`)
       dispatch(closeOrder(closedOrder))
     } catch (error) {
