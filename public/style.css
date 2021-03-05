@@ -13,3 +13,44 @@ label {
 nav a {
   margin: 1em;
 }
+
+#myCart h1 {
+  font-size: 40px;
+}
+
+#myCart h2 {
+  font-size: 25px;
+}
+
+#myCart li {
+  display: flex;
+  justify-content: space-around;
+}
+
+#myCart li a {
+  font-size: 25px;
+}
+
+#cart-content {
+  width: 30em;
+}
+#cart-content p {
+  font-size: 17px;
+}
+
+#edit-delete {
+  display: flex;
+}
+#edit-delete select {
+  width: 10em;
+  margin-right: 40px;
+}
+
+#cartItem img {
+  width: 10em;
+  height: 10em;
+}
+
+#totalPrice {
+  font-weight: 700;
+}

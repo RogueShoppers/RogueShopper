@@ -44,31 +44,30 @@ const MyCartSingleItem = props => {
   }
 
   return (
-    <li key={product.id}>
-      <div className="row">
+    <li key={product.id} className="collection-item" id="cartItem">
+      <img src={product.imageURL} />
+      <div id="cart-content">
         <Link to={`/products/${product.id}`}>{product.name}</Link>
-      </div>
-      <div className="row">Price: ${product.price}</div>
-      <div className="row">
-        <select
-          className="browser-default"
-          value={quantity}
-          onChange={handleChangeQty}
-        >
-          {beforeQtyOptions(initialQty)}
-          <option value={initialQty}>Qty: {initialQty}</option>
-          {afterQtyOptions(initialQty)}
-          {initialQty}
-        </select>
-      </div>
-      <div className="row">
-        <button
-          type="button"
-          className="waves-effect waves-light btn-small"
-          onClick={() => removeItemFromCart(user.id, product.id)}
-        >
-          Remove {product.name}
-        </button>
+        <p>Price: ${product.price}</p>
+        <div id="edit-delete">
+          <select
+            className="browser-default"
+            value={quantity}
+            onChange={handleChangeQty}
+          >
+            {beforeQtyOptions(initialQty)}
+            <option value={initialQty}>Qty: {initialQty}</option>
+            {afterQtyOptions(initialQty)}
+            {initialQty}
+          </select>
+          <button
+            type="button"
+            className="waves-effect waves-light btn-small"
+            onClick={() => removeItemFromCart(user.id, product.id)}
+          >
+            Remove
+          </button>
+        </div>
       </div>
     </li>
   )
