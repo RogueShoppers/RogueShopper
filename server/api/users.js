@@ -1,17 +1,42 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+// const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+//Function to authorize admin routes
+const adminsOnly = (req, res, next) => {
+  console.log('req', req)
+  if (req.user && req.user.isAdmin) next()
+  else {
+    const error = new Error('Unauthorized access attempt')
+    error.status = 401
+    next(error)
+  }
+}
+
+//Admin Only: GET /api/users
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email']
+      attributes: ['id', 'fullName', 'email', 'address', 'isAdmin']
     })
     res.json(users)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//Admin Only: DELETE /api/users/:id
+router.delete('/:id', adminsOnly, async (req, res, next) => {
+  try {
+    const deletedUser = await User.findByPk(req.params.id)
+    if (!deletedUser) {
+      res.sendStatus(404)
+    } else {
+      await deletedUser.destory()
+      res.sendStatus(204)
+    }
+  } catch (error) {
+    next(error)
   }
 })
