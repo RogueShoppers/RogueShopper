@@ -291,7 +291,9 @@ const seed = async () => {
         "Get your dog, we're having a party. This colorful stuffed toy is the perfect squish that HOLDS MORE SQUISHES! Tuck the included smol squishes into Party Panda's belly, and watch your pup have a blast as they hunt for all those squished squishes.",
       price: 45.5,
       quantity: 75,
+
       imageURL: 'https://images.kiwico.com/products/3010/6267.png',
+
       tags: [squishy.id, destroy.id, brainTeaser.id]
     },
     {
@@ -303,6 +305,7 @@ const seed = async () => {
       quantity: 200,
       imageURL:
         'https://images-na.ssl-images-amazon.com/images/I/41Hw2-h%2BjhL._AC_.jpg',
+
       tags: [feed.id, brainTeaser.id]
     },
     {

@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const {User, Product} = require('../db/models')
 module.exports = router
+const adminsOnly = require('../utils/adminsOnly')
 
 //GET /api/users (shows all users for admin use)
-router.get('/me/admin', async (req, res, next) => {
+router.get('/', adminsOnly(), async (req, res, next) => {
   try {
     const allUsers = await User.findAll({
       attributes: ['id', 'fullName', 'email', 'address', 'isAdmin']
