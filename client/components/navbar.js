@@ -9,7 +9,7 @@ const Navbar = ({
   handleClick,
   isLoggedIn,
   getMyOpenOrder,
-  myOrder,
+  myOpenOrder,
   loggedInUser,
   isAdmin
 }) => {
@@ -21,8 +21,8 @@ const Navbar = ({
   )
 
   const calculateTotalQty = () => {
-    if (myOrder.id) {
-      return myOrder.products.reduce((total, product) => {
+    if (myOpenOrder.id) {
+      return myOpenOrder.products.reduce((total, product) => {
         return total + product['order-product'].orderQuantity
       }, 0)
     } else {
@@ -85,7 +85,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.users.selected.id,
     loggedInUser: state.users.selected,
-    myOrder: state.orders.myOrder,
+    myOpenOrder: state.orders.myOpenOrder,
     isAdmin: state.users.selected.isAdmin
   }
 }

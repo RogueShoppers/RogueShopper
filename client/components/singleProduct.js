@@ -2,17 +2,15 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/products'
 import {createNewOpenOrder} from '../store/orders'
-import {getMe} from '../store/user'
 
 const singleProduct = props => {
-  const {product, addToCart, getSingleProduct, getUser, user} = props
+  const {product, addToCart, getSingleProduct} = props
   const {name, longDescription, imageURL, price, tags} = product
   const productId = props.match.params.productId
   //tags will be in array form? (Natalie)
 
   useEffect(() => {
     getSingleProduct(productId)
-    getUser()
   }, [])
 
   const [quantity, setQuantity] = useState(1)
@@ -32,9 +30,7 @@ const singleProduct = props => {
       productId,
       quantity
     }
-    console.log('USER ID', user.id)
-    console.log('ORDER INFO', orderInfo)
-    addToCart(user.id, orderInfo)
+    addToCart(orderInfo)
   }
 
   return (
@@ -62,17 +58,14 @@ const singleProduct = props => {
 
 const mapStateToProps = state => {
   return {
-    product: state.products.selected,
-    user: state.users.selected
+    product: state.products.selected
   }
 }
 
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    getUser: () => dispatch(getMe()),
     getSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addToCart: (productId, quantity) =>
-      dispatch(createNewOpenOrder(productId, quantity, history))
+    addToCart: orderInfo => dispatch(createNewOpenOrder(orderInfo, history))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(singleProduct)

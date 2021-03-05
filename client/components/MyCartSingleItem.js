@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {editCartQuantity} from '../store/orders'
 
 const MyCartSingleItem = props => {
-  const {product, initialQty, removeItemFromCart, user, editQuantity} = props
+  const {product, initialQty, removeItemFromCart, editQuantity} = props
   const [quantity, setQuantity] = useState(0)
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const MyCartSingleItem = props => {
       quantity: event.target.value,
       productId: product.id
     }
-    editQuantity(user.id, orderInfo)
+    editQuantity(orderInfo)
     setQuantity(event.target.value)
   }
 
@@ -63,7 +63,7 @@ const MyCartSingleItem = props => {
           <button
             type="button"
             className="waves-effect waves-light btn-small"
-            onClick={() => removeItemFromCart(user.id, product.id)}
+            onClick={() => removeItemFromCart(product.id)}
           >
             Remove
           </button>
@@ -75,8 +75,7 @@ const MyCartSingleItem = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editQuantity: (userId, orderInfo) =>
-      dispatch(editCartQuantity(userId, orderInfo))
+    editQuantity: orderInfo => dispatch(editCartQuantity(orderInfo))
   }
 }
 
