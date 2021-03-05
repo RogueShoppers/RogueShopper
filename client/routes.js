@@ -18,9 +18,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-    const {isAdmin} = this.props
-    console.log(this.props, 'what is props?')
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <Switch>
@@ -30,6 +28,18 @@ class Routes extends Component {
         <Route path="/signup" component={SignUp} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
+        {isAdmin &&
+          isLoggedIn && (
+            <Switch>
+              {/*Routes placed here are only available to logged in ADMINS*/}
+              <Route exact path="/" component={Home} />
+              <Route path="/home" component={Home} />
+              <Route exact path="/me" component={MyUserAccount} />
+              <Route path="/me/edit" component={EditMyAccount} />
+              <Route path="/mycart" component={MyCart} />
+              <Route path="/me/admin" component={AllUsers} />
+            </Switch>
+          )}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -38,12 +48,6 @@ class Routes extends Component {
             <Route exact path="/me" component={MyUserAccount} />
             <Route path="/me/edit" component={EditMyAccount} />
             <Route path="/mycart" component={MyCart} />
-            <Route path="/me/admin" component={AllUsers} />
-            {/* {isAdmin && (
-            <Switch> 
-              <Route path="/me/admin" component={allUsers} />
-            </Switch>
-              )} */}
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
@@ -61,7 +65,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.users.selected.id,
-    isAdmin: state.users.isAdmin
+    isAdmin: state.users.selected.isAdmin
   }
 }
 
