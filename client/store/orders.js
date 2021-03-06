@@ -7,6 +7,8 @@ const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
 const CLOSE_ORDER = 'CLOSE_ORDER'
 const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
+const SET_ORDER_ERROR = 'SET_ORDER_ERROR'
+const CLEAR_ORDER_ERROR = 'CLEAR_ORDER_ERROR'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -42,6 +44,17 @@ export const setCompleteOrder = completedOrder => {
   return {
     type: SET_COMPLETE_ORDER,
     completedOrder
+  }
+}
+export const setOrderError = error => {
+  return {
+    type: SET_ORDER_ERROR,
+    error
+  }
+}
+export const clearOrderError = () => {
+  return {
+    type: CLEAR_ORDER_ERROR
   }
 }
 
@@ -99,6 +112,8 @@ export const closeOpenOrder = (myOrder, history) => {
       dispatch(closeOrder(closedOrder))
       history.push('/confirmation')
     } catch (error) {
+      dispatch(setOrderError(error.response))
+      setTimeout(() => dispatch(clearOrderError()), 5000)
       console.log('Error: Could not close order', error)
     }
   }
@@ -121,10 +136,12 @@ export const fetchMyCompletedOrder = () => {
 const initialState = {
   myOpenOrder: {},
   myClosedOrder: {},
-  allClosedOrders: []
+  allClosedOrders: [],
+  orderError: {}
 }
 
 //REDUCER
+// eslint-disable-next-line complexity
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_OPEN_ORDER:
@@ -151,6 +168,10 @@ export default function ordersReducer(state = initialState, action) {
       }
     case SET_COMPLETE_ORDER:
       return {...state, allClosedOrders: action.completedOrder}
+    case SET_ORDER_ERROR:
+      return {...state, orderError: action.error}
+    case CLEAR_ORDER_ERROR:
+      return {...state, orderError: {}}
     default:
       return state
   }

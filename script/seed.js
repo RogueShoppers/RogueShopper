@@ -1113,7 +1113,7 @@ const seed = async () => {
       longDescription:
         'borkdrive, aqua doggo clouds. Heckin what a nice floof wow very biscit fat boi, heckin boof pupper blop, noodle horse very taste wow. super chub clouds. Borkdrive yapper very hand that feed shibe, woofer. Mlem big ol pupper ur givin me a spook very taste wow woofer, stop it fren shibe long water shoob he made many woofs you are doin me a concern, wrinkler such treat boofers. heckin good boys and girls length boy fat boi. What a nice floof heckin bork boof, very jealous pupper yapper. Very hand that feed shibe blop borkdrive heckin angery woofer big ol, much ruin diet pats.',
       price: 25.5,
-      quantity: 200,
+      quantity: 10,
       imageURL:
         'https://i.pinimg.com/564x/98/e2/fa/98e2fa2182912afdee7bc3a11620ab77.jpg',
       tags: [squishy.id, destroy.id]

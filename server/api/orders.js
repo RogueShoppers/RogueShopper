@@ -181,24 +181,37 @@ router.put('/:orderId', async (req, res, next) => {
       },
       include: Product
     })
-
     //get all products associated with order ID (items in cart)
     const products = await order.getProducts()
 
-    //for each products, reduce the current stock with the purchsed quantity
+    //for each products, check if stock has enough quantity to complete order
+    let includeOutOfStock = false
     for (let i = 0; i < products.length; i++) {
       let product = products[i]
       const currentStock = product.quantity
       const purchasedQty = product['order-product'].orderQuantity
-      await product.update({quantity: currentStock - purchasedQty})
+      if (currentStock < purchasedQty) {
+        includeOutOfStock = true
+        res
+          .status(401)
+          .send(`Oops, we don't have enough stock for ${product.name}.`)
+        break
+      }
     }
-
-    //update the current order's completed status to true
-    await order.update({completed: true})
-
-    //wait to make sure all the updates are loaded
-    order = await order.reload()
-    res.send(order)
+    //If all of them are in stock, then reduce the current stock with the purchased quantity
+    if (!includeOutOfStock) {
+      for (let i = 0; i < products.length; i++) {
+        let product = products[i]
+        const currentStock = product.quantity
+        const purchasedQty = product['order-product'].orderQuantity
+        await product.update({quantity: currentStock - purchasedQty})
+      }
+      //update the current order's completed status to true
+      await order.update({completed: true})
+      //wait to make sure all the updates are loaded
+      order = await order.reload()
+      res.send(order)
+    }
   } catch (error) {
     next(error)
   }
