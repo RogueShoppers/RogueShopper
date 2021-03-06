@@ -6,6 +6,7 @@ const CREATE_ORDER = 'CREATE_ORDER'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
 const CLOSE_ORDER = 'CLOSE_ORDER'
+const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -36,6 +37,13 @@ export const closeOrder = myClosedOrder => ({
   type: CLOSE_ORDER,
   myClosedOrder
 })
+
+export const setCompleteOrder = completedOrder => {
+  return {
+    type: SET_COMPLETE_ORDER,
+    completedOrder
+  }
+}
 
 //THUNKS
 export const fetchMyOpenOrder = () => {
@@ -96,10 +104,24 @@ export const closeOpenOrder = (myOrder, history) => {
   }
 }
 
+export const fetchMyCompletedOrder = () => {
+  return async dispatch => {
+    try {
+      const {data: completedOrder} = await axios.get(
+        `/api/orders/?status=close`
+      )
+      dispatch(setCompleteOrder(completedOrder))
+    } catch (error) {
+      console.log('Error: Could not get my completed order details', error)
+    }
+  }
+}
+
 //INITIAL STATE
 const initialState = {
   myOpenOrder: {},
-  myClosedOrder: {}
+  myClosedOrder: {},
+  allClosedOrders: []
 }
 
 //REDUCER
@@ -127,6 +149,8 @@ export default function ordersReducer(state = initialState, action) {
         ...state,
         myClosedOrder: action.myClosedOrder
       }
+    case SET_COMPLETE_ORDER:
+      return {...state, allClosedOrders: action.completedOrder}
     default:
       return state
   }

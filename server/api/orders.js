@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
     }
     if (status === 'close') {
       //if query has status of close, only find orders that have completed = true (processed)
-      const [allClosedOrders] = await Order.findAll({
+      const allClosedOrders = await Order.findAll({
         where: {
           completed: true,
           userId: userId
