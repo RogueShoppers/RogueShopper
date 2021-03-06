@@ -15,7 +15,7 @@ const Confirmation = props => {
   return (
     <div>
       <h2>Thanks for your order {user.firstName}!</h2>
-      <p>Your order confirmation number is {myClosedOrder.orderNumber}</p>
+      <p>Your order confirmation number is {myClosedOrder.id}</p>
       <p>Please check {user.email} for a confirmation!</p>
       <p>
         or keep shopping <Link to="/products">our stock!</Link>
