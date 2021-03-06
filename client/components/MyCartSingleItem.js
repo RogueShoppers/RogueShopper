@@ -43,6 +43,11 @@ const MyCartSingleItem = props => {
     setQuantity(event.target.value)
   }
 
+  const inStock =
+    product.quantity !== 0
+      ? 'In Stock!'
+      : 'Sorry, this item is currently out of stock'
+
   return (
     <li key={product.id} className="collection-item" id="cartItem">
       <img src={product.imageURL} />
@@ -67,6 +72,7 @@ const MyCartSingleItem = props => {
           >
             Remove
           </button>
+          <div className="teal-text">{inStock}</div>
         </div>
       </div>
     </li>

@@ -32,6 +32,10 @@ const singleProduct = props => {
     }
     addToCart(orderInfo)
   }
+  const inStock =
+    product.quantity !== 0
+      ? 'In Stock!'
+      : 'Sorry, this item is currently out of stock'
 
   return (
     <div className="container" id="singleProduct">
@@ -68,6 +72,7 @@ const singleProduct = props => {
             >
               Add To Cart
             </button>
+            <div className="teal-text">{inStock}</div>
           </div>
           <p>{longDescription}</p>
           <div>#Placeholder{tags}</div>
