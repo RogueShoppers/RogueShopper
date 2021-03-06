@@ -14,6 +14,7 @@ nav a {
   margin: 1em;
 }
 
+/* my cart styling */
 #myCart h1 {
   font-size: 40px;
 }
@@ -53,4 +54,46 @@ nav a {
 
 #totalPrice {
   font-weight: 700;
+}
+/* end my cart styling */
+
+/* single product styling */
+
+#singleProduct {
+  height: 100%;
+}
+#singleProduct-img {
+  width: 300px;
+  max-height: 400px;
+  margin-right: 40px;
+}
+
+#singleProduct-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+#decrease-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+#increase-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+#singleProduct-detail p {
+  font-size: 18px;
+}
+#singleProduct-quantityButton {
+  display: flex;
+}
+
+#singleProduct-quantityButton > p {
+  margin-top: 20px;
+}
+#singleProduct-quantityButton > button {
+  margin-top: 20px;
+  margin-left: 30px;
 }
