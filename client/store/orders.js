@@ -5,6 +5,7 @@ const SET_OPEN_ORDER = 'SET_OPEN_ORDER'
 const CREATE_ORDER = 'CREATE_ORDER'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
+const CLOSE_ORDER = 'CLOSE_ORDER'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -31,26 +32,26 @@ export const editQuantity = updatedOpenOrder => {
   }
 }
 
+export const closeOrder = myClosedOrder => ({
+  type: CLOSE_ORDER,
+  myClosedOrder
+})
+
 //THUNKS
-export const fetchMyOpenOrder = userId => {
+export const fetchMyOpenOrder = () => {
   return async dispatch => {
     try {
-      const {data: openOrder} = await axios.get(
-        `/api/orders/${userId}?status=open`
-      )
+      const {data: openOrder} = await axios.get(`/api/orders/?status=open`)
       dispatch(setOpenOrder(openOrder))
     } catch (error) {
       console.log('Error: Could not get my order details', error)
     }
   }
 }
-export const createNewOpenOrder = (userId, orderInfo, history) => {
+export const createNewOpenOrder = (orderInfo, history) => {
   return async dispatch => {
     try {
-      const {data: newOrder} = await axios.post(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: newOrder} = await axios.post(`/api/orders`, orderInfo)
       dispatch(createNewOrder(newOrder))
       history.push('/mycart')
     } catch (error) {
@@ -59,11 +60,11 @@ export const createNewOpenOrder = (userId, orderInfo, history) => {
   }
 }
 
-export const removeItemFromOrder = (userId, productId) => {
+export const removeItemFromOrder = productId => {
   return async dispatch => {
     try {
       const {data: updatedOpenOrder} = await axios.delete(
-        `/api/orders/${userId}/products/${productId}`
+        `/api/orders/products/${productId}`
       )
       dispatch(removeItem(updatedOpenOrder))
     } catch (error) {
@@ -72,58 +73,59 @@ export const removeItemFromOrder = (userId, productId) => {
   }
 }
 
-export const editCartQuantity = (userId, orderInfo) => {
+export const editCartQuantity = orderInfo => {
   return async dispatch => {
     try {
-      const {data: updatedOpenOrder} = await axios.put(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: updatedOpenOrder} = await axios.put(`/api/orders`, orderInfo)
       dispatch(editQuantity(updatedOpenOrder))
     } catch (error) {
-      console.log('Error: Could not update quantity in database')
+      console.log('Error: Could not update quantity in database', error)
+    }
+  }
+}
+
+export const closeOpenOrder = myOrder => {
+  return async dispatch => {
+    try {
+      console.log('IN THUNK!!')
+      const {data: closedOrder} = await axios.put(`/api/orders/${myOrder.id}`)
+      dispatch(closeOrder(closedOrder))
+    } catch (error) {
+      console.log('Error: Could not close order', error)
     }
   }
 }
 
 //INITIAL STATE
 const initialState = {
-  all: [],
-  myOrder: {}
+  myOpenOrder: {},
+  myClosedOrder: {}
 }
 
 //REDUCER
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_OPEN_ORDER:
-      return {...state, myOrder: action.openOrder}
+      return {...state, myOpenOrder: action.openOrder}
     case CREATE_ORDER:
       return {
         ...state,
-        all: [...state.all, action.newOrder],
-        myOrder: action.newOrder
+        myOpenOrder: action.newOrder
       }
     case REMOVE_ITEM:
       return {
         ...state,
-        all: state.all.map(
-          order =>
-            order.id === action.updatedOpenOrder.id
-              ? action.updatedOpenOrder
-              : order
-        ),
-        myOrder: action.updatedOpenOrder
+        myOpenOrder: action.updatedOpenOrder
       }
     case EDIT_QUANTITY:
       return {
         ...state,
-        all: state.all.map(
-          order =>
-            order.id === action.updatedOpenOrder.id
-              ? action.updatedOpenOrder
-              : order
-        ),
-        myOrder: action.updatedOpenOrder
+        myOpenOrder: action.updatedOpenOrder
+      }
+    case CLOSE_ORDER:
+      return {
+        ...state,
+        myClosedOrder: action.myClosedOrder
       }
     default:
       return state
