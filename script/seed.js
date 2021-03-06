@@ -1091,7 +1091,7 @@ const seed = async () => {
       longDescription:
         'Aqua doggo yapper you are doing me a frighten heckin very jealous pupper, adorable doggo heckin angery woofer. Ur givin me a spook shooberino wrinkler length boy you are doing me the shock h*ck, clouds wrinkler he made many woofs ruff. Clouds heckin good boys adorable doggo what a nice floof vvv, long doggo such treat ur givin me a spook. wow such tempt mlem. Shoob long doggo I am bekom fat pupper pats, noodle horse wow very biscit.',
       price: 25.5,
-      quantity: 200,
+      quantity: 0,
       imageURL:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCGNZ-vUNSnMMNDKxRNet8-qrxVRCRz2uDNg&usqp=CAU',
       tags: [squishy.id, destroy.id]
@@ -1102,7 +1102,7 @@ const seed = async () => {
       longDescription:
         'Pats wow such tempt very taste wow clouds mlem, heck shoober. Corgo what a nice floof h*ck shoober, pats. Floofs doing me a frighten wrinkler bork aqua doggo, smol fluffer. borking doggo you are doin me a concern big ol. Blop such treat big ol heckin angery woofer very jealous pupper what a nice floof wow such tempt blep, such treat fat boi wow such tempt heck sub woofer heck.  Sub woofer heck porgo heckin angery woofer fat boi, very hand that feed shibe very good spot blep. Long bois bork vvv noodle horse, blop such treat very jealous pupper such treat, heckin length boy.',
       price: 25.5,
-      quantity: 200,
+      quantity: 5,
       imageURL:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmXrHxKq80TdAxEdW7MhI-zDI3Oh3HGaiPzg&usqp=CAU',
       tags: [squishy.id, destroy.id]
