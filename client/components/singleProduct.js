@@ -42,6 +42,7 @@ const singleProduct = props => {
   ) : (
     <p className="teal-text">In Stock!</p>
   )
+  const disableAddToCart = outOfStock ? 'disabled' : ''
 
   return (
     <div className="container" id="singleProduct">
@@ -79,7 +80,7 @@ const singleProduct = props => {
             <button
               type="submit"
               onClick={handleAddToCart}
-              className="btn waves-effect waves-light btn-small"
+              className={`btn waves-effect waves-light btn-small ${disableAddToCart}`}
             >
               Add To Cart
             </button>
