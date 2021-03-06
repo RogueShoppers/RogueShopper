@@ -8,6 +8,8 @@ const SIGNUP_USER = 'SIGNUP_USER'
 const LOGIN_USER = 'LOGIN_USER'
 const EDIT_USER = 'EDIT_USER'
 const SET_USERS = 'SET_USERS'
+const SET_ERROR = 'SET_ERROR'
+const CLEAR_ERROR = 'CLEAR_ERROR'
 
 //ACTION CREATORS
 const gotUser = user => ({type: GET_USER, user})
@@ -16,6 +18,8 @@ const signedUp = newUser => ({type: SIGNUP_USER, newUser})
 const loggedIn = user => ({type: LOGIN_USER, user})
 const updatedUser = user => ({type: EDIT_USER, user})
 const setUsers = users => ({type: SET_USERS, users})
+const handleError = error => ({type: SET_ERROR, error})
+const clearError = () => ({type: CLEAR_ERROR})
 
 //THUNK CREATORS
 export const signUp = newUser => {
@@ -25,6 +29,8 @@ export const signUp = newUser => {
       dispatch(signedUp(created))
       historyFunc.push('/')
     } catch (error) {
+      dispatch(handleError(error.response))
+      setTimeout(() => dispatch(clearError()), 3000)
       console.log('Error creating a new user!', error)
     }
   }
@@ -47,6 +53,8 @@ export const logIn = user => {
       dispatch(loggedIn(signedInUser))
       historyFunc.push('/home')
     } catch (error) {
+      dispatch(handleError(error.response))
+      setTimeout(() => dispatch(clearError()), 3000)
       console.log('Error logging in!', error)
     }
   }
@@ -89,10 +97,12 @@ export const fetchAllUsers = () => {
 //INITIAL STATE
 const initialState = {
   all: [],
-  selected: {}
+  selected: {},
+  error: {}
 }
 
 //REDUCER
+// eslint-disable-next-line complexity
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
@@ -118,11 +128,14 @@ export default function(state = initialState, action) {
       }
     case REMOVE_USER:
       return {
-        ...state,
-        selected: {}
+        ...state
       }
     case SET_USERS:
       return {...state, all: action.users}
+    case SET_ERROR:
+      return {...state, error: action.error}
+    case CLEAR_ERROR:
+      return {...state, error: {}}
     default:
       return state
   }
