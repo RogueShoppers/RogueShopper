@@ -53,11 +53,14 @@ class MyUserAccount extends Component {
                   <td>
                     $
                     {closedOrder.products.reduce((aggregator, product) => {
-                      return aggregator + product.price
+                      return (
+                        aggregator +
+                        product.price * product['order-product'].orderQuantity
+                      )
                     }, 0)}
                   </td>
                   <td>
-                    <Link to={`/me/orders/${closedOrder.id}`}>
+                    <Link to={`/orders/${closedOrder.id}`}>
                       <button type="submit" className="btn blue lighten-1">
                         View Details
                       </button>
