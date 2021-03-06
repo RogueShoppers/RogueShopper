@@ -35,11 +35,25 @@ class SignUp extends Component {
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" onChange={this.handleChange} />
+            <span
+              className="helper-text"
+              data-error="wrong"
+              data-success="right"
+            >
+              *Required
+            </span>
           </div>
 
           <div className="input-field">
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={this.handleChange} />
+            <span
+              className="helper-text"
+              data-error="wrong"
+              data-success="right"
+            >
+              *Required
+            </span>
           </div>
 
           <div className="input-field">
@@ -54,16 +68,37 @@ class SignUp extends Component {
           <div className="input-field">
             <label htmlFor="address">Address</label>
             <input type="text" id="address" onChange={this.handleChange} />
+            <span
+              className="helper-text"
+              data-error="wrong"
+              data-success="right"
+            >
+              *Required
+            </span>
           </div>
 
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
+            <span
+              className="helper-text"
+              data-error="wrong"
+              data-success="right"
+            >
+              *Required
+            </span>
           </div>
 
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
+            <span
+              className="helper-text"
+              data-error="wrong"
+              data-success="right"
+            >
+              *Required
+            </span>
           </div>
 
           <div>
