@@ -1,20 +1,21 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-// import {fetchMyOpenOrder, removeItemFromOrder} from '../store/orders'
+import {fetchMyCompletedOrder} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 
 const Confirmation = props => {
-  const {getUser, user} = props
+  const {getUser, getMyClosedOrder, user, myClosedOrder} = props
 
   useEffect(() => {
     getUser()
+    getMyClosedOrder()
   }, [])
 
   return (
     <div>
       <h2>Thanks for your order {user.firstName}!</h2>
-      <p>Your order confirmation number is #PLACEHOLDER#</p>
+      <p>Your order confirmation number is {myClosedOrder.id}</p>
       <p>Please check {user.email} for a confirmation!</p>
       <p>
         or keep shopping <Link to="/products">our stock!</Link>
@@ -25,9 +26,16 @@ const Confirmation = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.myOrder,
+    myClosedOrder: state.orders.myClosedOrder,
     user: state.users.selected
   }
 }
 
-export default connect(mapStateToProps)(Confirmation)
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: () => dispatch(getMe()),
+    getMyClosedOrder: () => dispatch(fetchMyCompletedOrder())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Confirmation)

@@ -41,7 +41,12 @@ const singleProduct = props => {
     <div className="container" id="singleProduct">
       <h1 className="center-align">{name}</h1>
       <div id="singleProduct-content">
-        <img src={imageURL} alt="product image" id="singleProduct-img" />
+        <img
+          src={imageURL}
+          alt="product image"
+          id="singleProduct-img"
+          style={{height: 500, width: 350}}
+        />
         <div id="singleProduct-detail">
           <p id="singleProduct-price">Price: ${price}</p>
           <div id="singleProduct-quantityButton">
