@@ -10,7 +10,8 @@ const Navbar = ({
   isLoggedIn,
   getMyOpenOrder,
   myOpenOrder,
-  loggedInUser
+  loggedInUser,
+  isAdmin
 }) => {
   useEffect(
     () => {
@@ -33,7 +34,22 @@ const Navbar = ({
     <div>
       <h1>RogueShopper</h1>
       <nav className="nav-wrapper grey darken-2">
-        {isLoggedIn ? (
+        {isLoggedIn && isAdmin ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">Home</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
+            {/*The navbar will show these links if you are admin*/}
+            <Link to="/me/admin">All Users</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+            <NavLink to="/me" className="btn btn-floating pink lighten-1">
+              {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
+            </NavLink>
+          </div>
+        ) : isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
@@ -69,7 +85,8 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.users.selected.id,
     loggedInUser: state.users.selected,
-    myOpenOrder: state.orders.myOpenOrder
+    myOpenOrder: state.orders.myOpenOrder,
+    isAdmin: state.users.selected.isAdmin
   }
 }
 
@@ -89,5 +106,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired
 }
