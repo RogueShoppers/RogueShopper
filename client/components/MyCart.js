@@ -29,6 +29,8 @@ const MyCart = props => {
 
   const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
 
+  const disabled = cartNotEmpty ? '' : 'disabled'
+
   const handleCheckout = event => {
     event.preventDefault()
     checkout(myOpenOrder)
@@ -80,7 +82,7 @@ const MyCart = props => {
         </div>
         <div className="col s6">
           <button
-            className="right btn btn-large waves-effect waves-light #ff8a80 red accent-1"
+            className={`right btn btn-large waves-effect waves-light #ff8a80 red accent-1 ${disabled}`}
             type="submit"
             onClick={handleCheckout}
           >
