@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-// import {fetchMyOpenOrder, removeItemFromOrder} from '../store/orders'
+import {fetchMyOpenOrder} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 
@@ -30,4 +30,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Confirmation)
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: () => dispatch(getMe()),
+    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Confirmation)
