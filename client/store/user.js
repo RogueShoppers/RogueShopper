@@ -128,7 +128,8 @@ export default function(state = initialState, action) {
       }
     case REMOVE_USER:
       return {
-        ...state
+        ...state,
+        selected: {}
       }
     case SET_USERS:
       return {...state, all: action.users}
