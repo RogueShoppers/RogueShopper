@@ -84,11 +84,12 @@ export const editCartQuantity = orderInfo => {
   }
 }
 
-export const closeOpenOrder = myOrder => {
+export const closeOpenOrder = (myOrder, history) => {
   return async dispatch => {
     try {
       const {data: closedOrder} = await axios.put(`/api/orders/${myOrder.id}`)
       dispatch(closeOrder(closedOrder))
+      history.push('/confirmation')
     } catch (error) {
       console.log('Error: Could not close order', error)
     }

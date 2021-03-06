@@ -8,6 +8,7 @@ import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
 import AllUsers from './components/allUsers'
 import MyCart from './components/MyCart'
+import Confirmation from './components/confirmation'
 
 /**
  * COMPONENT
@@ -37,6 +38,7 @@ class Routes extends Component {
               <Route exact path="/me" component={MyUserAccount} />
               <Route path="/me/edit" component={EditMyAccount} />
               <Route path="/mycart" component={MyCart} />
+              <Route path="/confirmation" component={Confirmation} />
               <Route path="/me/admin" component={AllUsers} />
             </Switch>
           )}
@@ -48,6 +50,7 @@ class Routes extends Component {
             <Route exact path="/me" component={MyUserAccount} />
             <Route path="/me/edit" component={EditMyAccount} />
             <Route path="/mycart" component={MyCart} />
+            <Route path="/confirmation" component={Confirmation} />
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
