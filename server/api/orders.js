@@ -3,10 +3,58 @@ const {Order, Product, User} = require('../db/models')
 const OrderProduct = require('../db/models/order-product')
 module.exports = router
 
-//POST /api/orders/:userId
-router.post('/:userId', async (req, res, next) => {
+// GET /api/orders?status=(open or close)
+router.get('/', async (req, res, next) => {
   try {
-    const {userId} = req.params
+    const userId = req.user.id
+    const {status} = req.query
+    if (status === 'open') {
+      //if query has status of open, only find orders that have completed = false (not processed)
+      const [myOpenOrder] = await Order.findAll({
+        where: {
+          completed: false,
+          userId: userId
+        },
+        include: [
+          {
+            model: Product,
+            attributes: ['id', 'name', 'imageURL', 'price', 'quantity'],
+            through: {
+              attributes: ['orderQuantity']
+            }
+          }
+        ]
+      })
+      res.json(myOpenOrder)
+    }
+    if (status === 'close') {
+      //if query has status of close, only find orders that have completed = true (processed)
+      const allClosedOrders = await Order.findAll({
+        where: {
+          completed: true,
+          userId: userId
+        },
+        include: [
+          {
+            model: Product,
+            attributes: ['name', 'imageURL', 'price'],
+            through: {
+              attributes: ['orderQuantity']
+            }
+          }
+        ]
+      })
+      res.json(allClosedOrders)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//POST /api/orders
+router.post('/', async (req, res, next) => {
+  try {
+    const userId = req.user.id
     const {productId, quantity} = req.body
 
     //Create new open order on Order Model for the logged in user.
@@ -18,10 +66,6 @@ router.post('/:userId', async (req, res, next) => {
       },
       include: Product
     })
-
-    //set newOrder to associate with logged in user (NOT NEEDED)
-    // let user = await User.findByPk(userId)
-    // await newOrder.setUser(user)
 
     //check if existing openOrder already has product with same id
     let currentProducts = await newOrder.getProducts()
@@ -50,58 +94,10 @@ router.post('/:userId', async (req, res, next) => {
   }
 })
 
-// GET /api/orders/:userId?status=(open or close)
-router.get('/:userId', async (req, res, next) => {
+//DELETE /api/orders/products/:productId
+router.delete('/products/:productId', async (req, res, next) => {
   try {
-    const {userId} = req.params
-    const {status} = req.query
-    if (status === 'open') {
-      //if query has status of open, only find orders that have completed = false (not processed)
-      const [myOpenOrder] = await Order.findAll({
-        where: {
-          completed: false,
-          userId: userId
-        },
-        include: [
-          {
-            model: Product,
-            attributes: ['id', 'name', 'imageURL', 'price'],
-            through: {
-              attributes: ['orderQuantity']
-            }
-          }
-        ]
-      })
-      res.json(myOpenOrder)
-    }
-    if (status === 'close') {
-      //if query has status of close, only find orders that have completed = true (processed)
-      const [allClosedOrders] = await Order.findAll({
-        where: {
-          completed: true,
-          userId: userId
-        },
-        include: [
-          {
-            model: Product,
-            attributes: ['name', 'imageURL', 'price'],
-            through: {
-              attributes: ['orderQuantity']
-            }
-          }
-        ]
-      })
-      res.json(allClosedOrders)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
-//DELETE /api/orders/:userId/products/:productId
-router.delete('/:userId/products/:productId', async (req, res, next) => {
-  try {
-    const userId = Number(req.params.userId)
+    const userId = req.user.id
     const productId = Number(req.params.productId)
 
     let currentOpenOrder = await Order.findOne({
@@ -117,17 +113,16 @@ router.delete('/:userId/products/:productId', async (req, res, next) => {
     //wait for all updates to be loaded to newOrder
     currentOpenOrder = await currentOpenOrder.reload()
 
-    console.log(currentOpenOrder)
     res.json(currentOpenOrder)
   } catch (error) {
     next(error)
   }
 })
 
-// PUT /api/orders/:userId/
-router.put('/:userId', async (req, res, next) => {
+// PUT /api/orders/
+router.put('/', async (req, res, next) => {
   try {
-    const {userId} = req.params
+    const userId = req.user.id
     const {productId, quantity} = req.body
 
     let currentOpenOrder = await Order.findOne({
@@ -144,6 +139,55 @@ router.put('/:userId', async (req, res, next) => {
     currentOpenOrder = await currentOpenOrder.reload()
 
     res.json(currentOpenOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET /api/orders/:orderId
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    const allMyClosedOrders = Order.findAll({
+      where: {
+        userId: 1
+      }
+    })
+    res.send(allMyClosedOrders)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// PUT /api/orders/:orderId
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const orderId = Number(req.params.orderId)
+
+    //find the order with order ID
+    let order = await Order.findOne({
+      where: {
+        id: orderId
+      },
+      include: Product
+    })
+
+    //get all products associated with order ID (items in cart)
+    const products = await order.getProducts()
+
+    //for each products, reduce the current stock with the purchsed quantity
+    for (let i = 0; i < products.length; i++) {
+      let product = products[i]
+      const currentStock = product.quantity
+      const purchasedQty = product['order-product'].orderQuantity
+      await product.update({quantity: currentStock - purchasedQty})
+    }
+
+    //update the current order's completed status to true
+    await order.update({completed: true})
+
+    //wait to make sure all the updates are loaded
+    order = await order.reload()
+    res.send(order)
   } catch (error) {
     next(error)
   }
