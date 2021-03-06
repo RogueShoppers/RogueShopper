@@ -158,9 +158,9 @@ router.put('/', async (req, res, next) => {
 // GET /api/orders/:orderId
 router.get('/:orderId', async (req, res, next) => {
   try {
-    const allMyClosedOrders = Order.findAll({
+    const allMyClosedOrders = await Order.findAll({
       where: {
-        userId: 1
+        userId: req.user.id
       }
     })
     res.send(allMyClosedOrders)
