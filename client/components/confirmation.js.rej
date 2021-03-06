@@ -1,7 +1,0 @@
-diff a/client/components/confirmation.js b/client/components/confirmation.js	(rejected hunks)
-@@ -33,3 +33 @@ const mapStateToProps = state => {
--
--
--export default connect(mapStateToProps)(Confirmation)
-\ No newline at end of file
-+export default connect(mapStateToProps)(Confirmation)
