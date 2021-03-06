@@ -5,16 +5,17 @@ import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 
 const Confirmation = props => {
-  const {getUser, user} = props
+  const {getUser, getMyClosedOrder, user, myClosedOrder} = props
 
   useEffect(() => {
     getUser()
+    getMyClosedOrder()
   }, [])
 
   return (
     <div>
       <h2>Thanks for your order {user.firstName}!</h2>
-      <p>Your order confirmation number is #PLACEHOLDER#</p>
+      <p>Your order confirmation number is {myClosedOrder.orderNumber}</p>
       <p>Please check {user.email} for a confirmation!</p>
       <p>
         or keep shopping <Link to="/products">our stock!</Link>
@@ -25,7 +26,7 @@ const Confirmation = props => {
 
 const mapStateToProps = state => {
   return {
-    myClosedOrder: state.orders.myOrder,
+    myClosedOrder: state.orders.myClosedOrder,
     user: state.users.selected
   }
 }
@@ -33,7 +34,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(getMe()),
-    getMyClosedOrder: userId => dispatch(fetchMyCompletedOrder(userId))
+    getMyClosedOrder: () => dispatch(fetchMyCompletedOrder())
   }
 }
 
