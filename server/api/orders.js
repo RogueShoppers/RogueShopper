@@ -113,7 +113,6 @@ router.delete('/products/:productId', async (req, res, next) => {
     //wait for all updates to be loaded to newOrder
     currentOpenOrder = await currentOpenOrder.reload()
 
-    console.log(currentOpenOrder)
     res.json(currentOpenOrder)
   } catch (error) {
     next(error)
