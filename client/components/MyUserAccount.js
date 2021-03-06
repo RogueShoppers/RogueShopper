@@ -2,14 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
+import {fetchMyCompletedOrder} from '../store/orders'
 
 class MyUserAccount extends Component {
   componentDidMount() {
     this.props.getMe()
+    this.props.fetchMyCompletedOrder()
   }
   render() {
     const {firstName, lastName, preferredName, address, email} = this.props.user
-
+    const {allClosedOrders} = this.props
     return (
       <div className="container">
         <h2>Hi {!preferredName ? firstName : preferredName}!</h2>
@@ -40,17 +42,30 @@ class MyUserAccount extends Component {
             <tr>
               <th>Order Number</th>
               <th>Total</th>
+              <th>Order Details</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>[Placeholder]</td>
-              <td>[Placeholder]</td>
-            </tr>
-            <tr>
-              <td>[Placeholder]</td>
-              <td>[Placeholder]</td>
-            </tr>
+            {allClosedOrders.map(closedOrder => {
+              return (
+                <tr key={closedOrder.id}>
+                  <td>{closedOrder.id}</td>
+                  <td>
+                    $
+                    {closedOrder.products.reduce((aggregator, product) => {
+                      return aggregator + product.price
+                    }, 0)}
+                  </td>
+                  <td>
+                    <Link to={`/me/orders/${closedOrder.id}`}>
+                      <button type="submit" className="btn blue lighten-1">
+                        View Details
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -60,13 +75,15 @@ class MyUserAccount extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.users.selected
+    user: state.users.selected,
+    allClosedOrders: state.orders.allClosedOrders
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMe: () => dispatch(getMe())
+    getMe: () => dispatch(getMe()),
+    fetchMyCompletedOrder: () => dispatch(fetchMyCompletedOrder())
   }
 }
 
