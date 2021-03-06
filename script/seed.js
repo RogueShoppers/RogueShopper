@@ -1318,6 +1318,875 @@ const seed = async () => {
       imageURL:
         'https://i.pinimg.com/originals/b1/6a/4c/b16a4c2402353d19fd7c17847848f533.jpg',
       tags: [fetch.id, tug.id]
+    },
+    {
+      name: 'Aloha Frog',
+      shortDescription: 'Aloha Frog',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 44.46,
+      quantity: 146,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Aloha_Frog%20(2)-20190715175122-20190715175150-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Aloha Gecko',
+      shortDescription: 'Aloha Gecko',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 64.32,
+      quantity: 185,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Aloha_Gecko%20(2)-20190715175240-20190715175301-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Aloha Turtle',
+      shortDescription: 'Aloha Turtle',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 33.78,
+      quantity: 79,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Aloha_Turtle%20(2)-20190715175511-20190715175528-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Boomerang',
+      shortDescription: 'Ballistic Boomerang',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 43.21,
+      quantity: 133,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LG1_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Ears Mouse',
+      shortDescription: 'Ballistic Ears Mouse',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 65.68,
+      quantity: 111,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RE23_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Ears Pig',
+      shortDescription: 'Ballistic Ears Pig',
+      longDescription:
+        'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
+      price: 83.23,
+      quantity: 35,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RE24_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Football',
+      shortDescription: 'Ballistic Football',
+      longDescription:
+        'Catch bell dog bone peanut butter speak chew toy stay collar shake. Roll over rottweiler dachshund chew toy dog milk bone bite great dance bulldog. Bulldog sit great dance bite bite vet maltese puppies.',
+      price: 23.52,
+      quantity: 156,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LF1_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Tug',
+      shortDescription: 'Ballistic Tug',
+      longDescription:
+        'Chase tail rottweiler pit bull maltese husky rottweiler dog lap dog. Squirrel stand lab dog bone catch beagle squeak toy paw chew toy. Lap dog fetch puppy bulldog chihuahua stay boxer take it roll over.',
+      price: 70.05,
+      quantity: 151,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LU1_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Woodland Bird',
+      shortDescription: 'Ballistic Woodland Bird',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 85.52,
+      quantity: 6,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LBH13_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Woodland Rabbit',
+      shortDescription: 'Ballistic Woodland Rabbit',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 14.34,
+      quantity: 105,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LBH12_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Woodland Squirrel',
+      shortDescription: 'Ballistic Woodland Squirrel',
+      longDescription:
+        'Lap dog bell roll over chase tail, rottweiler greyhound german shephard fetch catch milk bone fetch. K9 husky bite greyhound, lap dog lab jump dog bowl squeak toy spin speak dachshund. Chow chow bulldog bell bite leash husky dachshund tug.',
+      price: 46.36,
+      quantity: 137,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LBH11_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Barnyard Knots Cow',
+      shortDescription: 'Barnyard Knots Cow',
+      longDescription:
+        'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
+      price: 28.03,
+      quantity: 127,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKB13_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Belly Flops&trade; Lobster',
+      shortDescription: 'Belly Flops&trade; Lobster',
+      longDescription:
+        'Tennis ball milk bone poodle, husky speak shih tzu dog release bark pug release. Boxer poodle dog toy kibbles bell heel pug greyhound doberman pinscher dog bowl, growl jump poodle fetch. Maltese shih tzu collar chow chow stand poodle growl tail.',
+      price: 97.54,
+      quantity: 193,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RBF1_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Belly Flops&trade; Octopus',
+      shortDescription: 'Belly Flops&trade; Octopus',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 24.42,
+      quantity: 116,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RBF2_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Belly Flops&trade; Starfish',
+      shortDescription: 'Belly Flops&trade; Starfish',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 27.82,
+      quantity: 121,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RBF3_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Belly Flops&trade; Stingray',
+      shortDescription: 'Belly Flops&trade; Stingray',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 5.04,
+      quantity: 39,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RBF4_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Bendeez&trade; Turtle',
+      shortDescription: 'Bendeez&trade; Turtle',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 47.86,
+      quantity: 71,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/BC34E%20(1)-20190319080453-20190319080505-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Blue Woozles',
+      shortDescription: 'Blue Woozles',
+      longDescription:
+        'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
+      price: 83.2,
+      quantity: 88,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RWZ21%20(1)-20190702212625-20190702215406-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Clingerz Knots Cardinal',
+      shortDescription: 'Clingerz Knots Cardinal',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 54.72,
+      quantity: 140,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG13_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Clingerz Knots Koala',
+      shortDescription: 'Clingerz Knots Koala',
+      longDescription:
+        'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
+      price: 56.58,
+      quantity: 42,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG12_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Clingerz Knots Monkey',
+      shortDescription: 'Clingerz Knots Monkey',
+      longDescription:
+        'Poodle sit pretty beagle husky speak fetch roll over. Bite bark bulldog squirrel leash chihuahua spin spin. Puppy leash kibbles stay roll over bark paw.',
+      price: 94.77,
+      quantity: 118,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG11_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Flopzie Donkey',
+      shortDescription: 'Comfort Flopzie Donkey',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 22.52,
+      quantity: 193,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RLF11%20(1)-20181024164050-20181024164923-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort HedgeHug',
+      shortDescription: 'Comfort HedgeHug',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 69.08,
+      quantity: 129,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RCD11%20(1)-20190805211015-20190805211622-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort HedgeHug Puppy',
+      shortDescription: 'Comfort HedgeHug Puppy',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 69.78,
+      quantity: 147,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RCD25%20(1)-20190805213338-20190805213737-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Jumbo',
+      shortDescription: 'Comfort Jumbo',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 17.56,
+      quantity: 55,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Comforts_Jumbo_Duck_Purple-20190506210659-20190506210717-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Kiddos Bear',
+      shortDescription: 'Comfort Kiddos Bear',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 97.96,
+      quantity: 128,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RLC31%20(1)-20190110163034-20190110163114-1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Kiddos Elephant',
+      shortDescription: 'Comfort Kiddos Elephant',
+      longDescription:
+        'Bulldog beagle bulldog dachshund, chew toy speak doberman pinscher lab pug rottweiler spin. Tail stand play dead bite tail pomsky come. Leash great dance pomsky, play dead bark pit bull leave it beagle jump roll over.',
+      price: 61.67,
+      quantity: 143,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RLC13_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Kiddos Lion',
+      shortDescription: 'Comfort Kiddos Lion',
+      longDescription:
+        'Chase tail rottweiler pit bull maltese husky rottweiler dog lap dog. Squirrel stand lab dog bone catch beagle squeak toy paw chew toy. Lap dog fetch puppy bulldog chihuahua stay boxer take it roll over.',
+      price: 87.48,
+      quantity: 105,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RLC14_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Kiddos Pig',
+      shortDescription: 'Comfort Kiddos Pig',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 98.75,
+      quantity: 23,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RLC15_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Comfort Snuggles',
+      shortDescription: 'Comfort Snuggles',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 15.43,
+      quantity: 65,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RCS1_1_1000x1000.jpg',
+      tags: [squishy.id, destroy.id]
+    },
+    {
+      name: 'Ballistic Tug',
+      shortDescription: 'Ballistic Tug',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 19.72,
+      quantity: 46,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/LU1_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Beezles Ball Assorted',
+      shortDescription: 'Beezles Ball Assorted',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 24.34,
+      quantity: 121,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/BZB1%20(1)-20201014032531-20201014032555-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Beezles Bone Assorted',
+      shortDescription: 'Beezles Bone Assorted',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 20.85,
+      quantity: 115,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/BZN1%20(1)-20201014152134-20201014152147-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Beezles Stick Assorted',
+      shortDescription: 'Beezles Stick Assorted',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 24.33,
+      quantity: 54,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/BZS1%20(1)-20201014184236-20201014184253-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Beezles Tug Assorted',
+      shortDescription: 'Beezles Tug Assorted',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 24.2,
+      quantity: 95,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/BZT1%20(1)-20201014190851-20201014190921-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Clingerz Knots Cardinal',
+      shortDescription: 'Clingerz Knots Cardinal',
+      longDescription:
+        'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
+      price: 29.54,
+      quantity: 196,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG13_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Clingerz Knots Koala',
+      shortDescription: 'Clingerz Knots Koala',
+      longDescription:
+        'Catch bell dog bone peanut butter speak chew toy stay collar shake. Roll over rottweiler dachshund chew toy dog milk bone bite great dance bulldog. Bulldog sit great dance bite bite vet maltese puppies.',
+      price: 8.93,
+      quantity: 160,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG12_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Clingerz Knots Monkey',
+      shortDescription: 'Clingerz Knots Monkey',
+      longDescription:
+        'Chase tail rottweiler pit bull maltese husky rottweiler dog lap dog. Squirrel stand lab dog bone catch beagle squeak toy paw chew toy. Lap dog fetch puppy bulldog chihuahua stay boxer take it roll over.',
+      price: 8,
+      quantity: 148,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKG11_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Danglers Alligator',
+      shortDescription: 'Danglers Alligator',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 12.67,
+      quantity: 99,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RD14_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Danglers Giraffe',
+      shortDescription: 'Danglers Giraffe',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 14.99,
+      quantity: 31,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RD12_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Dental with Rope',
+      shortDescription: 'Dental with Rope',
+      longDescription:
+        'Lap dog bell roll over chase tail, rottweiler greyhound german shephard fetch catch milk bone fetch. K9 husky bite greyhound, lap dog lab jump dog bowl squeak toy spin speak dachshund. Chow chow bulldog bell bite leash husky dachshund tug.',
+      price: 27.95,
+      quantity: 21,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/DK2_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Dots &amp; Daisies Bone',
+      shortDescription: 'Dots &amp; Daisies Bone',
+      longDescription:
+        'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
+      price: 8.77,
+      quantity: 200,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/DTDA53%20(1)-20180906202501-20180906202548-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Dots &amp; Daisies Owl',
+      shortDescription: 'Dots &amp; Daisies Owl',
+      longDescription:
+        'Tennis ball milk bone poodle, husky speak shih tzu dog release bark pug release. Boxer poodle dog toy kibbles bell heel pug greyhound doberman pinscher dog bowl, growl jump poodle fetch. Maltese shih tzu collar chow chow stand poodle growl tail.',
+      price: 30.16,
+      quantity: 67,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/DTDA52%20(1)-20180906201112-20180906201158-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Duets Tug and Squeak',
+      shortDescription: 'Duets Tug and Squeak',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 30.81,
+      quantity: 154,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/TD12_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'FetchStix',
+      shortDescription: 'FetchStix',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 9.74,
+      quantity: 117,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/QSR13%20(1)-20190603182607-20190603182621-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'FetchStix with Rope',
+      shortDescription: 'FetchStix with Rope',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 30.11,
+      quantity: 157,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/QSR21%20(1)-20190603200439-20190603200449-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Illusions Figure Eight',
+      shortDescription: 'Illusions Figure Eight',
+      longDescription:
+        'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
+      price: 13.34,
+      quantity: 153,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Illusions_8-20190129171745-20190129171806-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Illusions Flower',
+      shortDescription: 'Illusions Flower',
+      longDescription:
+        'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
+      price: 31.62,
+      quantity: 50,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PLU12%20(1)-20190228151917-20190228152053-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Jaxx Braided Tug',
+      shortDescription: 'Jaxx Braided Tug',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 29.33,
+      quantity: 10,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PJ11%20(1)-20200107224632-20200107231847-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Jaxx Infinity Tug',
+      shortDescription: 'Jaxx Infinity Tug',
+      longDescription:
+        'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
+      price: 22.14,
+      quantity: 82,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PJ12%20(1)-20200114071318-20200114071403-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Jaxx Triple Barrel',
+      shortDescription: 'Jaxx Triple Barrel',
+      longDescription:
+        'Poodle sit pretty beagle husky speak fetch roll over. Bite bark bulldog squirrel leash chihuahua spin spin. Puppy leash kibbles stay roll over bark paw.',
+      price: 24.67,
+      quantity: 168,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PJ13%20(1)-20200114072833-20200114072918-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Jumbo Stretchezz&trade; Snow Leapord',
+      shortDescription: 'Jumbo Stretchezz&trade; Snow Leapord',
+      longDescription:
+        'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
+      price: 8.44,
+      quantity: 199,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RSJX3_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Jumbo Stretchezz&trade; Tiger',
+      shortDescription: 'Jumbo Stretchezz&trade; Tiger',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 12.34,
+      quantity: 122,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RSJX2_1_1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Knots Noodlez Double',
+      shortDescription: 'Knots Noodlez Double',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 30.18,
+      quantity: 119,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKN31%20(1)-20190312221136-20190312221157-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Knots Noodlez Single',
+      shortDescription: 'Knots Noodlez Single',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 17.12,
+      quantity: 23,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/NKN31%20(1)-20190312220057-20190312220107-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'KONG&reg; Extreme Ball w/Rope',
+      shortDescription: 'KONG&reg; Extreme Ball w/Rope',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 29.69,
+      quantity: 111,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/EB12%20(1)-20200409054327-20200409054338-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Occasions Birthday Balloon Blue',
+      shortDescription: 'Occasions Birthday Balloon Blue',
+      longDescription:
+        'Bulldog beagle bulldog dachshund, chew toy speak doberman pinscher lab pug rottweiler spin. Tail stand play dead bite tail pomsky come. Leash great dance pomsky, play dead bark pit bull leave it beagle jump roll over.',
+      price: 10.39,
+      quantity: 75,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RCC13%20(1)-20180810213833-20180810214623-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Occasions Birthday Balloon Red',
+      shortDescription: 'Occasions Birthday Balloon Red',
+      longDescription:
+        'Chase tail rottweiler pit bull maltese husky rottweiler dog lap dog. Squirrel stand lab dog bone catch beagle squeak toy paw chew toy. Lap dog fetch puppy bulldog chihuahua stay boxer take it roll over.',
+      price: 25.06,
+      quantity: 171,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RCC12%20(1)-20180810213932-20180810215232-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Ogee&trade; Stick Assorted',
+      shortDescription: 'Ogee&trade; Stick Assorted',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 31.17,
+      quantity: 14,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/SG1%20(1)%20Purple-20200114054915-20200114055054-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'ROGZ&reg; Crazy Scrubz',
+      shortDescription: 'ROGZ&reg; Crazy Scrubz',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 26.75,
+      quantity: 156,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RZSC023%20(1)-20190806210626-20190806211202-1000x1000.jpg',
+      tags: [chew.id, tug.id]
+    },
+    {
+      name: 'Goodie Ribbon',
+      shortDescription: 'Goodie Ribbon',
+      longDescription:
+        'Catch bell dog bone peanut butter speak chew toy stay collar shake. Roll over rottweiler dachshund chew toy dog milk bone bite great dance bulldog. Bulldog sit great dance bite bite vet maltese puppies.',
+      price: 31.82,
+      quantity: 153,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/GoodieRibbon_OffPack-20190702213111-20190702213122-1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Gyro',
+      shortDescription: 'Gyro',
+      longDescription:
+        'Chase tail rottweiler pit bull maltese husky rottweiler dog lap dog. Squirrel stand lab dog bone catch beagle squeak toy paw chew toy. Lap dog fetch puppy bulldog chihuahua stay boxer take it roll over.',
+      price: 12.78,
+      quantity: 51,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PGY1_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Hoopla Bone',
+      shortDescription: 'Hoopla Bone',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 27.43,
+      quantity: 195,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PHP12_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Hopz Ball',
+      shortDescription: 'Hopz Ball',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 8.25,
+      quantity: 173,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PLB1%20(1)-20180905204256-20180905204642-1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Puppy Goodie Bone&trade; with Rope',
+      shortDescription: 'Puppy Goodie Bone&trade; with Rope',
+      longDescription:
+        'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
+      price: 16.11,
+      quantity: 164,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/KP51%20(1)-20180829143800-20180829143857-1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Puppy Tires',
+      shortDescription: 'Puppy Tires',
+      longDescription:
+        'Dog bone yorkshire terrier kibbles chihuahua maltese jump shih tzu. Great dance great dance stand stay chihuahua spin Morkie german shephard fetch. Tail dog house maltese pomeranian pit bull fetch puppies kibbles pomeranian.',
+      price: 18.04,
+      quantity: 97,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/KPT11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Puzzlements&trade; Beaver',
+      shortDescription: 'Puzzlements&trade; Beaver',
+      longDescription:
+        'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
+      price: 14.8,
+      quantity: 83,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RPZ11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Quest Star Pod',
+      shortDescription: 'Quest Star Pod',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 18.29,
+      quantity: 11,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PE13_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Quest Wishbone',
+      shortDescription: 'Quest Wishbone',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 27.62,
+      quantity: 15,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PE34_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Replay',
+      shortDescription: 'Replay',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 18.22,
+      quantity: 155,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PRP3%20(1)-20180813164715-20180813172731-1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Small Animal',
+      shortDescription: 'Small Animal',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 12.75,
+      quantity: 195,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/FK3_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Spin It',
+      shortDescription: 'Spin It',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 9.94,
+      quantity: 179,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PTS1_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Stretchezz&trade; Tugga Alligator',
+      shortDescription: 'Stretchezz&trade; Tugga Alligator',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 8.18,
+      quantity: 8,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RSG11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Tiltz&trade;',
+      shortDescription: 'Tiltz&trade;',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 10.23,
+      quantity: 35,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PTZ1_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Treat Duo',
+      shortDescription: 'Treat Duo',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 21.12,
+      quantity: 61,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PTU1_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Stretchezz&trade; Tugga Alligator',
+      shortDescription: 'Stretchezz&trade; Tugga Alligator',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 20.84,
+      quantity: 178,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RSG11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Rewards Shell',
+      shortDescription: 'Rewards Shell',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 28.34,
+      quantity: 174,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/PEP11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Rewards Tennis',
+      shortDescription: 'Rewards Tennis',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 15.27,
+      quantity: 96,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/Rewards_Tennis_Ball_treats%20(1)%20(1)-20190506192947-20190506192957-1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
+    },
+    {
+      name: 'Riptides Clam',
+      shortDescription: 'Riptides Clam',
+      longDescription:
+        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+      price: 8.01,
+      quantity: 36,
+      imageURL:
+        'https://9ed48207422fa7fc5013-a6297eb5ec0f30e883355c8680f3b2d6.ssl.cf2.rackcdn.com/RPY11_1_1000x1000.jpg',
+      tags: [chew.id, brainTeaser.id, feed.id]
     }
   ]
 
