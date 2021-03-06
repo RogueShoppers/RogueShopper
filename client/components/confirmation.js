@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchMyOpenOrder} from '../store/orders'
+import {fetchMyCompletedOrder} from '../store/orders'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 
@@ -25,7 +25,7 @@ const Confirmation = props => {
 
 const mapStateToProps = state => {
   return {
-    myOrder: state.orders.myOrder,
+    myClosedOrder: state.orders.myOrder,
     user: state.users.selected
   }
 }
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(getMe()),
-    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId))
+    getMyClosedOrder: userId => dispatch(fetchMyCompletedOrder(userId))
   }
 }
 
