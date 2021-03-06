@@ -108,3 +108,8 @@ nav a {
   margin-left: 30px;
   font-size: 18px;
 }
+
+/* error messages */
+.error {
+  color: red;
+}
