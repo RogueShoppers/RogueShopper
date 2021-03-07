@@ -1,60 +1,13 @@
 const router = require('express').Router()
-const {Order, Product, User} = require('../db/models')
-const OrderProduct = require('../db/models/order-product')
+const {Order, Product} = require('../db/models')
 module.exports = router
 
-//POST /api/orders/:userId
-router.post('/:userId', async (req, res, next) => {
+// GET /api/orders?status=(open or close)
+router.get('/', async (req, res, next) => {
   try {
-    const {userId} = req.params
-    const {productId, quantity} = req.body
-
-    //Create new open order on Order Model for the logged in user.
-    //If order id already exist, find that order
-    let [newOrder] = await Order.findOrCreate({
-      where: {
-        completed: false,
-        userId: userId
-      },
-      include: Product
-    })
-
-    //set newOrder to associate with logged in user (NOT NEEDED)
-    // let user = await User.findByPk(userId)
-    // await newOrder.setUser(user)
-
-    //check if existing openOrder already has product with same id
-    let currentProducts = await newOrder.getProducts()
-    let [existedOrderProduct] = currentProducts.filter(
-      item => item.id === Number(productId)
-    )
-    let product = await Product.findByPk(productId)
-
-    //if product with same id exists, update the orderQuantity to current + added quantity
-    if (existedOrderProduct) {
-      let currentQty = existedOrderProduct['order-product'].orderQuantity
-      await newOrder.addProduct(product, {
-        through: {orderQuantity: currentQty + quantity}
-      })
-    } else {
-      //if product with same id doesn't exist, add product with quantity
-      await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
-    }
-
-    //wait for all updates to be loaded to newOrder
-    newOrder = await newOrder.reload()
-
-    res.status(201).send(newOrder)
-  } catch (error) {
-    next(error)
-  }
-})
-
-// GET /api/orders/:userId?status=(open or close)
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const {userId} = req.params
     const {status} = req.query
+    const userId = req.user ? req.user.id : null
+
     if (status === 'open') {
       //if query has status of open, only find orders that have completed = false (not processed)
       const [myOpenOrder] = await Order.findAll({
@@ -65,7 +18,7 @@ router.get('/:userId', async (req, res, next) => {
         include: [
           {
             model: Product,
-            attributes: ['id', 'name', 'imageURL', 'price'],
+            attributes: ['id', 'name', 'imageURL', 'price', 'quantity'],
             through: {
               attributes: ['orderQuantity']
             }
@@ -76,7 +29,7 @@ router.get('/:userId', async (req, res, next) => {
     }
     if (status === 'close') {
       //if query has status of close, only find orders that have completed = true (processed)
-      const [allClosedOrders] = await Order.findAll({
+      const allClosedOrders = await Order.findAll({
         where: {
           completed: true,
           userId: userId
@@ -98,11 +51,53 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-//DELETE /api/orders/:userId/products/:productId
-router.delete('/:userId/products/:productId', async (req, res, next) => {
+//POST /api/orders
+router.post('/', async (req, res, next) => {
   try {
-    const userId = Number(req.params.userId)
+    const {productId, quantity} = req.body
+    const userId = req.user ? req.user.id : null
+
+    //Create new open order on Order Model for the logged in user or guest
+    //If order id already exist, find that order
+    let [newOrder] = await Order.findOrCreate({
+      where: {
+        completed: false,
+        userId: userId
+      },
+      include: Product
+    })
+
+    //check if existing openOrder already has product with same id
+    let currentProducts = await newOrder.getProducts()
+    let [existedOrderProduct] = currentProducts.filter(
+      item => item.id === Number(productId)
+    )
+    let product = await Product.findByPk(productId)
+
+    //if product with same id exists, update the orderQuantity to current + added quantity
+    if (existedOrderProduct) {
+      let currentQty = existedOrderProduct['order-product'].orderQuantity
+      await newOrder.addProduct(product, {
+        through: {orderQuantity: currentQty + quantity}
+      })
+    } else {
+      //if product with same id doesn't exist, add product with quantity
+      await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
+    }
+
+    //wait for all updates to be loaded to newOrder
+    newOrder = await newOrder.reload()
+    res.status(201).send(newOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//DELETE /api/orders/products/:productId
+router.delete('/products/:productId', async (req, res, next) => {
+  try {
     const productId = Number(req.params.productId)
+    const userId = req.user ? req.user.id : null
 
     let currentOpenOrder = await Order.findOne({
       where: {
@@ -116,19 +111,17 @@ router.delete('/:userId/products/:productId', async (req, res, next) => {
 
     //wait for all updates to be loaded to newOrder
     currentOpenOrder = await currentOpenOrder.reload()
-
-    console.log(currentOpenOrder)
     res.json(currentOpenOrder)
   } catch (error) {
     next(error)
   }
 })
 
-// PUT /api/orders/:userId/
-router.put('/:userId', async (req, res, next) => {
+// PUT /api/orders/
+router.put('/', async (req, res, next) => {
   try {
-    const {userId} = req.params
     const {productId, quantity} = req.body
+    const userId = req.user ? req.user.id : null
 
     let currentOpenOrder = await Order.findOne({
       where: {
@@ -144,6 +137,71 @@ router.put('/:userId', async (req, res, next) => {
     currentOpenOrder = await currentOpenOrder.reload()
 
     res.json(currentOpenOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// // GET /api/orders/:orderId
+// router.get('/:orderId', async (req, res, next) => {
+//   try {
+//     const order = await Order.findOne({
+//       where: {
+//         id: req.params.orderId,
+//         userId: req.user.id,
+//       },
+//       include: Product,
+//     })
+//     if (order) res.send(order)
+//     else res.status(404).send('Order not found!')
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+// PUT /api/orders/:orderId
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const orderId = Number(req.params.orderId)
+
+    //find the order with order ID
+    let order = await Order.findOne({
+      where: {
+        id: orderId
+      },
+      include: Product
+    })
+    //get all products associated with order ID (items in cart)
+    const products = await order.getProducts()
+
+    //for each products, check if stock has enough quantity to complete order
+    let includeOutOfStock = false
+    for (let i = 0; i < products.length; i++) {
+      let product = products[i]
+      const currentStock = product.quantity
+      const purchasedQty = product['order-product'].orderQuantity
+      if (currentStock < purchasedQty) {
+        includeOutOfStock = true
+        res
+          .status(401)
+          .send(`Oops, we don't have enough stock for ${product.name}.`)
+        break
+      }
+    }
+    //If all of them are in stock, then reduce the current stock with the purchased quantity
+    if (!includeOutOfStock) {
+      for (let i = 0; i < products.length; i++) {
+        let product = products[i]
+        const currentStock = product.quantity
+        const purchasedQty = product['order-product'].orderQuantity
+        await product.update({quantity: currentStock - purchasedQty})
+      }
+      //update the current order's completed status to true
+      await order.update({completed: true})
+      //wait to make sure all the updates are loaded
+      order = await order.reload()
+      res.send(order)
+    }
   } catch (error) {
     next(error)
   }

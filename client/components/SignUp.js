@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signUp} from '../store/user'
+import ErrorFormMessage from './ErrorFormMessage'
 
 class SignUp extends Component {
   constructor() {
@@ -29,17 +30,32 @@ class SignUp extends Component {
   }
 
   render() {
+    const {firstName, lastName, address, email, password} = this.state
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" onChange={this.handleChange} />
+            {!firstName ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="input-field">
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={this.handleChange} />
+            {!lastName ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="input-field">
@@ -54,17 +70,43 @@ class SignUp extends Component {
           <div className="input-field">
             <label htmlFor="address">Address</label>
             <input type="text" id="address" onChange={this.handleChange} />
+            {!address ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
+            {!email ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
+            {!password ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
+          {this.props.error.data ? (
+            <ErrorFormMessage error={this.props.error} />
+          ) : (
+            ''
+          )}
 
           <div>
             <button type="submit" className="btn blue lighten-1">
@@ -77,9 +119,15 @@ class SignUp extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    error: state.users.error
+  }
+}
+
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
     signUp: newUser => dispatch(signUp(newUser, history))
   }
 }
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -14,6 +14,7 @@ nav a {
   margin: 1em;
 }
 
+/* my cart styling */
 #myCart h1 {
   font-size: 40px;
 }
@@ -32,7 +33,7 @@ nav a {
 }
 
 #cart-content {
-  width: 30em;
+  width: 60%;
 }
 #cart-content p {
   font-size: 17px;
@@ -41,9 +42,17 @@ nav a {
 #edit-delete {
   display: flex;
 }
+
+#edit-delete > button {
+  margin-right: 20px;
+}
 #edit-delete select {
   width: 10em;
   margin-right: 40px;
+}
+
+#edit-delete > div > p {
+  margin-top: 5px;
 }
 
 #cartItem img {
@@ -53,4 +62,62 @@ nav a {
 
 #totalPrice {
   font-weight: 700;
+}
+
+#emptyCart img {
+  width: 50%;
+}
+/* end my cart styling */
+
+/* single product styling */
+
+#singleProduct {
+  height: 100%;
+  width: 80%;
+}
+#singleProduct-img {
+  width: 300px;
+  max-height: 400px;
+  margin-right: 40px;
+}
+
+#singleProduct-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+#decrease-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+#increase-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+#singleProduct-detail p {
+  font-size: 18px;
+}
+#singleProduct-quantityButton {
+  display: flex;
+}
+
+#singleProduct-quantityButton > p {
+  margin-top: 20px;
+}
+#singleProduct-quantityButton > button {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+#singleProduct-quantityButton > div > p {
+  margin-top: 20px;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+/* error messages */
+.error {
+  color: red;
 }

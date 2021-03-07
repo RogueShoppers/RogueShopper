@@ -4,7 +4,13 @@ import {connect} from 'react-redux'
 import {editCartQuantity} from '../store/orders'
 
 const MyCartSingleItem = props => {
-  const {product, initialQty, removeItemFromCart, user, editQuantity} = props
+  const {
+    product,
+    initialQty,
+    removeItemFromCart,
+    editQuantity,
+    orderError
+  } = props
   const [quantity, setQuantity] = useState(0)
 
   useEffect(() => {
@@ -39,9 +45,20 @@ const MyCartSingleItem = props => {
       quantity: event.target.value,
       productId: product.id
     }
-    editQuantity(user.id, orderInfo)
+    editQuantity(orderInfo)
     setQuantity(event.target.value)
   }
+
+  const outOfStock = product.quantity === 0
+  const stockStatus = outOfStock ? (
+    <p className="red-text">Sorry, this item is currently out of stock</p>
+  ) : product.quantity <= 10 ? (
+    <p className="orange-text text-darken-1">{`Hurry! Only ${
+      product.quantity
+    } items left!`}</p>
+  ) : (
+    <p className="teal-text">In Stock!</p>
+  )
 
   return (
     <li key={product.id} className="collection-item" id="cartItem">
@@ -63,10 +80,18 @@ const MyCartSingleItem = props => {
           <button
             type="button"
             className="waves-effect waves-light btn-small"
-            onClick={() => removeItemFromCart(user.id, product.id)}
+            onClick={() => removeItemFromCart(product.id)}
           >
             Remove
           </button>
+          <div>{stockStatus}</div>
+        </div>
+        <div>
+          {orderError.data && orderError.data.includes(product.name) ? (
+            <p className="red-text">*{orderError.data}</p>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </li>
@@ -75,8 +100,7 @@ const MyCartSingleItem = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editQuantity: (userId, orderInfo) =>
-      dispatch(editCartQuantity(userId, orderInfo))
+    editQuantity: orderInfo => dispatch(editCartQuantity(orderInfo))
   }
 }
 

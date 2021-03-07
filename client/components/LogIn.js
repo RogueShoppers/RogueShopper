@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {logIn} from '../store/user'
 import {connect} from 'react-redux'
+import ErrorFormMessage from './ErrorFormMessage'
 
 class LogIn extends Component {
   constructor() {
@@ -25,19 +26,38 @@ class LogIn extends Component {
   }
 
   render() {
+    const {email, password} = this.state
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
+            {!email ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="input-field">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
+            {!password ? (
+              <span className="helper-text red-text text-accent-1">
+                *Required
+              </span>
+            ) : (
+              ''
+            )}
           </div>
-
+          {this.props.error.data ? (
+            <ErrorFormMessage error={this.props.error} />
+          ) : (
+            ''
+          )}
           <div>
             <button type="submit" className="btn blue lighten-1">
               Login
@@ -49,10 +69,16 @@ class LogIn extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    error: state.users.error
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     logIn: user => dispatch(logIn(user))
   }
 }
 
-export default connect(null, mapDispatchToProps)(LogIn)
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

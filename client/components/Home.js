@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
 import {Link} from 'react-router-dom'
@@ -75,6 +75,31 @@ class Home extends Component {
             />
           </div>
         </div>
+
+        <footer className="page-footer grey darken-2">
+          <div className="container">
+            <div className="row">
+              <div className="col s12 16">
+                <h4>Contact Us</h4>
+                <a className="btn-floating btn-small blue-grey darken-4">
+                  <i className="fas fa-phone" />
+                </a>
+                <a className="btn-floating btn-small blue-grey darken-4">
+                  <i className="material-icons">email</i>
+                </a>
+                <a className="btn-floating btn-small blue-grey darken-4">
+                  <i className="fab fa-instagram" />
+                </a>
+                <a className="btn-floating btn-small blue-grey darken-4">
+                  <i className="fab fa-facebook" />
+                </a>
+                <a className="btn-floating btn-small blue-grey darken-4">
+                  <i className="fab fa-twitter" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     )
   }
