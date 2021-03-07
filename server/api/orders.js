@@ -155,19 +155,22 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-// GET /api/orders/:orderId
-router.get('/:orderId', async (req, res, next) => {
-  try {
-    const allMyClosedOrders = Order.findAll({
-      where: {
-        userId: 1
-      }
-    })
-    res.send(allMyClosedOrders)
-  } catch (error) {
-    next(error)
-  }
-})
+// // GET /api/orders/:orderId
+// router.get('/:orderId', async (req, res, next) => {
+//   try {
+//     const order = await Order.findOne({
+//       where: {
+//         id: req.params.orderId,
+//         userId: req.user.id,
+//       },
+//       include: Product,
+//     })
+//     if (order) res.send(order)
+//     else res.status(404).send('Order not found!')
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 // PUT /api/orders/:orderId
 router.put('/:orderId', async (req, res, next) => {
