@@ -25,7 +25,7 @@ const AllProducts = props => {
                 <h2>{product.name}</h2>
               </Link>
               <p>{product.shortDescription}</p>
-              <h3>{product.price}</h3>
+              <h3>${product.price}</h3>
             </div>
           ))
         : 'No Products on Database'}

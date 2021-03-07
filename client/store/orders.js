@@ -5,6 +5,11 @@ const SET_OPEN_ORDER = 'SET_OPEN_ORDER'
 const CREATE_ORDER = 'CREATE_ORDER'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
+const CLOSE_ORDER = 'CLOSE_ORDER'
+const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
+// const SET_SINGLE_ORDER = 'SET_SINGLE_ORDER'
+const SET_ORDER_ERROR = 'SET_ORDER_ERROR'
+const CLEAR_ORDER_ERROR = 'CLEAR_ORDER_ERROR'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -31,26 +36,51 @@ export const editQuantity = updatedOpenOrder => {
   }
 }
 
+export const closeOrder = myClosedOrder => ({
+  type: CLOSE_ORDER,
+  myClosedOrder
+})
+
+export const setCompleteOrder = completedOrder => {
+  return {
+    type: SET_COMPLETE_ORDER,
+    completedOrder
+  }
+}
+export const setOrderError = error => {
+  return {
+    type: SET_ORDER_ERROR,
+    error
+  }
+}
+export const clearOrderError = () => {
+  return {
+    type: CLEAR_ORDER_ERROR
+  }
+}
+
+// export const setSingleOrder = (order) => {
+//   return {
+//     type: SET_SINGLE_ORDER,
+//     order,
+//   }
+// }
+
 //THUNKS
-export const fetchMyOpenOrder = userId => {
+export const fetchMyOpenOrder = () => {
   return async dispatch => {
     try {
-      const {data: openOrder} = await axios.get(
-        `/api/orders/${userId}?status=open`
-      )
+      const {data: openOrder} = await axios.get(`/api/orders/?status=open`)
       dispatch(setOpenOrder(openOrder))
     } catch (error) {
       console.log('Error: Could not get my order details', error)
     }
   }
 }
-export const createNewOpenOrder = (userId, orderInfo, history) => {
+export const createNewOpenOrder = (orderInfo, history) => {
   return async dispatch => {
     try {
-      const {data: newOrder} = await axios.post(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: newOrder} = await axios.post(`/api/orders`, orderInfo)
       dispatch(createNewOrder(newOrder))
       history.push('/mycart')
     } catch (error) {
@@ -59,11 +89,11 @@ export const createNewOpenOrder = (userId, orderInfo, history) => {
   }
 }
 
-export const removeItemFromOrder = (userId, productId) => {
+export const removeItemFromOrder = productId => {
   return async dispatch => {
     try {
       const {data: updatedOpenOrder} = await axios.delete(
-        `/api/orders/${userId}/products/${productId}`
+        `/api/orders/products/${productId}`
       )
       dispatch(removeItem(updatedOpenOrder))
     } catch (error) {
@@ -72,59 +102,96 @@ export const removeItemFromOrder = (userId, productId) => {
   }
 }
 
-export const editCartQuantity = (userId, orderInfo) => {
+export const editCartQuantity = orderInfo => {
   return async dispatch => {
     try {
-      const {data: updatedOpenOrder} = await axios.put(
-        `/api/orders/${userId}`,
-        orderInfo
-      )
+      const {data: updatedOpenOrder} = await axios.put(`/api/orders`, orderInfo)
       dispatch(editQuantity(updatedOpenOrder))
     } catch (error) {
-      console.log('Error: Could not update quantity in database')
+      console.log('Error: Could not update quantity in database', error)
     }
   }
 }
 
+export const closeOpenOrder = (myOrder, history) => {
+  return async dispatch => {
+    try {
+      const {data: closedOrder} = await axios.put(`/api/orders/${myOrder.id}`)
+      dispatch(closeOrder(closedOrder))
+      history.push('/confirmation')
+    } catch (error) {
+      dispatch(setOrderError(error.response))
+      setTimeout(() => dispatch(clearOrderError()), 5000)
+      console.log('Error: Could not close order', error)
+    }
+  }
+}
+
+export const fetchMyCompletedOrder = () => {
+  return async dispatch => {
+    try {
+      const {data: completedOrder} = await axios.get(
+        `/api/orders/?status=close`
+      )
+      dispatch(setCompleteOrder(completedOrder))
+    } catch (error) {
+      console.log('Error: Could not get my completed order details', error)
+    }
+  }
+}
+
+// export const fetchSingleOrder = (orderId) => {
+//   return async (dispatch) => {
+//     try {
+//       const {data: order} = await axios.get(`/api/orders/${orderId}`)
+//       dispatch(setSingleOrder(order))
+//     } catch (error) {
+//       console.log('Error: Could not get the single order data!', error)
+//     }
+//   }
+// }
 //INITIAL STATE
 const initialState = {
-  all: [],
-  myOrder: {}
+  myOpenOrder: {},
+  myClosedOrder: {},
+  allClosedOrders: [],
+  orderError: {}
 }
 
 //REDUCER
+// eslint-disable-next-line complexity
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_OPEN_ORDER:
-      return {...state, myOrder: action.openOrder}
+      return {...state, myOpenOrder: action.openOrder}
     case CREATE_ORDER:
       return {
         ...state,
-        all: [...state.all, action.newOrder],
-        myOrder: action.newOrder
+        myOpenOrder: action.newOrder
       }
     case REMOVE_ITEM:
       return {
         ...state,
-        all: state.all.map(
-          order =>
-            order.id === action.updatedOpenOrder.id
-              ? action.updatedOpenOrder
-              : order
-        ),
-        myOrder: action.updatedOpenOrder
+        myOpenOrder: action.updatedOpenOrder
       }
     case EDIT_QUANTITY:
       return {
         ...state,
-        all: state.all.map(
-          order =>
-            order.id === action.updatedOpenOrder.id
-              ? action.updatedOpenOrder
-              : order
-        ),
-        myOrder: action.updatedOpenOrder
+        myOpenOrder: action.updatedOpenOrder
       }
+    case CLOSE_ORDER:
+      return {
+        ...state,
+        myClosedOrder: action.myClosedOrder
+      }
+    case SET_COMPLETE_ORDER:
+      return {...state, allClosedOrders: action.completedOrder}
+    // case SET_SINGLE_ORDER:
+    //   return {...state, myClosedOrder: action.order}
+    case SET_ORDER_ERROR:
+      return {...state, orderError: action.error}
+    case CLEAR_ORDER_ERROR:
+      return {...state, orderError: {}}
     default:
       return state
   }

@@ -9,7 +9,7 @@ const Navbar = ({
   handleClick,
   isLoggedIn,
   getMyOpenOrder,
-  myOrder,
+  myOpenOrder,
   loggedInUser,
   isAdmin
 }) => {
@@ -21,8 +21,8 @@ const Navbar = ({
   )
 
   const calculateTotalQty = () => {
-    if (myOrder.id) {
-      return myOrder.products.reduce((total, product) => {
+    if (myOpenOrder.id) {
+      return myOpenOrder.products.reduce((total, product) => {
         return total + product['order-product'].orderQuantity
       }, 0)
     } else {
@@ -68,6 +68,7 @@ const Navbar = ({
             {/* The navbar will show these links before you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
+            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
@@ -86,7 +87,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.users.selected.id,
     loggedInUser: state.users.selected,
-    myOrder: state.orders.myOrder,
+    myOpenOrder: state.orders.myOpenOrder,
     isAdmin: state.users.selected.isAdmin
   }
 }

@@ -9,6 +9,8 @@ import SingleProduct from './components/singleProduct'
 import AllUsers from './components/allUsers'
 import MyCart from './components/MyCart'
 import AdminDashboard from './components/AdminDashboard'
+import Confirmation from './components/confirmation'
+import OrderHistoryDetails from './components/OrderHistoryDetails'
 
 /**
  * COMPONENT
@@ -27,6 +29,8 @@ class Routes extends Component {
         <Route path="/home" component={Home} />
         <Route path="/login" component={LogIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/mycart" component={MyCart} />
+        <Route path="/confirmation" component={Confirmation} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
         {isAdmin &&
@@ -38,6 +42,7 @@ class Routes extends Component {
               <Route exact path="/me" component={MyUserAccount} />
               <Route path="/me/edit" component={EditMyAccount} />
               <Route path="/mycart" component={MyCart} />
+              <Route path="/confirmation" component={Confirmation} />
               <Route path="/me/admin" component={AllUsers} />
               <Route path="/me/dashboard" component={AdminDashboard} />
             </Switch>
@@ -48,8 +53,10 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route exact path="/me" component={MyUserAccount} />
+            <Route path="/orders/:orderId" component={OrderHistoryDetails} />
             <Route path="/me/edit" component={EditMyAccount} />
             <Route path="/mycart" component={MyCart} />
+            <Route path="/confirmation" component={Confirmation} />
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
