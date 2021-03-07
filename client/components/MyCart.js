@@ -9,11 +9,19 @@ import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
 
 const MyCart = props => {
-  const {myOpenOrder, getMyOpenOrder, removeItemFromCart, checkout} = props
+  const {
+    myOpenOrder,
+    getMyOpenOrder,
+    removeItemFromCart,
+    checkout,
+    orderError
+  } = props
 
   useEffect(() => {
     getMyOpenOrder()
   }, [])
+
+  console.log('PROPS', props)
 
   const calculateTotalQty = () => {
     return myOpenOrder.products.reduce((total, product) => {
@@ -27,14 +35,13 @@ const MyCart = props => {
     }, 0)
   }
 
-  const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
-
-  const disabled = cartNotEmpty ? '' : 'disabled'
-
   const handleCheckout = event => {
     event.preventDefault()
     checkout(myOpenOrder)
   }
+
+  const cartNotEmpty = myOpenOrder.id && myOpenOrder.products.length !== 0
+  const disabled = cartNotEmpty ? '' : 'disabled'
 
   return (
     <div className="container" id="myCart">
@@ -58,6 +65,7 @@ const MyCart = props => {
                       product={product}
                       initialQty={initialQty}
                       removeItemFromCart={removeItemFromCart}
+                      orderError={orderError}
                     />
                   )
                 })}
@@ -97,7 +105,8 @@ const MyCart = props => {
 
 const mapStateToProps = state => {
   return {
-    myOpenOrder: state.orders.myOpenOrder
+    myOpenOrder: state.orders.myOpenOrder,
+    orderError: state.orders.orderError
   }
 }
 
