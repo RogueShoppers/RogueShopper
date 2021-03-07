@@ -31,6 +31,9 @@ const AllUsers = props => {
                 <td>{user.email}</td>
                 <td>{user.address}</td>
                 <td>{String(user.isAdmin)}</td>
+                <td>
+                  <button>Edit</button>
+                </td>
               </tr>
             ))}
         </tbody>
