@@ -32,10 +32,17 @@ const singleProduct = props => {
     }
     addToCart(orderInfo)
   }
-  const inStock =
-    product.quantity !== 0
-      ? 'In Stock!'
-      : 'Sorry, this item is currently out of stock'
+  const outOfStock = product.quantity === 0
+  const stockStatus = outOfStock ? (
+    <p className="red-text">Sorry, this item is currently out of stock</p>
+  ) : product.quantity <= 10 ? (
+    <p className="orange-text text-darken-1">{`Hurry! Only ${
+      product.quantity
+    } items left!`}</p>
+  ) : (
+    <p className="teal-text">In Stock!</p>
+  )
+  const disableAddToCart = outOfStock ? 'disabled' : ''
 
   return (
     <div className="container" id="singleProduct">
@@ -73,11 +80,11 @@ const singleProduct = props => {
             <button
               type="submit"
               onClick={handleAddToCart}
-              className="btn waves-effect waves-light btn-small"
+              className={`btn waves-effect waves-light btn-small ${disableAddToCart}`}
             >
               Add To Cart
             </button>
-            <div className="teal-text">{inStock}</div>
+            <div>{stockStatus}</div>
           </div>
           <p>{longDescription}</p>
           <div>#Placeholder{tags}</div>

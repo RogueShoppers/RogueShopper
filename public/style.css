@@ -51,6 +51,10 @@ nav a {
   margin-right: 40px;
 }
 
+#edit-delete > div > p {
+  margin-top: 5px;
+}
+
 #cartItem img {
   width: 10em;
   height: 10em;
@@ -103,7 +107,7 @@ nav a {
   margin-top: 20px;
   margin-left: 30px;
 }
-#singleProduct-quantityButton > div {
+#singleProduct-quantityButton > div > p {
   margin-top: 20px;
   margin-left: 30px;
   font-size: 18px;
