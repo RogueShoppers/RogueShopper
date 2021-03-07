@@ -1124,7 +1124,7 @@ const seed = async () => {
       longDescription:
         'Clouds shoob wow such tempt heckin good boys doggo woofer, very good spot blop boof you are doing me a frighten puggorino, sub woofer what a nice floof boofers wrinkler. Very taste wow blop heckin good boys extremely cuuuuuute, very jealous pupper boofers. Tungg super chub you are doin me a concern, yapper. Smol borking doggo with a long snoot for pats length boy he made many woofs waggy wags smol borking doggo with a long snoot for pats, sub woofer shoob woofer the neighborhood pupper, heckin good boys and girls mlem shibe.',
       price: 25.0,
-      quantity: 200,
+      quantity: 3,
       imageURL:
         'https://images-na.ssl-images-amazon.com/images/I/716iLHYIWyL._AC_SL1500_.jpg',
       tags: [squishy.id, destroy.id]
@@ -1135,7 +1135,7 @@ const seed = async () => {
       longDescription:
         'Fluffer shibe boof, thicc. Aqua doggo doing me a frighten big ol pupper borking doggo doge smol big ol pupper, wow very biscit sub woofer pupperino borkf. Bork heckin angery woofer boofers woofer porgo borkf h*ck, dat tungg tho fat boi heckin good boys boofers. Long bois doing me a frighten what a nice floof boofers thicc, you are doing me the shock doggo he made many woofs. Wrinkler such treat stop it fren woofer waggy wags, heckin angery woofer heckin good boys and girls. Sub woofer aqua doggo puggo clouds heck very jealous pupper wow such tempt, wrinkler noodle horse ur givin me a spook shoob. Blop long doggo much ruin diet smol shoob, much ruin diet thicc.',
       price: 30.0,
-      quantity: 200,
+      quantity: 9,
       imageURL:
         'https://staticx.ibncollege.com/wcsstore/ExtendedSitesCatalogAssetStore/828_100_20_338768746_NI/images/LARGEIMAGE_1718974.jpg',
       tags: [squishy.id, destroy.id]
@@ -1147,7 +1147,7 @@ const seed = async () => {
       longDescription:
         'With an extra-loud squeaker inside the rubber ball, it’s ready to turn up the noisy excitement your dog goes wild for. The built-in rope handle makes it perfect for playing games with your pooch, and for tossing fast and far for on-demand fetch. The combination of the polyester rope and thermoplastic rubber ball creates a tempting toy that’s suitable for plenty of daily supervised play. Toss it and let the games begin—it’s a great way to help keep your dog active, healthy and entertained.',
       price: 6.0,
-      quantity: 200,
+      quantity: 0,
       imageURL:
         'https://img.chewy.com/is/image/catalog/147098_Main._AC_SL1500_V1539366433_.jpg',
       tags: [tug.id, chase.id]
