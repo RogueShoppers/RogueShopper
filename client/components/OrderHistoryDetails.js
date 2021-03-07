@@ -18,8 +18,9 @@ class OrderHistoryDetails extends Component {
 
     return (
       <div>
-        <h5>Order Details</h5>
-        <h6>Order Date: {moment(order[0].updatedAt).format('LL')}</h6>
+        <h4>Order Details</h4>
+        <h6>Order Number: {order[0].id}</h6>
+        <h7>Order Date: {moment(order[0].updatedAt).format('LL')}</h7>
         <div className="divider" />
         <table className="highlight">
           <thead>
