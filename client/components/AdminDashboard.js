@@ -48,6 +48,8 @@ class AdminDashboard extends Component {
       <div className="container">
         <div id="adminSearch" />
         <form>
+          <label>Search:</label>
+          <input type="text" id="searchFor" />
           <label>Products:</label>
           <input type="radio" id="products" />
           <label>Users:</label>

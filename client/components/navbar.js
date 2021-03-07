@@ -42,6 +42,7 @@ const Navbar = ({
             <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
             {/*The navbar will show these links if you are admin*/}
             <Link to="/me/admin">All Users</Link>
+            <Link to="/me/dashboard">Admin Dashboard</Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>

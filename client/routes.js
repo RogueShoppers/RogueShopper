@@ -8,6 +8,7 @@ import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
 import AllUsers from './components/allUsers'
 import MyCart from './components/MyCart'
+import AdminDashboard from './components/AdminDashboard'
 
 /**
  * COMPONENT
@@ -38,6 +39,7 @@ class Routes extends Component {
               <Route path="/me/edit" component={EditMyAccount} />
               <Route path="/mycart" component={MyCart} />
               <Route path="/me/admin" component={AllUsers} />
+              <Route path="/me/dashboard" component={AdminDashboard} />
             </Switch>
           )}
         {isLoggedIn && (
