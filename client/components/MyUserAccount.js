@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getMe} from '../store/user'
 import {Link} from 'react-router-dom'
 import {fetchMyCompletedOrder} from '../store/orders'
+import moment from 'moment'
 
 class MyUserAccount extends Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ class MyUserAccount extends Component {
         <table className="highlight">
           <thead>
             <tr>
+              <th>Order Date</th>
               <th>Order Number</th>
               <th>Total</th>
               <th>Order Details</th>
@@ -49,6 +51,7 @@ class MyUserAccount extends Component {
             {allClosedOrders.map(closedOrder => {
               return (
                 <tr key={closedOrder.id}>
+                  <td>{moment(closedOrder.updatedAt).format('LL')}</td>
                   <td>{closedOrder.id}</td>
                   <td>
                     $

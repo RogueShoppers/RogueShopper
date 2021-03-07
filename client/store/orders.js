@@ -7,6 +7,7 @@ const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
 const CLOSE_ORDER = 'CLOSE_ORDER'
 const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
+// const SET_SINGLE_ORDER = 'SET_SINGLE_ORDER'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -44,6 +45,13 @@ export const setCompleteOrder = completedOrder => {
     completedOrder
   }
 }
+
+// export const setSingleOrder = (order) => {
+//   return {
+//     type: SET_SINGLE_ORDER,
+//     order,
+//   }
+// }
 
 //THUNKS
 export const fetchMyOpenOrder = () => {
@@ -117,6 +125,16 @@ export const fetchMyCompletedOrder = () => {
   }
 }
 
+// export const fetchSingleOrder = (orderId) => {
+//   return async (dispatch) => {
+//     try {
+//       const {data: order} = await axios.get(`/api/orders/${orderId}`)
+//       dispatch(setSingleOrder(order))
+//     } catch (error) {
+//       console.log('Error: Could not get the single order data!', error)
+//     }
+//   }
+// }
 //INITIAL STATE
 const initialState = {
   myOpenOrder: {},
@@ -151,6 +169,8 @@ export default function ordersReducer(state = initialState, action) {
       }
     case SET_COMPLETE_ORDER:
       return {...state, allClosedOrders: action.completedOrder}
+    // case SET_SINGLE_ORDER:
+    //   return {...state, myClosedOrder: action.order}
     default:
       return state
   }

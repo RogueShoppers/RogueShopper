@@ -9,6 +9,7 @@ import SingleProduct from './components/singleProduct'
 import AllUsers from './components/allUsers'
 import MyCart from './components/MyCart'
 import Confirmation from './components/confirmation'
+import OrderHistoryDetails from './components/OrderHistoryDetails'
 
 /**
  * COMPONENT
@@ -48,6 +49,7 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route exact path="/me" component={MyUserAccount} />
+            <Route path="/orders/:orderId" component={OrderHistoryDetails} />
             <Route path="/me/edit" component={EditMyAccount} />
             <Route path="/mycart" component={MyCart} />
             <Route path="/confirmation" component={Confirmation} />
