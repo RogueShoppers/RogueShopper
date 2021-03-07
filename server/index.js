@@ -64,8 +64,6 @@ const createApp = () => {
   app.use(passport.session())
 
   app.use((req, res, next) => {
-    // comment for debug, delete when done: req.user && req.user.isAdmin
-    console.log('req in index', req.user)
     next()
   })
 

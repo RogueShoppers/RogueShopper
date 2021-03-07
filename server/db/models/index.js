@@ -46,5 +46,6 @@ module.exports = {
   Product,
   Pet,
   Tag,
-  Order
+  Order,
+  OrderProduct
 }
