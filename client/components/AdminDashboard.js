@@ -6,13 +6,13 @@ class AdminDashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: '',
-      lastName: '',
-      preferredName: '',
-      address: '',
-      email: '',
-      password: '',
-      isAdmin: false
+      // firstName: '',
+      // lastName: '',
+      // preferredName: '',
+      // address: '',
+      // email: '',
+      // password: '',
+      // isAdmin: false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,13 +21,13 @@ class AdminDashboard extends Component {
 
   componentDidMount() {
     this.setState({
-      firstName: this.props.user.firstName,
-      lastName: this.props.user.lastName,
-      preferredName: this.props.user.preferredName,
-      address: this.props.user.address,
-      email: this.props.user.email,
-      password: this.props.user.password,
-      isAdmin: this.props.user.isAdmin
+      // firstName: this.props.user.firstName,
+      // lastName: this.props.user.lastName,
+      // preferredName: this.props.user.preferredName,
+      // address: this.props.user.address,
+      // email: this.props.user.email,
+      // password: this.props.user.password,
+      // isAdmin: this.props.user.isAdmin
     })
   }
 
@@ -39,7 +39,7 @@ class AdminDashboard extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.editUser(this.state)
+    // this.props.editUser(this.state)
   }
 
   render() {
@@ -54,13 +54,15 @@ class AdminDashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    product: state.product
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    editMe: user => dispatch(editMe(user))
+    editMe: user => dispatch(editMe(user)),
+    editProduct: product => dispatch(editProduct(product))
   }
 }
 
