@@ -12,14 +12,14 @@ const SET_ERROR = 'SET_ERROR'
 const CLEAR_ERROR = 'CLEAR_ERROR'
 
 //ACTION CREATORS
-const gotUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
-const signedUp = newUser => ({type: SIGNUP_USER, newUser})
-const loggedIn = user => ({type: LOGIN_USER, user})
-const updatedUser = user => ({type: EDIT_USER, user})
-const setUsers = users => ({type: SET_USERS, users})
-const handleError = error => ({type: SET_ERROR, error})
-const clearError = () => ({type: CLEAR_ERROR})
+export const gotUser = user => ({type: GET_USER, user})
+export const removeUser = () => ({type: REMOVE_USER})
+export const signedUp = newUser => ({type: SIGNUP_USER, newUser})
+export const loggedIn = user => ({type: LOGIN_USER, user})
+export const updatedUser = user => ({type: EDIT_USER, user})
+export const setUsers = users => ({type: SET_USERS, users})
+export const handleError = error => ({type: SET_ERROR, error})
+export const clearError = () => ({type: CLEAR_ERROR})
 
 //THUNK CREATORS
 export const signUp = newUser => {
