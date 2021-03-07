@@ -72,7 +72,13 @@ const MyCart = props => {
               </ul>
             </div>
           ) : (
-            <h2>Your Cart is Empty</h2>
+            <div id="emptyCart" className="row">
+              <img
+                src="https://previews.123rf.com/images/a41cats/a41cats1203/a41cats120300065/12764556-pomeranian-dog-next-to-an-empty-shopping-cart-over-white.jpg"
+                className="col s6"
+              />
+              <h2 className="col s6">Your cart is empty...</h2>
+            </div>
           )}
         </div>
       </div>
