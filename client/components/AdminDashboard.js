@@ -21,13 +21,14 @@ class AdminDashboard extends Component {
 
   componentDidMount() {
     //need to define action prior to calling fetch all users
-    fetchAllUsers().then(response => {
+    console.log('state in component did mount', this.state)
+    this.props.getUsers()(response => {
       this.setState({
         users: response.users.all
       })
     })
 
-    fetchAllProducts().then(response => {
+    this.props.getProducts()(response => {
       this.setState({
         products: response.products.all
       })
@@ -129,19 +130,22 @@ class AdminDashboard extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   console.log('state', state)
-//   return {
-//     state
-//   }
-// }
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    users: state.users.all,
+    products: state.products.all
+    // orders: state.orders.all
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    // getUsers: () => dispatch(fetchAllUsers()),
+    getUsers: () => dispatch(fetchAllUsers()),
     editMe: user => dispatch(editMe(user)),
+    getProducts: () => dispatch(fetchAllProducts()),
     editProduct: product => dispatch(editProduct(product))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AdminDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard)

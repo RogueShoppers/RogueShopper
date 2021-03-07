@@ -76,6 +76,7 @@ export const editMe = user => {
 }
 
 export const fetchAllUsers = () => {
+  console.log('inside fetch all users')
   return async dispatch => {
     try {
       const {data: users} = await axios.get('/api/users')
@@ -94,6 +95,13 @@ const initialState = {
 
 //REDUCER
 export default function(state = initialState, action) {
+  console.log(
+    'inside users reducer',
+    'action is: ',
+    action,
+    'state is: ',
+    state
+  )
   switch (action.type) {
     case GET_USER:
       return {
