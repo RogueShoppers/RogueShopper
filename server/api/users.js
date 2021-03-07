@@ -5,7 +5,7 @@ module.exports = router
 
 //Function to authorize admin routes
 const adminsOnly = (req, res, next) => {
-  console.log('req', req.user)
+  // console.log('req', req.user)
   if (req.user && req.user.isAdmin) next()
   else {
     const error = new Error('Unauthorized access attempt')
