@@ -1,52 +1,50 @@
 const router = require('express').Router()
-const {Order, Product, User} = require('../db/models')
-const OrderProduct = require('../db/models/order-product')
+const {Order, Product} = require('../db/models')
 module.exports = router
 
 // GET /api/orders?status=(open or close)
 router.get('/', async (req, res, next) => {
   try {
     const {status} = req.query
-    if (req.user) {
-      const userId = req.user.id
-      if (status === 'open') {
-        //if query has status of open, only find orders that have completed = false (not processed)
-        const [myOpenOrder] = await Order.findAll({
-          where: {
-            completed: false,
-            userId: userId
-          },
-          include: [
-            {
-              model: Product,
-              attributes: ['id', 'name', 'imageURL', 'price', 'quantity'],
-              through: {
-                attributes: ['orderQuantity']
-              }
+    const userId = req.user ? req.user.id : null
+
+    if (status === 'open') {
+      //if query has status of open, only find orders that have completed = false (not processed)
+      const [myOpenOrder] = await Order.findAll({
+        where: {
+          completed: false,
+          userId: userId
+        },
+        include: [
+          {
+            model: Product,
+            attributes: ['id', 'name', 'imageURL', 'price', 'quantity'],
+            through: {
+              attributes: ['orderQuantity']
             }
-          ]
-        })
-        res.json(myOpenOrder)
-      }
-      if (status === 'close') {
-        //if query has status of close, only find orders that have completed = true (processed)
-        const allClosedOrders = await Order.findAll({
-          where: {
-            completed: true,
-            userId: userId
-          },
-          include: [
-            {
-              model: Product,
-              attributes: ['name', 'imageURL', 'price'],
-              through: {
-                attributes: ['orderQuantity']
-              }
+          }
+        ]
+      })
+      res.json(myOpenOrder)
+    }
+    if (status === 'close') {
+      //if query has status of close, only find orders that have completed = true (processed)
+      const allClosedOrders = await Order.findAll({
+        where: {
+          completed: true,
+          userId: userId
+        },
+        include: [
+          {
+            model: Product,
+            attributes: ['name', 'imageURL', 'price'],
+            through: {
+              attributes: ['orderQuantity']
             }
-          ]
-        })
-        res.json(allClosedOrders)
-      }
+          }
+        ]
+      })
+      res.json(allClosedOrders)
     }
   } catch (error) {
     next(error)
@@ -57,43 +55,39 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {productId, quantity} = req.body
+    const userId = req.user ? req.user.id : null
 
-    if (req.user) {
-      const userId = req.user.id
+    //Create new open order on Order Model for the logged in user or guest
+    //If order id already exist, find that order
+    let [newOrder] = await Order.findOrCreate({
+      where: {
+        completed: false,
+        userId: userId
+      },
+      include: Product
+    })
 
-      //Create new open order on Order Model for the logged in user.
-      //If order id already exist, find that order
-      let [newOrder] = await Order.findOrCreate({
-        where: {
-          completed: false,
-          userId: userId
-        },
-        include: Product
+    //check if existing openOrder already has product with same id
+    let currentProducts = await newOrder.getProducts()
+    let [existedOrderProduct] = currentProducts.filter(
+      item => item.id === Number(productId)
+    )
+    let product = await Product.findByPk(productId)
+
+    //if product with same id exists, update the orderQuantity to current + added quantity
+    if (existedOrderProduct) {
+      let currentQty = existedOrderProduct['order-product'].orderQuantity
+      await newOrder.addProduct(product, {
+        through: {orderQuantity: currentQty + quantity}
       })
-
-      //check if existing openOrder already has product with same id
-      let currentProducts = await newOrder.getProducts()
-      let [existedOrderProduct] = currentProducts.filter(
-        item => item.id === Number(productId)
-      )
-      let product = await Product.findByPk(productId)
-
-      //if product with same id exists, update the orderQuantity to current + added quantity
-      if (existedOrderProduct) {
-        let currentQty = existedOrderProduct['order-product'].orderQuantity
-        await newOrder.addProduct(product, {
-          through: {orderQuantity: currentQty + quantity}
-        })
-      } else {
-        //if product with same id doesn't exist, add product with quantity
-        await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
-      }
-
-      //wait for all updates to be loaded to newOrder
-      newOrder = await newOrder.reload()
-
-      res.status(201).send(newOrder)
+    } else {
+      //if product with same id doesn't exist, add product with quantity
+      await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
     }
+
+    //wait for all updates to be loaded to newOrder
+    newOrder = await newOrder.reload()
+    res.status(201).send(newOrder)
   } catch (error) {
     next(error)
   }
@@ -103,25 +97,21 @@ router.post('/', async (req, res, next) => {
 router.delete('/products/:productId', async (req, res, next) => {
   try {
     const productId = Number(req.params.productId)
+    const userId = req.user ? req.user.id : null
 
-    if (req.user) {
-      const userId = req.user.id
+    let currentOpenOrder = await Order.findOne({
+      where: {
+        completed: false,
+        userId: userId
+      },
+      include: Product
+    })
+    let product = await Product.findByPk(productId)
+    await currentOpenOrder.removeProduct(product)
 
-      let currentOpenOrder = await Order.findOne({
-        where: {
-          completed: false,
-          userId: userId
-        },
-        include: Product
-      })
-      let product = await Product.findByPk(productId)
-      await currentOpenOrder.removeProduct(product)
-
-      //wait for all updates to be loaded to newOrder
-      currentOpenOrder = await currentOpenOrder.reload()
-
-      res.json(currentOpenOrder)
-    }
+    //wait for all updates to be loaded to newOrder
+    currentOpenOrder = await currentOpenOrder.reload()
+    res.json(currentOpenOrder)
   } catch (error) {
     next(error)
   }
@@ -131,25 +121,22 @@ router.delete('/products/:productId', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     const {productId, quantity} = req.body
+    const userId = req.user ? req.user.id : null
 
-    if (req.user) {
-      const userId = req.user.id
+    let currentOpenOrder = await Order.findOne({
+      where: {
+        completed: false,
+        userId: userId
+      },
+      include: Product
+    })
+    let product = await Product.findByPk(productId)
+    await currentOpenOrder.addProduct(product, {
+      through: {orderQuantity: quantity}
+    })
+    currentOpenOrder = await currentOpenOrder.reload()
 
-      let currentOpenOrder = await Order.findOne({
-        where: {
-          completed: false,
-          userId: userId
-        },
-        include: Product
-      })
-      let product = await Product.findByPk(productId)
-      await currentOpenOrder.addProduct(product, {
-        through: {orderQuantity: quantity}
-      })
-      currentOpenOrder = await currentOpenOrder.reload()
-
-      res.json(currentOpenOrder)
-    }
+    res.json(currentOpenOrder)
   } catch (error) {
     next(error)
   }
