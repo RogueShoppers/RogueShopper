@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {logIn} from '../store/user'
 import {connect} from 'react-redux'
 import ErrorFormMessage from './ErrorFormMessage'
+import {Link} from 'react-router-dom'
 
 class LogIn extends Component {
   constructor() {
@@ -64,6 +65,12 @@ class LogIn extends Component {
             </button>
           </div>
         </form>
+        <br />
+        <a href="/auth/google" className="waves-effect waves-light btn small">
+          <i className="fab fa-google" />
+          {'     '}
+          Sign in with Google
+        </a>
       </div>
     )
   }
