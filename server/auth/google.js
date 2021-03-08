@@ -36,9 +36,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       const lastName = profile.name.familyName
 
       User.findOrCreate({
-        where: {
-          id: googleId
-        },
+        where: {googleId},
         defaults: {email, firstName, lastName}
       })
         .then(([user]) => done(null, user))
