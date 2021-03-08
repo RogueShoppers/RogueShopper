@@ -1,14 +1,27 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
+import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 
 const AllProducts = props => {
   const {products, getProducts} = props
+  const [offset, setOffset] = useState(0)
+  const [data, setData] = useState([])
+  const [perPage] = useState(10)
+  const [pageCount, setPageCount] = useState(0)
 
-  useEffect(() => {
-    getProducts()
-  }, [])
+  useEffect(
+    () => {
+      getProducts()
+    },
+    [offset]
+  )
+
+  handlePageClick = event => {
+    const selectedPage = event.selected
+    setOffset(selectedPage + 1)
+  }
 
   return (
     <div>
