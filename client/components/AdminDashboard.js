@@ -1,111 +1,47 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {editMe} from '../store/user'
-import {fetchAllUsers} from '../store/user'
-import {fetchAllProducts} from '../store/products'
+import AllUsers from './allUsers.js'
+import ProductDashboard from './ProductDashboard'
+import {searchDatabase} from '../store/search'
 
 class AdminDashboard extends Component {
   constructor(props) {
     super(props)
 
-    console.log('props', props)
-
     this.state = {
-      users: [],
-      products: [],
-      orders: []
+      searchQuery: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    this.props.fetchAllUsers()
-    this.props.fetchAllProducts()
-  }
-
   handleChange(event) {
     this.setState({
-      [event.target.id]: event.target.value
+      searchQuery: event.target.value
     })
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.search(this.state.searchQuery)
   }
 
   render() {
-    let users = this.props.users
-    let products = this.props.products
-    // let orders = this.props.orders
-
     return (
       <div className="container">
         <div id="adminSearch">
           <form onSubmit={this.handleSubmit}>
             <label>Search:</label>
-            <input type="text" id="searchFor" />
+            <input type="text" id="searchQuery" onChange={this.handleChange} />
             <input type="submit" value="Submit" />
           </form>
         </div>
         <div id="adminUsersTable">
-          <h3>Users</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Admin Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.length !== 0 &&
-                users.map(user => (
-                  <tr key={user.id}>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.email}</td>
-                    <td>{user.address}</td>
-                    <td>{String(user.isAdmin)}</td>
-                    <td>
-                      <button>Edit</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <AllUsers />
         </div>
         <div id="adminProductsTable">
-          <h3>Products</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Short Description</th>
-                <th>Long Description</th>
-                <th>Price</th>
-                <th>Inventory Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.length !== 0 &&
-                products.map(product => (
-                  <tr key={product.id}>
-                    <td>{product.name}</td>
-                    <td>{product.shortDescription}</td>
-                    <td>{product.longDescription}</td>
-                    <td>{product.price}</td>
-                    <td>{product.quantity}</td>
-                    <td>
-                      <button>Edit</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <ProductDashboard />
         </div>
         <div id="adminOrdersTable">
           <h3>Orders</h3>
@@ -135,23 +71,18 @@ class AdminDashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  // console.log('state', state)
+const mapStateToProps = (state, ownProps) => {
+  let search = {...state.searchQuery}
+  const {match} = ownProps
   return {
-    users: state.users.all,
-    products: state.products.all,
-    orders: state.orders.allClosedOrders
+    orders: state.orders.allClosedOrders,
+    search: state.searchQuery
   }
 }
 
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    //user related dispatches
-    fetchAllUsers: () => dispatch(fetchAllUsers()),
-    editMe: user => dispatch(editMe(user, history)),
-    //product related dispatches
-    fetchAllProducts: () => dispatch(fetchAllProducts()),
-    editProduct: product => dispatch(editProduct(product, history))
+    search: query => dispatch(searchDatabase(query))
   }
 }
 
