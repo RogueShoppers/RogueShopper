@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {editMe} from '../store/user'
-import fetchAllUsers from '../store/user'
-import fetchAllProducts from '../store/products'
+import {fetchAllUsers} from '../store/user'
+import {fetchAllProducts} from '../store/products'
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -20,10 +20,10 @@ class AdminDashboard extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.props.fetchAllUsers()
-  //   this.props.fetchAllProducts()
-  // }
+  componentDidMount() {
+    this.props.fetchAllUsers()
+    this.props.fetchAllProducts()
+  }
 
   handleChange(event) {
     this.setState({
@@ -36,9 +36,9 @@ class AdminDashboard extends Component {
   }
 
   render() {
-    let users = this.state.users
-    let products = this.state.products
-    let orders = this.state.orders
+    let users = this.props.users
+    let products = this.props.products
+    // let orders = this.props.orders
 
     return (
       <div className="container">
@@ -116,7 +116,7 @@ class AdminDashboard extends Component {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
               {orders.length !== 0 &&
                 orders.map(order => (
                   <tr key={order.id}>
@@ -127,7 +127,7 @@ class AdminDashboard extends Component {
                     </td>
                   </tr>
                 ))}
-            </tbody>
+            </tbody> */}
           </table>
         </div>
       </div>
@@ -140,7 +140,7 @@ const mapStateToProps = state => {
   return {
     users: state.users.all,
     products: state.products.all,
-    orders: state.orders.all
+    orders: state.orders.allClosedOrders
   }
 }
 
