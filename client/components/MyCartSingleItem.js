@@ -87,7 +87,9 @@ const MyCartSingleItem = props => {
           <div>{stockStatus}</div>
         </div>
         <div>
-          {orderError.data && orderError.data.includes(product.name) ? (
+          {orderError &&
+          orderError.data &&
+          orderError.data.includes(product.name) ? (
             <p className="red-text">*{orderError.data}</p>
           ) : (
             ''

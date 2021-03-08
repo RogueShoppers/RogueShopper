@@ -22,12 +22,12 @@ export const handleError = error => ({type: SET_ERROR, error})
 export const clearError = () => ({type: CLEAR_ERROR})
 
 //THUNK CREATORS
-export const signUp = newUser => {
+export const signUp = (newUser, history) => {
   return async dispatch => {
     try {
       const {data: created} = await axios.post('/auth/signup', newUser)
       dispatch(signedUp(created))
-      historyFunc.push('/')
+      history.push('/mycart')
     } catch (error) {
       dispatch(handleError(error.response))
       setTimeout(() => dispatch(clearError()), 3000)
