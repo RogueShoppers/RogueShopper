@@ -8,7 +8,7 @@ const Product = db.model('product')
 const OrderProduct = db.model('order-product')
 
 describe('Order Routes', () => {
-  before(() => db.sync({force: true}))
+  // before(() => db.sync({force: true}))
 
   describe('/api/orders/', () => {
     it('GET /api/orders/?status=open', async () => {
@@ -18,7 +18,7 @@ describe('Order Routes', () => {
       const user = await User.create({
         firstName: 'Natalie',
         lastName: 'Test',
-        email: 'natalie@test.com',
+        email: 'natalie@test.com', // make sure user is unique?
         address: 'test',
         password: 'password'
       })

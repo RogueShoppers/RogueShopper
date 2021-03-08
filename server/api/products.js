@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {Product, User} = require('../db/models')
 module.exports = router
 
+// Move to utils file
 //Function to authorize admin routes
 const adminsOnly = (req, res, next) => {
   console.log('req', req)

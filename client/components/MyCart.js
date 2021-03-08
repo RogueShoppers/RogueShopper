@@ -9,6 +9,9 @@ import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
 import {getMe} from '../store/user'
 
+// Do we see any opportunities here to create resuable components?
+// Use folders to split components
+
 const MyCart = props => {
   const {
     myOpenOrder,
@@ -27,6 +30,7 @@ const MyCart = props => {
 
   console.log('PROPS', props)
 
+  // This is reused for the navbar - can we abstract into a frontend utils file?
   const calculateTotalQty = () => {
     return myOpenOrder.products.reduce((total, product) => {
       return total + product['order-product'].orderQuantity

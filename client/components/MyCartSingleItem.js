@@ -17,6 +17,7 @@ const MyCartSingleItem = props => {
     setQuantity(initialQty)
   }, [])
 
+  // could we combine before and after into one function since they do a similar thing?
   const beforeQtyOptions = currentQty => {
     let arr = []
     for (let i = 1; i < currentQty; i++) {

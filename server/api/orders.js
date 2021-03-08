@@ -57,6 +57,9 @@ router.post('/', async (req, res, next) => {
     const {productId, quantity} = req.body
     const userId = req.user ? req.user.id : null
 
+    // GREAT comments for documentation!
+    // the below query is quite common - could you abstract this logic by putting it into an instance method and reuse it across multiple routes?
+
     //Create new open order on Order Model for the logged in user or guest
     //If order id already exist, find that order
     let [newOrder] = await Order.findOrCreate({
@@ -85,6 +88,7 @@ router.post('/', async (req, res, next) => {
       await newOrder.addProduct(product, {through: {orderQuantity: quantity}})
     }
 
+    // what happens if you remove the call to reload?
     //wait for all updates to be loaded to newOrder
     newOrder = await newOrder.reload()
     res.status(201).send(newOrder)
@@ -174,6 +178,7 @@ router.put('/:orderId', async (req, res, next) => {
     //get all products associated with order ID (items in cart)
     const products = await order.getProducts()
 
+    // Do we need "includeOutOfStock"? If this is true, the response gets sent. THen could we return instead of breaking after this happens?
     //for each products, check if stock has enough quantity to complete order
     let includeOutOfStock = false
     for (let i = 0; i < products.length; i++) {

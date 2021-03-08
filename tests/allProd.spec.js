@@ -1,6 +1,6 @@
 import React from 'react'
 import {expect} from 'chai'
-import {enzyme, mount} from 'enzyme'
+import enzyme, {mount} from 'enzyme' // enzyme is an unnamed (default) export
 import Adapter from 'enzyme-adapter-react-16'
 
 import allproducts from '../client/components/allproducts'

@@ -3,6 +3,7 @@ const {User} = require('../db/models')
 // const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
 
+// move to utils
 //Function to authorize admin routes
 const adminsOnly = (req, res, next) => {
   // console.log('req', req.user)
