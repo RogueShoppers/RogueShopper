@@ -12,27 +12,18 @@ class AdminDashboard extends Component {
 
     this.state = {
       users: [],
-      products: []
+      products: [],
+      orders: []
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    //need to define action prior to calling fetch all users
-    fetchAllUsers().then(response => {
-      this.setState({
-        users: response.users.all
-      })
-    })
-
-    fetchAllProducts().then(response => {
-      this.setState({
-        products: response.products.all
-      })
-    })
-  }
+  // componentDidMount() {
+  //   this.props.fetchAllUsers()
+  //   this.props.fetchAllProducts()
+  // }
 
   handleChange(event) {
     this.setState({
@@ -45,9 +36,9 @@ class AdminDashboard extends Component {
   }
 
   render() {
-    console.log('state in render', this.state)
     let users = this.state.users
     let products = this.state.products
+    let orders = this.state.orders
 
     return (
       <div className="container">
@@ -55,19 +46,11 @@ class AdminDashboard extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>Search:</label>
             <input type="text" id="searchFor" />
-            <label>
-              Type of Search:
-              <select value="" onChange={this.handleChange}>
-                <option value="Users">Users</option>
-                <option value="Product">Products</option>
-                <option value="Global" />
-              </select>
-            </label>
             <input type="submit" value="Submit" />
           </form>
         </div>
         <div id="adminUsersTable">
-          <h1>Users</h1>
+          <h3>Users</h3>
           <table>
             <thead>
               <tr>
@@ -96,7 +79,7 @@ class AdminDashboard extends Component {
           </table>
         </div>
         <div id="adminProductsTable">
-          <h1>Products</h1>
+          <h3>Products</h3>
           <table>
             <thead>
               <tr>
@@ -124,24 +107,52 @@ class AdminDashboard extends Component {
             </tbody>
           </table>
         </div>
+        <div id="adminOrdersTable">
+          <h3>Orders</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.length !== 0 &&
+                orders.map(order => (
+                  <tr key={order.id}>
+                    <td>{order.id}</td>
+                    <td>{String(order.completed)}</td>
+                    <td>
+                      <button>Edit</button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
 }
 
-// const mapStateToProps = state => {
-//   console.log('state', state)
-//   return {
-//     state
-//   }
-// }
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
+  // console.log('state', state)
   return {
-    // getUsers: () => dispatch(fetchAllUsers()),
-    editMe: user => dispatch(editMe(user)),
-    editProduct: product => dispatch(editProduct(product))
+    users: state.users.all,
+    products: state.products.all,
+    orders: state.orders.all
   }
 }
 
-export default connect(null, mapDispatchToProps)(AdminDashboard)
+const mapDispatchToProps = (dispatch, {history}) => {
+  return {
+    //user related dispatches
+    fetchAllUsers: () => dispatch(fetchAllUsers()),
+    editMe: user => dispatch(editMe(user, history)),
+    //product related dispatches
+    fetchAllProducts: () => dispatch(fetchAllProducts()),
+    editProduct: product => dispatch(editProduct(product, history))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard)

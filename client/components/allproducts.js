@@ -12,23 +12,37 @@ const AllProducts = props => {
 
   return (
     <div>
-      <h1>All Products</h1>
-      {products.length !== 0
-        ? products.map(product => (
-            <div key={product.id}>
-              <img
-                src={product.imageURL}
-                alt="product img"
-                style={{height: 200, width: 200}}
-              />
-              <Link to={`/products/${product.id}`}>
-                <h2>{product.name}</h2>
-              </Link>
-              <p>{product.shortDescription}</p>
-              <h3>${product.price}</h3>
-            </div>
-          ))
-        : 'No Products on Database'}
+      <div className="section white">
+        <div className="row container">
+          <h1>All Products</h1>
+          {products.length !== 0
+            ? products.map(product => (
+                <div key={product.id}>
+                  <div className="row">
+                    <div className="col s12 m4">
+                      <div className="card">
+                        <div className="center card-image">
+                          <img
+                            src={product.imageURL}
+                            alt="product img"
+                            style={{height: 200, width: 200}}
+                          />
+                        </div>
+                        <Link to={`/products/${product.id}`}>
+                          <h2 className="center card-title">{product.name}</h2>
+                        </Link>
+                        <div className="center card-content">
+                          <p>{product.shortDescription}</p>
+                          <h4>${product.price}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            : 'No Products on Database'}
+        </div>
+      </div>
     </div>
   )
 }
