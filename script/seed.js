@@ -1771,8 +1771,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'Dots &amp; Daisies Bone',
-      shortDescription: 'Dots &amp; Daisies Bone',
+      name: 'Dots Daisies Bone',
+      shortDescription: 'Dots Daisies Bone',
       longDescription:
         'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
       price: 8.77,
@@ -1782,8 +1782,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'Dots &amp; Daisies Owl',
-      shortDescription: 'Dots &amp; Daisies Owl',
+      name: 'Dots Daisies Owl',
+      shortDescription: 'Dots Daisies Owl',
       longDescription:
         'Tennis ball milk bone poodle, husky speak shih tzu dog release bark pug release. Boxer poodle dog toy kibbles bell heel pug greyhound doberman pinscher dog bowl, growl jump poodle fetch. Maltese shih tzu collar chow chow stand poodle growl tail.',
       price: 30.16,
@@ -1925,8 +1925,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'KONG&reg; Extreme Ball w/Rope',
-      shortDescription: 'KONG&reg; Extreme Ball w/Rope',
+      name: 'KONG Extreme Ball w/Rope',
+      shortDescription: 'KONG Extreme Ball w/Rope',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 29.69,
@@ -1969,8 +1969,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'ROGZ&reg; Crazy Scrubz',
-      shortDescription: 'ROGZ&reg; Crazy Scrubz',
+      name: 'ROGZ Crazy Scrubz',
+      shortDescription: 'ROGZ Crazy Scrubz',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 26.75,
