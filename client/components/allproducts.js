@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 const AllProducts = props => {
   const {products, getProducts} = props
   const [offset, setOffset] = useState(0)
-  const [perPage] = useState(10)
+  const [perPage] = useState(16)
   const [pageCount, setPageCount] = useState(0)
 
   useEffect(
@@ -21,8 +21,6 @@ const AllProducts = props => {
     const selectedPage = event.selected
     setOffset(selectedPage + 1)
   }
-
-  // setPageCount(Math.ceil(getProducts().length / perPage))
 
   return (
     <div>
@@ -61,7 +59,7 @@ const AllProducts = props => {
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}
-            containerClassName="pagination"
+            containerClassName="center pagination"
             subContainerClassName="pages pagination"
             activeClassName="active"
           />
