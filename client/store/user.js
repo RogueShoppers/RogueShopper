@@ -22,12 +22,18 @@ export const handleError = error => ({type: SET_ERROR, error})
 export const clearError = () => ({type: CLEAR_ERROR})
 
 //THUNK CREATORS
-export const signUp = newUser => {
+export const signUp = (newUser, history) => {
   return async dispatch => {
     try {
+      console.log('HISTORY', history)
       const {data: created} = await axios.post('/auth/signup', newUser)
       dispatch(signedUp(created))
-      historyFunc.push('/')
+      if (history.location.pathname === '/signup') {
+        history.push('/mycart')
+      }
+      // if (history.location.pathname === '/sign') {
+      //   history.push('/')
+      // }
     } catch (error) {
       dispatch(handleError(error.response))
       setTimeout(() => dispatch(clearError()), 3000)
@@ -105,13 +111,13 @@ const initialState = {
 //REDUCER
 // eslint-disable-next-line complexity
 export default function(state = initialState, action) {
-  console.log(
-    'inside users reducer',
-    'action is: ',
-    action,
-    'state is: ',
-    state
-  )
+  // console.log(
+  //   'inside users reducer',
+  //   'action is: ',
+  //   action,
+  //   'state is: ',
+  //   state
+  // )
   switch (action.type) {
     case GET_USER:
       return {

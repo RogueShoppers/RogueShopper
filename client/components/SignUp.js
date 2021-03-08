@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signUp} from '../store/user'
-import {fetchMyOpenOrder, setGuestToUser} from '../store/orders'
+import {fetchMyOpenOrder} from '../store/orders'
 import ErrorFormMessage from './ErrorFormMessage'
 
 class SignUp extends Component {
@@ -32,14 +32,9 @@ class SignUp extends Component {
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.signUp(this.state)
-    const {myOpenOrder} = this.props
-    if (myOpenOrder && myOpenOrder.products.length !== 0) {
-      this.props.setGuestToUser(myOpenOrder.id)
-    }
   }
 
   render() {
-    console.log(this.props.myOpenOrder)
     const {firstName, lastName, address, email, password} = this.state
     return (
       <div className="container">
@@ -138,8 +133,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
     signUp: newUser => dispatch(signUp(newUser, history)),
-    getMyOpenOrder: () => dispatch(fetchMyOpenOrder()),
-    setGuestToUser: orderId => dispatch(setGuestToUser(orderId))
+    getMyOpenOrder: () => dispatch(fetchMyOpenOrder())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

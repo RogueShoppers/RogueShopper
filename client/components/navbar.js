@@ -5,20 +5,20 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchMyOpenOrder} from '../store/orders'
 
-const Navbar = ({
-  handleClick,
-  isLoggedIn,
-  getMyOpenOrder,
-  myOpenOrder,
-  loggedInUser,
-  isAdmin
-}) => {
-  useEffect(
-    () => {
-      getMyOpenOrder(loggedInUser.id)
-    },
-    [loggedInUser]
-  )
+const Navbar = props => {
+  const {
+    handleClick,
+    isLoggedIn,
+    getMyOpenOrder,
+    myOpenOrder,
+    loggedInUser,
+    isAdmin
+  } = props
+  useEffect(() => {
+    getMyOpenOrder()
+  }, [])
+
+  console.log('(IN NAV) my order', myOpenOrder)
 
   const calculateTotalQty = () => {
     if (myOpenOrder.id) {

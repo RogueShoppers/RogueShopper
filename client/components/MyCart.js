@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {
   fetchMyOpenOrder,
   removeItemFromOrder,
-  closeOpenOrder
+  closeOpenOrder,
+  saveGuestToUser
 } from '../store/orders'
 import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
@@ -17,15 +18,24 @@ const MyCart = props => {
     checkout,
     orderError,
     getUser,
-    user
+    user,
+    setGuestToUser
   } = props
 
   useEffect(() => {
+    // if (user.id && !myOpenOrder.id) {
     getMyOpenOrder()
+    // }
     getUser()
+    if (user.id && myOpenOrder.id && myOpenOrder.products.length !== 0) {
+      console.log('inside if in use effect!')
+      console.log('orderId', myOpenOrder.id)
+      console.log('userId', user.id)
+      setGuestToUser(myOpenOrder.id, user.id)
+    }
   }, [])
 
-  console.log('PROPS', props)
+  // console.log('PROPS', props)
 
   const calculateTotalQty = () => {
     return myOpenOrder.products.reduce((total, product) => {
@@ -152,7 +162,9 @@ const mapDispatchToProps = (dispatch, {history}) => {
     getMyOpenOrder: () => dispatch(fetchMyOpenOrder()),
     removeItemFromCart: productId => dispatch(removeItemFromOrder(productId)),
     checkout: myOrder => dispatch(closeOpenOrder(myOrder, history)),
-    getUser: () => dispatch(getMe())
+    getUser: () => dispatch(getMe()),
+    setGuestToUser: (orderId, userId) =>
+      dispatch(saveGuestToUser(orderId, userId))
   }
 }
 

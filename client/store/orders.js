@@ -155,10 +155,13 @@ export const fetchMyCompletedOrder = () => {
   }
 }
 
-export const setGuestToUser = orderId => {
+export const saveGuestToUser = (orderId, userId) => {
   return async dispatch => {
     try {
-      const {data: updatedOrder} = await axios.put(`/api/orders/${orderId}`)
+      console.log('inside set guest to user thunk!')
+      const {data: updatedOrder} = await axios.put(
+        `/api/orders/${orderId}/users/${userId}`
+      )
       dispatch(savedGuestToUser(updatedOrder))
     } catch (error) {
       console.log('Error: Counld not set guest to user', error)
@@ -222,7 +225,7 @@ export default function ordersReducer(state = initialState, action) {
     case SET_GUEST_INFO:
       return {...state, guestInfo: action.guestInfo}
     case SET_GUEST_TO_USER:
-      return {state, myClosedOrder: action.updatedOrder}
+      return {...state, myOpenOrder: action.updatedOrder}
     default:
       return state
   }

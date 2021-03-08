@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Product} = require('../db/models')
+const {Order, Product, User} = require('../db/models')
 module.exports = router
 
 // GET /api/orders?status=(open or close)
@@ -159,6 +159,31 @@ router.put('/', async (req, res, next) => {
 //   }
 // })
 
+// PUT /api/orders/:orderId/users/:userId
+router.put('/:orderId/users/:userId', async (req, res, next) => {
+  try {
+    const orderId = Number(req.params.orderId)
+    const userId = Number(req.params.userId)
+
+    //find the order with order ID
+    let order = await Order.findOne({
+      where: {
+        id: orderId
+      },
+      include: Product
+    })
+    let user = await User.findByPk(userId)
+
+    if (order.userId === null) {
+      user.setOrders(order)
+    }
+    order = await order.reload()
+    res.send(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // PUT /api/orders/:orderId
 router.put('/:orderId', async (req, res, next) => {
   try {
@@ -171,11 +196,6 @@ router.put('/:orderId', async (req, res, next) => {
       },
       include: Product
     })
-
-    //For Guests who created an account if user is null & req.user exists, then set user to req.user
-    if (order.userId === null && req.user) {
-      order.userId = req.user.id
-    }
 
     //get all products associated with order ID (items in cart)
     const products = await order.getProducts()

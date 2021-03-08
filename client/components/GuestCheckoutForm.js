@@ -24,8 +24,6 @@ const GuestCheckoutForm = props => {
     saveGuestInfo(guestInfo)
     checkout(myOpenOrder)
   }
-  console.log('guest order', myOpenOrder)
-
   return (
     <div className="container">
       <h1>Checkout Information</h1>
