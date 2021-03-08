@@ -70,13 +70,6 @@ class SignUp extends Component {
           <div className="input-field">
             <label htmlFor="address">Address</label>
             <input type="text" id="address" onChange={this.handleChange} />
-            {!address ? (
-              <span className="helper-text red-text text-accent-1">
-                *Required
-              </span>
-            ) : (
-              ''
-            )}
           </div>
 
           <div className="input-field">
