@@ -25,15 +25,9 @@ export const clearError = () => ({type: CLEAR_ERROR})
 export const signUp = (newUser, history) => {
   return async dispatch => {
     try {
-      console.log('HISTORY', history)
       const {data: created} = await axios.post('/auth/signup', newUser)
       dispatch(signedUp(created))
-      if (history.location.pathname === '/signup') {
-        history.push('/mycart')
-      }
-      // if (history.location.pathname === '/sign') {
-      //   history.push('/')
-      // }
+      history.push('/mycart')
     } catch (error) {
       dispatch(handleError(error.response))
       setTimeout(() => dispatch(clearError()), 3000)

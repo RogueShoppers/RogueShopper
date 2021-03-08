@@ -23,19 +23,12 @@ const MyCart = props => {
   } = props
 
   useEffect(() => {
-    // if (user.id && !myOpenOrder.id) {
     getMyOpenOrder()
-    // }
     getUser()
     if (user.id && myOpenOrder.id && myOpenOrder.products.length !== 0) {
-      console.log('inside if in use effect!')
-      console.log('orderId', myOpenOrder.id)
-      console.log('userId', user.id)
       setGuestToUser(myOpenOrder.id, user.id)
     }
   }, [])
-
-  // console.log('PROPS', props)
 
   const calculateTotalQty = () => {
     return myOpenOrder.products.reduce((total, product) => {

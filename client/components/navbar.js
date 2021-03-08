@@ -14,11 +14,12 @@ const Navbar = props => {
     loggedInUser,
     isAdmin
   } = props
-  useEffect(() => {
-    getMyOpenOrder()
-  }, [])
-
-  console.log('(IN NAV) my order', myOpenOrder)
+  useEffect(
+    () => {
+      getMyOpenOrder()
+    },
+    [loggedInUser]
+  )
 
   const calculateTotalQty = () => {
     if (myOpenOrder.id) {
@@ -97,7 +98,6 @@ const Navbar = props => {
  * CONTAINER
  */
 const mapState = state => {
-  // console.log('state in Navbar', state)
   return {
     isLoggedIn: !!state.users.selected.id,
     loggedInUser: state.users.selected,

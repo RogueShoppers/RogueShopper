@@ -158,7 +158,6 @@ export const fetchMyCompletedOrder = () => {
 export const saveGuestToUser = (orderId, userId) => {
   return async dispatch => {
     try {
-      console.log('inside set guest to user thunk!')
       const {data: updatedOrder} = await axios.put(
         `/api/orders/${orderId}/users/${userId}`
       )

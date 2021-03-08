@@ -26,7 +26,6 @@ describe('singleProduct component', () => {
   })
 
   it('renders the product name in an h1', () => {
-    console.log(singleProduct)
     expect(singleProduct)
       .find('h1')
       .text()
