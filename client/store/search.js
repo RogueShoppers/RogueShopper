@@ -17,7 +17,7 @@ export const _searchDatabase = query => {
 export const searchDatabase = query => {
   return async dispatch => {
     try {
-      const {data: searchResult} = await axios.get(`/api/`, query)
+      const {data: searchResult} = await axios.get(`/api/search`, query)
       dispatch(_searchDatabase(searchResult))
     } catch (error) {
       console.log('error searching database: ', error)
