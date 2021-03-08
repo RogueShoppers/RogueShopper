@@ -114,6 +114,12 @@ class SignUp extends Component {
             </button>
           </div>
         </form>
+        <br />
+        <a href="/auth/google" className="waves-effect waves-light btn small">
+          <i className="fab fa-google" />
+          {'     '}
+          Sign up with Google
+        </a>
       </div>
     )
   }
