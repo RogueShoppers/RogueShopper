@@ -11,6 +11,7 @@ import MyCart from './components/MyCart'
 import AdminDashboard from './components/AdminDashboard'
 import Confirmation from './components/confirmation'
 import OrderHistoryDetails from './components/OrderHistoryDetails'
+import GuestCheckoutForm from './components/GuestCheckoutForm'
 
 /**
  * COMPONENT
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route path="/confirmation" component={Confirmation} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
+        <Route path="/guestcheckout" component={GuestCheckoutForm} />
         {isAdmin &&
           isLoggedIn && (
             <Switch>

@@ -111,14 +111,15 @@ const MyCart = props => {
               </Link>
             </div>
             <div className="col s4">
-              <button
-                className={`right btn btn-large waves-effect waves-light #ff8a80 red accent-1 ${disabled}`}
-                type="submit"
-                onClick={handleCheckout}
-              >
-                Checkout as Guest
-                <i className="material-icons right">send</i>
-              </button>
+              <Link to="/guestcheckout">
+                <button
+                  className={`right btn btn-large waves-effect waves-light #ff8a80 red accent-1 ${disabled}`}
+                  type="button"
+                >
+                  Checkout as Guest
+                  <i className="material-icons right">send</i>
+                </button>
+              </Link>
             </div>
           </>
         ) : (

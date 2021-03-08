@@ -59,9 +59,10 @@ const Navbar = ({
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/mycart" className="tiny material-icons">
-              shopping_cart({calculateTotalQty()})
-            </Link>
+            {/* <Link to="/mycart" className="tiny material-icons">
+              shopping_cart({`${calculateTotalQty()}`})
+            </Link> */}
+            <Link to="/mycart">My Cart ({`${calculateTotalQty()}`})</Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
@@ -103,7 +104,7 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    getMyOpenOrder: userId => dispatch(fetchMyOpenOrder(userId))
+    getMyOpenOrder: () => dispatch(fetchMyOpenOrder())
   }
 }
 
