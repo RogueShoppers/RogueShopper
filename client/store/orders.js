@@ -10,6 +10,7 @@ const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
 // const SET_SINGLE_ORDER = 'SET_SINGLE_ORDER'
 const SET_ORDER_ERROR = 'SET_ORDER_ERROR'
 const CLEAR_ORDER_ERROR = 'CLEAR_ORDER_ERROR'
+const SET_GUEST_INFO = 'SET_GUEST_INFO'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -36,9 +37,10 @@ export const editQuantity = updatedOpenOrder => {
   }
 }
 
-export const closeOrder = myClosedOrder => ({
+export const closeOrder = (myClosedOrder, guestInfo) => ({
   type: CLOSE_ORDER,
-  myClosedOrder
+  myClosedOrder,
+  guestInfo
 })
 
 export const setCompleteOrder = completedOrder => {
@@ -56,6 +58,12 @@ export const setOrderError = error => {
 export const clearOrderError = () => {
   return {
     type: CLEAR_ORDER_ERROR
+  }
+}
+export const setGuestInfo = guestInfo => {
+  return {
+    type: SET_GUEST_INFO,
+    guestInfo
   }
 }
 
@@ -155,7 +163,8 @@ const initialState = {
   myOpenOrder: {},
   myClosedOrder: {},
   allClosedOrders: [],
-  orderError: {}
+  orderError: {},
+  guestInfo: {}
 }
 
 //REDUCER
@@ -185,13 +194,15 @@ export default function ordersReducer(state = initialState, action) {
         myClosedOrder: action.myClosedOrder
       }
     case SET_COMPLETE_ORDER:
-      return {...state, allClosedOrders: action.completedOrder}
+      return {...state, allClosedOrders: action.completedOrder, myOpenOrder: {}}
     // case SET_SINGLE_ORDER:
     //   return {...state, myClosedOrder: action.order}
     case SET_ORDER_ERROR:
       return {...state, orderError: action.error}
     case CLEAR_ORDER_ERROR:
       return {...state, orderError: {}}
+    case SET_GUEST_INFO:
+      return {...state, guestInfo: action.guestInfo}
     default:
       return state
   }
