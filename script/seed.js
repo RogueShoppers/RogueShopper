@@ -1452,8 +1452,8 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Belly Flops&trade; Lobster',
-      shortDescription: 'Belly Flops&trade; Lobster',
+      name: 'Belly Flops Lobster',
+      shortDescription: 'Belly FlopsLobster',
       longDescription:
         'Tennis ball milk bone poodle, husky speak shih tzu dog release bark pug release. Boxer poodle dog toy kibbles bell heel pug greyhound doberman pinscher dog bowl, growl jump poodle fetch. Maltese shih tzu collar chow chow stand poodle growl tail.',
       price: 97.54,
@@ -1463,8 +1463,8 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Belly Flops&trade; Octopus',
-      shortDescription: 'Belly Flops&trade; Octopus',
+      name: 'Belly Flops Octopus',
+      shortDescription: 'Belly Flops Octopus',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 24.42,
@@ -1474,8 +1474,8 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Belly Flops&trade; Starfish',
-      shortDescription: 'Belly Flops&trade; Starfish',
+      name: 'Belly Flops Starfish',
+      shortDescription: 'Belly Flops Starfish',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 27.82,
@@ -1485,8 +1485,8 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Belly Flops&trade; Stingray',
-      shortDescription: 'Belly Flops&trade; Stingray',
+      name: 'Belly Flops Stingray',
+      shortDescription: 'Belly Flops Stingray',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 5.04,
@@ -1496,8 +1496,8 @@ const seed = async () => {
       tags: [squishy.id, destroy.id]
     },
     {
-      name: 'Bendeez&trade; Turtle',
-      shortDescription: 'Bendeez&trade; Turtle',
+      name: 'Bendeez Turtle',
+      shortDescription: 'Bendeez Turtle',
       longDescription:
         'Shake bring it bark poodle leash squeak toy dog bowl english mastiff. Pomsky poodle down leap squeak toy milk bone maltese chase tail leash. Roll over st bernard collar dog toy pomeranian pug tennis ball.',
       price: 47.86,
@@ -1881,8 +1881,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'Jumbo Stretchezz&trade; Snow Leapord',
-      shortDescription: 'Jumbo Stretchezz&trade; Snow Leapord',
+      name: 'Jumbo Stretchezz Snow Leapord',
+      shortDescription: 'Jumbo Stretchezz Snow Leapord',
       longDescription:
         'Bite yorkshire terrier chihuahua shih tzu lab bell shake. Paw beagle poodle pug beagle leap play dead. Lab down fetch pug speak leave it puppy stay.',
       price: 8.44,
@@ -1892,8 +1892,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'Jumbo Stretchezz&trade; Tiger',
-      shortDescription: 'Jumbo Stretchezz&trade; Tiger',
+      name: 'Jumbo Stretchezz Tiger',
+      shortDescription: 'Jumbo Stretchezz Tiger',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 12.34,
@@ -1958,8 +1958,8 @@ const seed = async () => {
       tags: [chew.id, tug.id]
     },
     {
-      name: 'Ogee&trade; Stick Assorted',
-      shortDescription: 'Ogee&trade; Stick Assorted',
+      name: 'Ogee Stick Assorted',
+      shortDescription: 'Ogee Stick Assorted',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 31.17,
@@ -2024,8 +2024,8 @@ const seed = async () => {
       tags: [chew.id, brainTeaser.id, feed.id]
     },
     {
-      name: 'Puppy Goodie Bone&trade; with Rope',
-      shortDescription: 'Puppy Goodie Bone&trade; with Rope',
+      name: 'Puppy Goodie Bone with Rope',
+      shortDescription: 'Puppy Goodie Bone with Rope',
       longDescription:
         'Tail vet english mastiff dog bowl release bell collar, down jump squirrel greyhound. Leash Morkie sit pretty puppies sit stand puppies leash bite. Dog bone heel sit husky rottweiler, milk bone growl vet tug dachshund leap pug catch.',
       price: 16.11,
@@ -2046,8 +2046,8 @@ const seed = async () => {
       tags: [chew.id, brainTeaser.id, feed.id]
     },
     {
-      name: 'Puzzlements&trade; Beaver',
-      shortDescription: 'Puzzlements&trade; Beaver',
+      name: 'Puzzlement; Beaver',
+      shortDescription: 'Puzzlement; Beaver',
       longDescription:
         'Sit pomsky take it doberman pinscher pomeranian sit leash leap. Leave it chihuahua release jump paw leap, puppies Morkie paw bell dog bone. Morkie squeak toy catch tug, chew toy bulldog squirrel lab jump chase tail lap dog dog toy.',
       price: 14.8,
@@ -2112,8 +2112,8 @@ const seed = async () => {
       tags: [chew.id, brainTeaser.id, feed.id]
     },
     {
-      name: 'Stretchezz&trade; Tugga Alligator',
-      shortDescription: 'Stretchezz&trade; Tugga Alligator',
+      name: 'Stretchezz; Tugga Alligator',
+      shortDescription: 'Stretchezz; Tugga Alligator',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 8.18,
@@ -2123,8 +2123,8 @@ const seed = async () => {
       tags: [chew.id, brainTeaser.id, feed.id]
     },
     {
-      name: 'Tiltz&trade;',
-      shortDescription: 'Tiltz&trade;',
+      name: 'Tiltz',
+      shortDescription: 'Tiltz',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 10.23,
@@ -2145,8 +2145,8 @@ const seed = async () => {
       tags: [chew.id, brainTeaser.id, feed.id]
     },
     {
-      name: 'Stretchezz&trade; Tugga Alligator',
-      shortDescription: 'Stretchezz&trade; Tugga Alligator',
+      name: 'Stretchezz; Tugga Alligator',
+      shortDescription: 'Stretchezz; Tugga Alligator',
       longDescription:
         'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 20.84,
