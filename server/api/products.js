@@ -1,17 +1,7 @@
 const router = require('express').Router()
 const {Product, User} = require('../db/models')
+const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
-
-//Function to authorize admin routes
-const adminsOnly = (req, res, next) => {
-  console.log('req', req)
-  if (req.user && req.user.isAdmin) next()
-  else {
-    const error = new Error('Unauthorized access attempt')
-    error.status = 401
-    next(error)
-  }
-}
 
 // GET /api/products/
 router.get('/', async (req, res, next) => {

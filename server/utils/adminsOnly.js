@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+const adminOnly = (req, res, next) => {
   if (req.user && req.user.isAdmin) next()
   else {
     const error = new Error('Unauthorized access attempt')
@@ -6,3 +6,5 @@ module.exports = (req, res, next) => {
     next(error)
   }
 }
+
+module.exports = adminOnly
