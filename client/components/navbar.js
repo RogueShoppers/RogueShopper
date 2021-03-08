@@ -32,7 +32,6 @@ const Navbar = props => {
 
   return (
     <div>
-      {/* <h1 id="navbarh1">RogueShopper</h1> */}
       <img
         id="logo"
         src="https://lh3.googleusercontent.com/P3QIPoCWXRY0B8nEqsWpiK9wUp57rW75xNwrJ66CwwfctW7mepYZTZPkumsbVaXY9kFUudSyJ3Y0wAZLf2_tpXfTlUShhcVZ8Z0VAZxal8M_xy33MDHsNS7yEi8fhZ3nz4S6sJ-tx48=s250-p-k"
@@ -45,30 +44,36 @@ const Navbar = props => {
             <Link to="/products">Products</Link>
             <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
             {/*The navbar will show these links if you are admin*/}
-            <Link to="/me/admin">All Users</Link>
             <Link to="/me/dashboard">Admin Dashboard</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-            <NavLink to="/me" className="btn btn-floating pink lighten-1">
+            <NavLink to="/me" className="btn btn-floating indigo lighten-1">
               {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
             </NavLink>
+            <div className="right">
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </div>
           </div>
         ) : isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            {/* <Link to="/mycart" className="tiny material-icons">
-              shopping_cart({`${calculateTotalQty()}`})
+
+            {/* <Link to="/mycart">
+              My Cart <i className="material-icons right">shopping_cart</i>(
+              {`${calculateTotalQty()}`})
             </Link> */}
+
             <Link to="/mycart">My Cart ({`${calculateTotalQty()}`})</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
             <NavLink to="/me" className="btn btn-floating pink lighten-1">
               {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
             </NavLink>
+            <div className="right">
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </div>
           </div>
         ) : (
           <div>
@@ -76,8 +81,10 @@ const Navbar = props => {
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
             <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <div className="right">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
           </div>
         )}
       </nav>
