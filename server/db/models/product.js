@@ -24,7 +24,7 @@ const Product = db.define('product', {
     }
   },
   price: {
-    type: Sequelize.FLOAT(2),
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
     validate: {
       min: 0.99
