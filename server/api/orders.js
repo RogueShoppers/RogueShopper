@@ -171,6 +171,12 @@ router.put('/:orderId', async (req, res, next) => {
       },
       include: Product
     })
+
+    //For Guests who created an account if user is null & req.user exists, then set user to req.user
+    if (order.userId === null && req.user) {
+      order.userId = req.user.id
+    }
+
     //get all products associated with order ID (items in cart)
     const products = await order.getProducts()
 
