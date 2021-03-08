@@ -80,7 +80,7 @@ const Product = db.define(
                 ')'
             ).error(console.log)
           })
-          .success(function() {
+          .success(() => {
             return sequelize
               .query(
                 'CREATE INDEX post_search_idx ON "' +
@@ -91,7 +91,7 @@ const Product = db.define(
               )
               .error(console.log)
           })
-          .success(function() {
+          .success(() => {
             return sequelize
               .query(
                 'CREATE TRIGGER post_vector_update BEFORE INSERT OR UPDATE ON "' +
@@ -106,7 +106,7 @@ const Product = db.define(
           })
           .error(console.log)
       },
-      search: function(query) {
+      search: query => {
         let Search = this
 
         query = Sequelize.getQueryInterface().escape(query)

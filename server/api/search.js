@@ -4,13 +4,10 @@ const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
 
 //Admin Only: GET /api/search
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const query = req.params
-    const searchResults = await Product.search({
-      where: {},
-      include: {}
-    })
+    const searchResults = await Product.search(query)
   } catch (error) {
     next(error)
   }
