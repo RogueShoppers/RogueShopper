@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom'
 const AllProducts = props => {
   const {products, getProducts} = props
   const [offset, setOffset] = useState(0)
-  const [data, setData] = useState([])
   const [perPage] = useState(10)
   const [pageCount, setPageCount] = useState(0)
 
@@ -18,10 +17,12 @@ const AllProducts = props => {
     [offset]
   )
 
-  handlePageClick = event => {
+  const handlePageClick = event => {
     const selectedPage = event.selected
     setOffset(selectedPage + 1)
   }
+
+  // setPageCount(Math.ceil(getProducts().length / perPage))
 
   return (
     <div>
@@ -29,7 +30,7 @@ const AllProducts = props => {
         <h1 className="header">All Products</h1>
         <div className="row">
           {products.length !== 0
-            ? products.map(product => (
+            ? products.slice(offset, offset + perPage).map(product => (
                 <div key={product.id}>
                   <div className="col s12 m3">
                     <div className="card medium">
@@ -51,9 +52,22 @@ const AllProducts = props => {
                 </div>
               ))
             : 'No Products on Database'}
+          <ReactPaginate
+            previousLabel="prev"
+            nextLabel="next"
+            breakLabel="..."
+            breakClassName="break-me"
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageClick}
+            containerClassName="pagination"
+            subContainerClassName="pages pagination"
+            activeClassName="active"
+          />
         </div>
       </div>
-      <ul className="center pagination">
+      {/* <ul className="center pagination">
         <li className="disabled">
           <a href="#!">
             <i className="material-icons">chevron_left</i>
@@ -79,7 +93,7 @@ const AllProducts = props => {
             <i className="material-icons">chevron_right</i>
           </a>
         </li>
-      </ul>
+      </ul> */}
     </div>
   )
 }
