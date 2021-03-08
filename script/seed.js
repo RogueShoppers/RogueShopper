@@ -1149,7 +1149,7 @@ const seed = async () => {
       price: 6.0,
       quantity: 0,
       imageURL:
-        'https://img.chewy.com/is/image/catalog/147098_Main._AC_SL1500_V1539366433_.jpg',
+        'https://manofmany.com/wp-content/uploads/2020/10/Chewy-frisco-rope-squeaking-ball-dog-toy.jpg',
       tags: [tug.id, chase.id]
     },
     {

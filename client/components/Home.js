@@ -36,24 +36,22 @@ class Home extends Component {
                     return (
                       <div key={product.id}>
                         <div className="col s12 m3">
-                          <div className="card ">
+                          <div className="card small">
+                            <a className="right btn-floating pink pulse">
+                              <i className="material-icons">favorite_border</i>
+                            </a>
                             <div className="card-image">
                               <img
                                 src={product.imageURL}
                                 alt="product img"
                                 style={{height: 200, width: 200}}
                               />
-                              <a className="halfway-fab btn-floating pink pulse">
-                                <i className="material-icons">
-                                  favorite_border
-                                </i>
-                              </a>
                             </div>
                             <div className="card-content">
                               <Link to={`/products/${product.id}`}>
-                                <span className="card-title">
+                                <h4 className="card-title small">
                                   {product.name}
-                                </span>
+                                </h4>
                               </Link>
                             </div>
                           </div>
