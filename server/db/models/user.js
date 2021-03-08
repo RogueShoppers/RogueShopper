@@ -45,11 +45,11 @@ const User = db.define('user', {
     }
   },
   address: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
     // allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
