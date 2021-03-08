@@ -32,7 +32,11 @@ const Navbar = ({
 
   return (
     <div>
-      <h1>RogueShopper</h1>
+      {/* <h1 id="navbarh1">RogueShopper</h1> */}
+      <img
+        id="logo"
+        src="https://lh3.googleusercontent.com/P3QIPoCWXRY0B8nEqsWpiK9wUp57rW75xNwrJ66CwwfctW7mepYZTZPkumsbVaXY9kFUudSyJ3Y0wAZLf2_tpXfTlUShhcVZ8Z0VAZxal8M_xy33MDHsNS7yEi8fhZ3nz4S6sJ-tx48=s250-p-k"
+      />
       <nav className="nav-wrapper grey darken-2">
         {isLoggedIn && isAdmin ? (
           <div>
@@ -55,7 +59,9 @@ const Navbar = ({
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
+            <Link to="/mycart" className="tiny material-icons">
+              shopping_cart({calculateTotalQty()})
+            </Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
