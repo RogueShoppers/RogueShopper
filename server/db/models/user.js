@@ -46,7 +46,7 @@ const User = db.define('user', {
   },
   address: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       notEmpty: true
     }
@@ -68,6 +68,9 @@ const User = db.define('user', {
       }
       return nameToReturn
     }
+  },
+  googleId: {
+    type: Sequelize.STRING
   }
 })
 
