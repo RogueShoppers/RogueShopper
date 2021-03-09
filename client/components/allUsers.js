@@ -1,40 +1,25 @@
-import React, {useEffect} from 'react'
-import {usePagination} from 'react-use-pagination'
+import React, {useEffect, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store/user.js'
 import {editMe} from '../store/user'
 
 const AllUsers = props => {
   const {users, getUsers} = props
+  const [offset, setOffset] = useState(0)
+  const [perPage] = useState(16)
 
   useEffect(
     () => {
       getUsers()
     },
-    [users.length]
+    [offset]
   )
 
-  // const [users] = useState([])
-  const {
-    startIndex,
-    endIndex,
-    setPreviousPage,
-    totalPages,
-    currentPage,
-    setNextPage,
-    nextEnabled,
-    previousEnabled
-  } = usePagination({
-    totalItems: users.length,
-    initialPageSize: 1
-  })
-
-  console.log(
-    users,
-    users.slice(startIndex, endIndex).map(user => {
-      return user.id
-    })
-  )
+  const handlePageClick = event => {
+    const selectedPage = event.selected
+    setOffset(selectedPage + 1)
+  }
 
   return (
     <div>
@@ -50,7 +35,7 @@ const AllUsers = props => {
         </thead>
         <tbody>
           {users.length !== 0 &&
-            users.map(user => (
+            users.slice(offset, offset + perPage).map(user => (
               <tr key={user.id}>
                 <td>
                   {user.firstName} {user.lastName}
@@ -65,15 +50,19 @@ const AllUsers = props => {
             ))}
         </tbody>
       </table>
-      <button onClick={setPreviousPage} disabled={!previousEnabled}>
-        Previous Page
-      </button>
-      <span>
-        Current Page: {currentPage} of {totalPages}
-      </span>
-      <button onClick={setNextPage} disabled={!nextEnabled}>
-        Next Page
-      </button>
+      <ReactPaginate
+        previousLabel="prev"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={Math.ceil(users.length / perPage)}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName="center pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+      />
     </div>
   )
 }

@@ -37,20 +37,6 @@ class AdminDashboard extends Component {
   // }
 
   render() {
-    const {
-      startIndex,
-      endIndex,
-      setPreviousPage,
-      totalPages,
-      currentPage,
-      setNextPage,
-      nextEnabled,
-      previousEnabled
-    } = usePagination({
-      totalItems: users.length,
-      initialPageSize: 1
-    })
-
     return (
       <div className="container">
         <div id="adminSearch">
@@ -61,16 +47,7 @@ class AdminDashboard extends Component {
           </form>
         </div>
         <div id="adminUsersTable">
-          <AllUsers users={users.slice(startIndex, endIndex)} />
-          <button onClick={setPreviousPage} disabled={!previousEnabled}>
-            Previous Page
-          </button>
-          <span>
-            Current Page: {currentPage} of {totalPages}
-          </span>
-          <button onClick={setNextPage} disabled={!nextEnabled}>
-            Next Page
-          </button>
+          <AllUsers />
         </div>
         <div id="adminProductsTable">
           <ProductDashboard />
