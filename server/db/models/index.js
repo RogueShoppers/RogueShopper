@@ -22,13 +22,15 @@ const ProductTag = require('./product-tag')
  */
 //one to many - user to pets
 User.hasMany(Pet, {
+  as: 'myPet',
   foreignKey: {
     name: 'user_id',
     allowNull: false
   }
 })
 
-Pet.belongsTo(User, {as: 'myOwner', foreignKey: 'userId'})
+Pet.belongsTo(User)
+// , { as: 'myOwner', foreignKey: 'user_id'}
 
 //one to many orders to user
 User.hasMany(Order)
