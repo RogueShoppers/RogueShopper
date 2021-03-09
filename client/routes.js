@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Link, Route, Switch} from 'react-router-dom'
+import {withRouter, Link, Redirect, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {LogIn, SignUp, Home, MyUserAccount, EditMyAccount} from './components'
 import {getMe} from './store'
@@ -12,6 +12,7 @@ import AdminDashboard from './components/AdminDashboard'
 import Confirmation from './components/confirmation'
 import OrderHistoryDetails from './components/OrderHistoryDetails'
 import GuestCheckoutForm from './components/GuestCheckoutForm'
+import PageNotFound from './components/PageNotFound'
 
 /**
  * COMPONENT
@@ -63,7 +64,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Home component as a fallback */}
-        <Route component={Home} />
+        <Route path="*" component={PageNotFound} />
       </Switch>
     )
   }
