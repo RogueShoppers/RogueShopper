@@ -7,7 +7,7 @@ import {editMe} from '../store/user'
 const AllUsers = props => {
   const {users, getUsers} = props
   const [offset, setOffset] = useState(0)
-  const [perPage] = useState(16)
+  const [perPage] = useState(10)
 
   useEffect(
     () => {
