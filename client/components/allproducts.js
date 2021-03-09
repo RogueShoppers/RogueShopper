@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
 import {Link} from 'react-router-dom'
+import FilterProducts from './FilterProducts'
 
 const AllProducts = props => {
   const {products, getProducts} = props
@@ -14,6 +15,7 @@ const AllProducts = props => {
     <div>
       <div className="row container">
         <h1 className="header">All Products</h1>
+        <FilterProducts />
         <div className="row">
           {products.length !== 0
             ? products.map(product => (
