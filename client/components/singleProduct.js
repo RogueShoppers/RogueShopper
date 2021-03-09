@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/products'
 import {createNewOpenOrder} from '../store/orders'
+import StockStatus from './StockStatus'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
@@ -34,15 +35,6 @@ const singleProduct = props => {
     addToCart(orderInfo)
   }
   const outOfStock = product.quantity === 0
-  const stockStatus = outOfStock ? (
-    <p className="red-text">Sorry, this item is currently out of stock</p>
-  ) : product.quantity <= 10 ? (
-    <p className="orange-text text-darken-1">{`Hurry! Only ${
-      product.quantity
-    } items left!`}</p>
-  ) : (
-    <p className="teal-text">In Stock!</p>
-  )
   const disableAddToCart = outOfStock ? 'disabled' : ''
 
   return (
@@ -85,7 +77,9 @@ const singleProduct = props => {
             >
               Add To Cart
             </button>
-            <div>{stockStatus}</div>
+            <div>
+              <StockStatus product={product} />
+            </div>
           </div>
           <p>{longDescription}</p>
           <div>

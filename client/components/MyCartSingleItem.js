@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {editCartQuantity} from '../store/orders'
+import StockStatus from './StockStatus'
 
 const MyCartSingleItem = props => {
   const {
@@ -49,17 +50,6 @@ const MyCartSingleItem = props => {
     setQuantity(event.target.value)
   }
 
-  const outOfStock = product.quantity === 0
-  const stockStatus = outOfStock ? (
-    <p className="red-text">Sorry, this item is currently out of stock</p>
-  ) : product.quantity <= 10 ? (
-    <p className="orange-text text-darken-1">{`Hurry! Only ${
-      product.quantity
-    } items left!`}</p>
-  ) : (
-    <p className="teal-text">In Stock!</p>
-  )
-
   return (
     <li key={product.id} className="collection-item" id="cartItem">
       <img src={product.imageURL} />
@@ -84,7 +74,9 @@ const MyCartSingleItem = props => {
           >
             Remove
           </button>
-          <div>{stockStatus}</div>
+          <div>
+            <StockStatus product={product} />
+          </div>
         </div>
         <div>
           {orderError &&
