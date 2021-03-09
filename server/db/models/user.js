@@ -99,7 +99,7 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex')
 }
 
-User.findAllUsersAndPets = async function() {
+User.findUserAndPets = async function() {
   const users = await User.findAll({
     include: {
       model: Pet,

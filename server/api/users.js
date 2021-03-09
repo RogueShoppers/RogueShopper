@@ -6,10 +6,9 @@ module.exports = router
 //Admin Only: GET /api/users
 router.get('/', adminsOnly, async (req, res, next) => {
   try {
-    // const users = await User.findAll({
-    //   attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'isAdmin']
-    // })
-    const users = await User.findAllUsersAndPets()
+    const users = await User.findAll({
+      attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'isAdmin']
+    })
     res.json(users)
   } catch (error) {
     next(error)

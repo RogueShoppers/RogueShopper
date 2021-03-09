@@ -36,31 +36,20 @@ class MyUserAccount extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="divider">
-          <div>
-            <h5>My Pets</h5>
-            <table className="highlight">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Favorite Toy</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pets.length !==0
-            ? pets.map(pet => (
-                <tr key={pet.id}>
-                  <td>{pet.id}</td>
-                  <td>{pet.age}</td>
-                  <td>{pet.favoriteToy}</td>
-                </tr>
-              ))
-          : 'No Pet on Database - Add a Pet!'}
-          </tbody>
-        </table>
+        <div className="row">
+          <div className="col s12 m6">
+            <div className="card blue-grey darken-1">
+              <div className="card-content white-text">
+                <span className="card-title">My Pet</span>
+                <div>
+                  <p>Pet Name: Jade</p>
+                  <p>Age: 8</p>
+                  <p>Favorite Toy: Frog Non-Squishy</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div> */}
+        </div>
         <div className="divider" />
         <h5>Order History</h5>
         <table className="highlight">
