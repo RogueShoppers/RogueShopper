@@ -2,9 +2,9 @@ import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
-import {logout} from '../store'
-import {fetchMyOpenOrder} from '../store/orders'
-import CartItemCount from './utils/CartItemCount'
+import {logout} from '../../store'
+import {fetchMyOpenOrder} from '../../store/orders'
+import CartItemCount from '../../utils/CartItemCount'
 
 const Navbar = props => {
   const {

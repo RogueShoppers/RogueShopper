@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {editCartQuantity} from '../store/orders'
+import {editCartQuantity} from '../../store/orders'
 
 const MyCartSingleItem = props => {
   const {
