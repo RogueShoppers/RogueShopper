@@ -5,20 +5,17 @@ const app = require('../server/index')
 const Order = db.model('order')
 const User = db.model('user')
 const Product = db.model('product')
-const OrderProduct = db.model('order-product')
 
 describe('Order Routes', () => {
-  before(() => db.sync({force: true}))
-
   describe('/api/orders/', () => {
     it('GET /api/orders/?status=open', async () => {
       const order = await Order.create({
         completed: false
       })
       const user = await User.create({
-        firstName: 'Natalie',
+        firstName: 'Test',
         lastName: 'Test',
-        email: 'natalie@test.com',
+        email: 'test@test.com',
         address: 'test',
         password: 'password'
       })

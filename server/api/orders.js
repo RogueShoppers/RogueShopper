@@ -8,42 +8,16 @@ router.get('/', async (req, res, next) => {
     const {status} = req.query
     const userId = req.user ? req.user.id : null
 
+    //if query status is open, only find orders that have completed = false
     if (status === 'open') {
-      //if query has status of open, only find orders that have completed = false (not processed)
-      const [myOpenOrder] = await Order.findAll({
-        where: {
-          completed: false,
-          userId: userId
-        },
-        include: [
-          {
-            model: Product,
-            attributes: ['id', 'name', 'imageURL', 'price', 'quantity'],
-            through: {
-              attributes: ['orderQuantity']
-            }
-          }
-        ]
-      })
+      const [myOpenOrder] = await Order.findAllOpenOrderWithProductInfo(userId)
       res.json(myOpenOrder)
     }
+    //if query status is close, only find orders that have completed = true
     if (status === 'close') {
-      //if query has status of close, only find orders that have completed = true (processed)
-      const allClosedOrders = await Order.findAll({
-        where: {
-          completed: true,
-          userId: userId
-        },
-        include: [
-          {
-            model: Product,
-            attributes: ['name', 'imageURL', 'price'],
-            through: {
-              attributes: ['orderQuantity']
-            }
-          }
-        ]
-      })
+      const allClosedOrders = await Order.findAllClosedOrderWithProductInfo(
+        userId
+      )
       res.json(allClosedOrders)
     }
   } catch (error) {
@@ -99,13 +73,7 @@ router.delete('/products/:productId', async (req, res, next) => {
     const productId = Number(req.params.productId)
     const userId = req.user ? req.user.id : null
 
-    let currentOpenOrder = await Order.findOne({
-      where: {
-        completed: false,
-        userId: userId
-      },
-      include: Product
-    })
+    let currentOpenOrder = await Order.findOpenOrder(userId)
     let product = await Product.findByPk(productId)
     await currentOpenOrder.removeProduct(product)
 
@@ -123,41 +91,19 @@ router.put('/', async (req, res, next) => {
     const {productId, quantity} = req.body
     const userId = req.user ? req.user.id : null
 
-    let currentOpenOrder = await Order.findOne({
-      where: {
-        completed: false,
-        userId: userId
-      },
-      include: Product
-    })
+    let currentOpenOrder = await Order.findOpenOrder(userId)
     let product = await Product.findByPk(productId)
     await currentOpenOrder.addProduct(product, {
       through: {orderQuantity: quantity}
     })
-    currentOpenOrder = await currentOpenOrder.reload()
 
+    //wait for all updates to be loaded to newOrder
+    currentOpenOrder = await currentOpenOrder.reload()
     res.json(currentOpenOrder)
   } catch (error) {
     next(error)
   }
 })
-
-// // GET /api/orders/:orderId
-// router.get('/:orderId', async (req, res, next) => {
-//   try {
-//     const order = await Order.findOne({
-//       where: {
-//         id: req.params.orderId,
-//         userId: req.user.id,
-//       },
-//       include: Product,
-//     })
-//     if (order) res.send(order)
-//     else res.status(404).send('Order not found!')
-//   } catch (error) {
-//     next(error)
-//   }
-// })
 
 // PUT /api/orders/:orderId/users/:userId
 router.put('/:orderId/users/:userId', async (req, res, next) => {
@@ -165,13 +111,8 @@ router.put('/:orderId/users/:userId', async (req, res, next) => {
     const orderId = Number(req.params.orderId)
     const userId = Number(req.params.userId)
 
-    //find the order with order ID
-    let order = await Order.findOne({
-      where: {
-        id: orderId
-      },
-      include: Product
-    })
+    //find the order with order ID (including Product info)
+    let order = await Order.findOrderWithProductInfo(orderId)
     let user = await User.findByPk(userId)
 
     if (order.userId === null) {
@@ -189,45 +130,32 @@ router.put('/:orderId', async (req, res, next) => {
   try {
     const orderId = Number(req.params.orderId)
 
-    //find the order with order ID
-    let order = await Order.findOne({
-      where: {
-        id: orderId
-      },
-      include: Product
-    })
+    //find the order with order ID (including Product info)
+    let order = await Order.findOrderWithProductInfo(orderId)
 
     //get all products associated with order ID (items in cart)
     const products = await order.getProducts()
 
     //for each products, check if stock has enough quantity to complete order
-    let includeOutOfStock = false
     for (let i = 0; i < products.length; i++) {
       let product = products[i]
       const currentStock = product.quantity
       const purchasedQty = product['order-product'].orderQuantity
       if (currentStock < purchasedQty) {
-        includeOutOfStock = true
+        //if there any of the item doesn't have enough stock, send error message and end the loop
         res
           .status(401)
           .send(`Oops, we don't have enough stock for ${product.name}.`)
-        break
+        return
       }
+      //other wise, reduce the stock
+      await product.update({quantity: currentStock - purchasedQty})
     }
-    //If all of them are in stock, then reduce the current stock with the purchased quantity
-    if (!includeOutOfStock) {
-      for (let i = 0; i < products.length; i++) {
-        let product = products[i]
-        const currentStock = product.quantity
-        const purchasedQty = product['order-product'].orderQuantity
-        await product.update({quantity: currentStock - purchasedQty})
-      }
-      //update the current order's completed status to true
-      await order.update({completed: true})
-      //wait to make sure all the updates are loaded
-      order = await order.reload()
-      res.send(order)
-    }
+    //update the current order's completed status to true
+    await order.update({completed: true})
+    //wait to make sure all the updates are loaded
+    order = await order.reload()
+    res.send(order)
   } catch (error) {
     next(error)
   }
