@@ -3,7 +3,7 @@ import axios from 'axios'
 //ACTION TYPES
 const SET_PRODUCTS = 'SET_PRODUCTS'
 const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT'
-const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
+const SET_FILTER = 'SET_FILTER'
 
 //ACTION CREATOR
 export const setProducts = products => ({
@@ -14,15 +14,9 @@ export const setSingleProduct = product => ({
   type: SET_SINGLE_PRODUCT,
   product
 })
-export const filteredAllProducts = (products, toyType) => ({
-  type: FILTER_PRODUCTS,
-  payload: {
-    toyType,
-    filteredProducts:
-      toyType === ''
-        ? products
-        : products.filter(product => product.type === toyType)
-  }
+export const setFilter = filter => ({
+  type: SET_FILTER,
+  filter
 })
 
 //THUNKS
@@ -46,23 +40,12 @@ export const fetchSingleProduct = id => {
     }
   }
 }
-// export const filterAllProducts = (products, toyType) => {
-//   return dispatch => {
-//     payload: {
-//       toyType,
-//       filteredProducts:
-//         toyType === ''
-//           ? products
-//           : products.filter(product => product.type === toyType)
-//     }
-//     dispatch(filteredAllProducts())
-//   }
-// }
 
 //INITIAL STATE
 const initialState = {
   all: [],
-  selected: {}
+  selected: {},
+  filter: ''
 }
 
 //REDUCER
@@ -72,11 +55,10 @@ export default function productsReducer(state = initialState, action) {
       return {...state, all: action.products}
     case SET_SINGLE_PRODUCT:
       return {...state, selected: action.product}
-    case FILTER_PRODUCTS:
+    case SET_FILTER:
       return {
         ...state,
-        toyType: action.payload.toyType,
-        filteredProducts: action.payload.filteredProducts
+        filter: action.filter
       }
     default:
       return state
