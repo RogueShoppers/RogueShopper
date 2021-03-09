@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 const FilterProducts = props => {
   const {products} = props
 
+  console.log('products inside FilterProducts--->', products)
+
   return (
     <div>
       <h6>Filter by Category</h6>
