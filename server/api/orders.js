@@ -13,24 +13,25 @@ router.get('/', adminsOnly, async (req, res, next) => {
   }
 })
 
-// GET /api/orders?status=(open or close)
-router.get('/', async (req, res, next) => {
+// GET /api/orders/open
+router.get('/open', async (req, res, next) => {
   try {
-    const {status} = req.query
     const userId = req.user ? req.user.id : null
 
-    //if query status is open, only find orders that have completed = false
-    if (status === 'open') {
-      const [myOpenOrder] = await Order.findAllOpenOrderWithProductInfo(userId)
-      res.json(myOpenOrder)
-    }
-    //if query status is close, only find orders that have completed = true
-    if (status === 'close') {
-      const allClosedOrders = await Order.findAllClosedOrderWithProductInfo(
-        userId
-      )
-      res.json(allClosedOrders)
-    }
+    const [myOpenOrder] = await Order.findAllOpenOrderWithProductInfo(userId)
+    res.json(myOpenOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// GET /api/orders/closed
+router.get('/closed', async (req, res, next) => {
+  try {
+    const userId = req.user ? req.user.id : null
+
+    const myClosedOrders = await Order.findAllClosedOrderWithProductInfo(userId)
+    res.json(myClosedOrders)
   } catch (error) {
     next(error)
   }
