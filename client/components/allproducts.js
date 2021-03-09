@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/products'
+import {fetchAllProducts, fetchSingleProduct} from '../store/products'
 import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
+import {createNewOpenOrder} from '../store/orders'
 
 const AllProducts = props => {
-  const {products, getProducts} = props
+  const {products, addToCart, getProducts, getSingleProduct} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(16)
   const [pageCount, setPageCount] = useState(0)
+  const [quantity, setQuantity] = useState(1)
+  const productId = props.match.params.productId
 
   useEffect(
     () => {
       getProducts()
+      getSingleProduct(productId)
     },
     [offset]
   )
@@ -20,6 +24,15 @@ const AllProducts = props => {
   const handlePageClick = event => {
     const selectedPage = event.selected
     setOffset(selectedPage + 1)
+  }
+
+  const handleAddToCart = event => {
+    event.preventDefault()
+    const orderInfo = {
+      productId,
+      quantity
+    }
+    addToCart(orderInfo)
   }
 
   return (
@@ -44,6 +57,15 @@ const AllProducts = props => {
                       </Link>
                       <div className="center card-content">
                         <h5>${product.price}</h5>
+                      </div>
+                      <div className="card-action">
+                        <button
+                          type="submit"
+                          onClick={handleAddToCart}
+                          className="center btn waves-effect waves-light btn-small"
+                        >
+                          Add To Cart
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -99,13 +121,16 @@ const AllProducts = props => {
 
 const mapStateToProps = state => {
   return {
-    products: state.products.all
+    products: state.products.all,
+    product: state.products.selected
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProducts: () => dispatch(fetchAllProducts())
+    getProducts: () => dispatch(fetchAllProducts()),
+    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addToCart: orderInfo => dispatch(createNewOpenOrder(orderInfo))
   }
 }
 
