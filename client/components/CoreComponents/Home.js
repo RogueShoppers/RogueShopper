@@ -1,6 +1,6 @@
 import React, {Component, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/products'
+import {fetchAllProducts} from '../../store/products'
 import {Link} from 'react-router-dom'
 import M from 'materialize-css'
 

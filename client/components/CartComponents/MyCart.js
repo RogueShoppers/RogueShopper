@@ -5,12 +5,12 @@ import {
   removeItemFromOrder,
   closeOpenOrder,
   saveGuestToUser
-} from '../store/orders'
+} from '../../store/orders'
 import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
-import {getMe} from '../store/user'
-import CartItemCount from './utils/CartItemCount'
-import OrderTotalPrice from './utils/OrderTotalPrice'
+import {getMe} from '../../store/user'
+import CartItemCount from '../../utils/CartItemCount'
+import OrderTotalPrice from '../../utils/OrderTotalPrice'
 
 const MyCart = props => {
   const {

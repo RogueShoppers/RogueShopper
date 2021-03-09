@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchMyCompletedOrder} from '../store/orders'
-import {getMe} from '../store/user'
+import {fetchMyCompletedOrder} from '../../store/orders'
+import {getMe} from '../../store/user'
 import {Link} from 'react-router-dom'
 
 const Confirmation = props => {
