@@ -7,11 +7,12 @@ const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
   const {name, longDescription, imageURL, price, tags} = product
   const productId = props.match.params.productId
-  //tags will be in array form? (Natalie)
 
   useEffect(() => {
     getSingleProduct(productId)
   }, [])
+
+  console.log('product', product)
 
   const [quantity, setQuantity] = useState(1)
   const handleIncrease = () => {
@@ -87,7 +88,16 @@ const singleProduct = props => {
             <div>{stockStatus}</div>
           </div>
           <p>{longDescription}</p>
-          <div>#Placeholder{tags}</div>
+          <div>
+            {tags &&
+              tags.map(tag => {
+                return (
+                  <span key={tag.id} className="chip">
+                    #{tag.type}
+                  </span>
+                )
+              })}
+          </div>
         </div>
       </div>
     </div>
