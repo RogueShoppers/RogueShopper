@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 const crypto = require('crypto')
-const Pet = require('./pet')
 
 const User = db.define('user', {
   firstName: {
@@ -98,18 +97,6 @@ User.encryptPassword = function(plainText, salt) {
     .update(salt)
     .digest('hex')
 }
-
-// User.findUsersAndPets = function() {
-//   return this.findAll({
-//     where: {
-//       attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'isAdmin']
-//     },
-//     include: {
-//       model: Pet,
-//       as: 'myPet'
-//     }
-//   })
-// }
 
 // /**
 //  * hooks
