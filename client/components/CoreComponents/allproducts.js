@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/products'
+import {fetchAllProducts, fetchSingleProduct} from '../../store/products'
 import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
-import {createNewOpenOrder} from '../store/orders'
+import FilterProducts from './FilterProducts'
+import {createNewOpenOrder} from '../../store/orders'
 
 const AllProducts = props => {
   const {products, addToCart, getProducts} = props
@@ -26,6 +27,7 @@ const AllProducts = props => {
     <div>
       <div className="row container">
         <h1 className="header">All Products</h1>
+        <FilterProducts />
         <div className="row">
           {products.length !== 0
             ? products.slice(offset, offset + perPage).map(product => (

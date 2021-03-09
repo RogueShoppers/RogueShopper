@@ -1,0 +1,6 @@
+diff a/server/api/orders.js b/server/api/orders.js	(rejected hunks)
+@@ -24,2 +24,2 @@ router.get('/open', async (req, res, next) => {
+-      const [myOpenOrder] = await Order.findAllOpenOrderWithProductInfo(userId)
+-      res.json(myOpenOrder)
++    const [myOpenOrder] = await Order.findAllOpenOrderWithProductInfo(userId)
++    res.json(myOpenOrder)

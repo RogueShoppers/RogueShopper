@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
-import AllUsers from './allUsers.js'
+import AllUsers from './allUsers'
 import ProductDashboard from './ProductDashboard'
-import {searchDatabase} from '../store/search'
+import AllOrders from './OrdersDashboard'
+import {searchDatabase} from '../../store/search'
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -53,27 +53,7 @@ class AdminDashboard extends Component {
           <ProductDashboard />
         </div>
         <div id="adminOrdersTable">
-          <h3>Orders</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Order Number</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            {/* <tbody>
-              {orders.length !== 0 &&
-                orders.map(order => (
-                  <tr key={order.id}>
-                    <td>{order.id}</td>
-                    <td>{String(order.completed)}</td>
-                    <td>
-                      <button>Edit</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody> */}
-          </table>
+          <AllOrders />
         </div>
       </div>
     )

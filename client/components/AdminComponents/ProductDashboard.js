@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/products'
+import {fetchAllProducts} from '../../store/products'
 
 const ProductDashboard = props => {
   const {products, getProducts} = props

@@ -2,17 +2,17 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link, Redirect, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {LogIn, SignUp, Home, MyUserAccount, EditMyAccount} from './components'
+import {LogIn, SignUp, MyUserAccount, EditMyAccount} from './components'
+import Home from './components/CoreComponents/Home'
 import {getMe} from './store'
-import AllProducts from './components/allproducts'
-import SingleProduct from './components/singleProduct'
-import AllUsers from './components/allUsers'
-import MyCart from './components/MyCart'
-import AdminDashboard from './components/AdminDashboard'
-import Confirmation from './components/confirmation'
-import OrderHistoryDetails from './components/OrderHistoryDetails'
-import GuestCheckoutForm from './components/GuestCheckoutForm'
-import PageNotFound from './components/PageNotFound'
+import AllProducts from './components/CoreComponents/allproducts'
+import SingleProduct from './components/CoreComponents/singleProduct'
+import MyCart from './components/CartComponents/MyCart'
+import AdminDashboard from './components/AdminComponents/AdminDashboard'
+import Confirmation from './components/CoreComponents/confirmation'
+import OrderHistoryDetails from './components/UserAccountComponents/OrderHistoryDetails'
+import GuestCheckoutForm from './components/UserAccountComponents/GuestCheckoutForm'
+import PageNotFound from './components/CoreComponents/PageNotFound'
 
 /**
  * COMPONENT
@@ -47,7 +47,6 @@ class Routes extends Component {
               <Route path="/me/edit" component={EditMyAccount} />
               <Route path="/mycart" component={MyCart} />
               <Route path="/confirmation" component={Confirmation} />
-              <Route path="/me/admin" component={AllUsers} />
               <Route path="/me/dashboard" component={AdminDashboard} />
             </Switch>
           )}

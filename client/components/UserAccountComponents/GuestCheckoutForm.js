@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchMyOpenOrder, closeOpenOrder, setGuestInfo} from '../store/orders'
+import {
+  fetchMyOpenOrder,
+  closeOpenOrder,
+  setGuestInfo
+} from '../../store/orders'
 
 const GuestCheckoutForm = props => {
   const {checkout, myOpenOrder, getMyOpenOrder, saveGuestInfo} = props

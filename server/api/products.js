@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, User} = require('../db/models')
+const {Product, User, Tag} = require('../db/models')
 const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
 
@@ -16,7 +16,10 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
-    const singleProduct = await Product.findByPk(id)
+    const singleProduct = await Product.findOne({
+      where: {id: id},
+      include: Tag
+    })
     res.json(singleProduct)
   } catch (err) {
     next(err)

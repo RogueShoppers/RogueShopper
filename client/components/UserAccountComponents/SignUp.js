@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {signUp} from '../store/user'
-import {fetchMyOpenOrder} from '../store/orders'
-import ErrorFormMessage from './ErrorFormMessage'
+import {signUp} from '../../store/user'
+import {fetchMyOpenOrder} from '../../store/orders'
+import ErrorFormMessage from '../CoreComponents/ErrorFormMessage'
 
 class SignUp extends Component {
   constructor() {

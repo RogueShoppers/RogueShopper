@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {logIn} from '../store/user'
+import {logIn} from '../../store/user'
 import {connect} from 'react-redux'
-import ErrorFormMessage from './ErrorFormMessage'
+import ErrorFormMessage from '../CoreComponents/ErrorFormMessage'
 import {Link} from 'react-router-dom'
 
 class LogIn extends Component {
