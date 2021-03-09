@@ -38,8 +38,15 @@ Product.belongsToMany(Order, {through: 'order-product'})
 Order.belongsToMany(Product, {through: 'order-product'})
 
 //product belongs to many
-Product.belongsToMany(Tag, {through: 'product-tag'})
-Tag.belongsToMany(Product, {through: 'product-tag'})
+Product.belongsToMany(Tag, {
+  through: 'product-tag'
+})
+Tag.belongsToMany(Product, {
+  through: 'product-tag',
+  foreignKey: {
+    name: 'tag'
+  }
+})
 
 module.exports = {
   User,

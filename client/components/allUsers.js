@@ -1,14 +1,25 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
+import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store/user.js'
 import {editMe} from '../store/user'
 
 const AllUsers = props => {
   const {users, getUsers} = props
+  const [offset, setOffset] = useState(0)
+  const [perPage] = useState(10)
 
-  useEffect(() => {
-    getUsers()
-  }, [])
+  useEffect(
+    () => {
+      getUsers()
+    },
+    [offset]
+  )
+
+  const handlePageClick = event => {
+    const selectedPage = event.selected
+    setOffset(selectedPage + 1)
+  }
 
   return (
     <div>
@@ -24,7 +35,7 @@ const AllUsers = props => {
         </thead>
         <tbody>
           {users.length !== 0 &&
-            users.map(user => (
+            users.slice(offset, offset + perPage).map(user => (
               <tr key={user.id}>
                 <td>
                   {user.firstName} {user.lastName}
@@ -39,11 +50,22 @@ const AllUsers = props => {
             ))}
         </tbody>
       </table>
+      <ReactPaginate
+        previousLabel="prev"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={Math.ceil(users.length / perPage)}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName="center pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+      />
     </div>
   )
 }
-
-//CONTAINER
 
 const mapStateToProps = state => {
   return {
