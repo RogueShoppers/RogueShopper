@@ -67,8 +67,6 @@ const AllUsers = props => {
   )
 }
 
-//CONTAINER
-
 const mapStateToProps = state => {
   return {
     users: state.users.all,
