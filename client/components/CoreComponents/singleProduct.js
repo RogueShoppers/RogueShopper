@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import StockStatus from '../../utils/StockStatus'
 import {fetchSingleProduct} from '../../store/products'
 import {createNewOpenOrder} from '../../store/orders'
+import MoreLikeThis from './MoreLikeThis'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
@@ -93,6 +94,9 @@ const singleProduct = props => {
               })}
           </div>
         </div>
+      </div>
+      <div>
+        <MoreLikeThis tags={tags} />
       </div>
     </div>
   )
