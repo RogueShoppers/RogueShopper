@@ -93,7 +93,8 @@ export const getAllOrders = orders => {
 export const fetchMyOpenOrder = () => {
   return async dispatch => {
     try {
-      const {data: openOrder} = await axios.get(`/api/orders/?status=open`)
+      // const isOrder = "open"
+      const {data: openOrder} = await axios.get(`/api/orders/open`)
       dispatch(setOpenOrder(openOrder))
     } catch (error) {
       console.log('Error: Could not get my order details', error)
@@ -153,9 +154,7 @@ export const closeOpenOrder = (myOrder, history) => {
 export const fetchMyCompletedOrder = () => {
   return async dispatch => {
     try {
-      const {data: completedOrder} = await axios.get(
-        `/api/orders/?status=close`
-      )
+      const {data: completedOrder} = await axios.get(`/api/orders/closed`)
       dispatch(setCompleteOrder(completedOrder))
     } catch (error) {
       console.log('Error: Could not get my completed order details', error)
