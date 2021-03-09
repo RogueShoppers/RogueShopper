@@ -6,6 +6,7 @@ const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT'
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 const TOGGLE_EDIT = 'TOGGLE_EDIT'
+const SET_FILTER = 'SET_FILTER'
 
 //ACTION CREATOR
 export const setProducts = products => ({
@@ -16,15 +17,9 @@ export const setSingleProduct = product => ({
   type: SET_SINGLE_PRODUCT,
   product
 })
-export const filteredAllProducts = (products, toyType) => ({
-  type: FILTER_PRODUCTS,
-  payload: {
-    toyType,
-    filteredProducts:
-      toyType === ''
-        ? products
-        : products.filter(product => product.type === toyType)
-  }
+export const setFilter = filter => ({
+  type: SET_FILTER,
+  filter
 })
 export const _editProduct = productId => ({
   type: EDIT_PRODUCT,
@@ -87,7 +82,8 @@ export const editProduct = productId => {
 const initialState = {
   all: [],
   selected: {},
-  isEditing: false
+  isEditing: false,
+  filter: ''
 }
 
 //REDUCER
@@ -97,11 +93,10 @@ export default function productsReducer(state = initialState, action) {
       return {...state, all: action.products}
     case SET_SINGLE_PRODUCT:
       return {...state, selected: action.product}
-    case FILTER_PRODUCTS:
+    case SET_FILTER:
       return {
         ...state,
-        toyType: action.payload.toyType,
-        filteredProducts: action.payload.filteredProducts
+        filter: action.filter
       }
     case EDIT_PRODUCT:
       return {...state, selected: action.product, isEditing: action.isEditing}
