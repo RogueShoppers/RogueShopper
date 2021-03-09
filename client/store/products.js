@@ -21,7 +21,7 @@ export const filteredAllProducts = (products, toyType) => ({
     filteredProducts:
       toyType === ''
         ? products
-        : products.filter(product => product.toyType === toyType)
+        : products.filter(product => product.type === toyType)
   }
 })
 
@@ -46,11 +46,18 @@ export const fetchSingleProduct = id => {
     }
   }
 }
-export const filterAllProducts = () => {
-  return async dispatch => {
-    dispatch(filteredAllProducts())
-  }
-}
+// export const filterAllProducts = (products, toyType) => {
+//   return dispatch => {
+//     payload: {
+//       toyType,
+//       filteredProducts:
+//         toyType === ''
+//           ? products
+//           : products.filter(product => product.type === toyType)
+//     }
+//     dispatch(filteredAllProducts())
+//   }
+// }
 
 //INITIAL STATE
 const initialState = {
@@ -68,8 +75,8 @@ export default function productsReducer(state = initialState, action) {
     case FILTER_PRODUCTS:
       return {
         ...state,
-        toyType: action.toyType
-        // filteredItems: action.
+        toyType: action.payload.toyType,
+        filteredProducts: action.payload.filteredProducts
       }
     default:
       return state

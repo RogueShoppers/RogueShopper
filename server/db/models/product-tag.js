@@ -1,8 +1,6 @@
-// const Sequelize = require('sequelize')
-// const db = require('../db')
+const Sequelize = require('sequelize')
+const db = require('../db')
 
-// const ProductTag = db.define('product-tag', {
+const ProductTag = db.define('product-tag', {})
 
-// })
-
-// module.exports = ProductTag
+module.exports = ProductTag
