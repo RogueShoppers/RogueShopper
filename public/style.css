@@ -132,6 +132,12 @@ nav a {
 }
 
 /*404 page not found wrapper*/
+
+.notfoundpage {
+  color: white;
+  text-align: center;
+}
+
 .wrapper {
   height: 150%;
   width: 100%;
