@@ -93,7 +93,6 @@ export const getAllOrders = orders => {
 export const fetchMyOpenOrder = () => {
   return async dispatch => {
     try {
-      // const isOrder = "open"
       const {data: openOrder} = await axios.get(`/api/orders/open`)
       dispatch(setOpenOrder(openOrder))
     } catch (error) {
