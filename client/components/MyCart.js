@@ -9,6 +9,8 @@ import {
 import {Link} from 'react-router-dom'
 import MyCartSingleItem from './MyCartSingleItem'
 import {getMe} from '../store/user'
+import CartItemCount from './utils/CartItemCount'
+import OrderTotalPrice from './utils/OrderTotalPrice'
 
 const MyCart = props => {
   const {
@@ -30,18 +32,6 @@ const MyCart = props => {
     }
   }, [])
 
-  const calculateTotalQty = () => {
-    return myOpenOrder.products.reduce((total, product) => {
-      return total + product['order-product'].orderQuantity
-    }, 0)
-  }
-
-  const calculateTotalPrice = () => {
-    return myOpenOrder.products.reduce((total, product) => {
-      return total + product.price * product['order-product'].orderQuantity
-    }, 0)
-  }
-
   const handleCheckout = event => {
     event.preventDefault()
     checkout(myOpenOrder)
@@ -60,8 +50,10 @@ const MyCart = props => {
           {cartNotEmpty ? (
             <div>
               <h2 className="right-align">
-                Subtotal ({calculateTotalQty()} items):{' '}
-                <span id="totalPrice">${calculateTotalPrice()}</span>
+                Subtotal (<CartItemCount myOrder={myOpenOrder} /> items):{' '}
+                <span id="totalPrice">
+                  $<OrderTotalPrice myOrder={myOpenOrder} />
+                </span>
               </h2>
               <ul className="collection">
                 {myOpenOrder.products.map(product => {

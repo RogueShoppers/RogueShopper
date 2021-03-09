@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import AllUsers from './allUsers.js'
 import ProductDashboard from './ProductDashboard'
 import {searchDatabase} from '../store/search'
@@ -14,6 +15,7 @@ class AdminDashboard extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.handlePageClick = this.handlePageClick.bind(this)
   }
 
   handleChange(event) {
@@ -26,6 +28,13 @@ class AdminDashboard extends Component {
     event.preventDefault()
     this.props.search(this.state.searchQuery)
   }
+
+  // handlePageClick(event) {
+  //  this.setState({
+  //    offset: 10
+  //  })
+
+  // }
 
   render() {
     return (

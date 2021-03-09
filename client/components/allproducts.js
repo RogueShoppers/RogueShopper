@@ -1,15 +1,27 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/products'
+import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 import FilterProducts from './FilterProducts'
 
 const AllProducts = props => {
   const {products, getProducts} = props
+  const [offset, setOffset] = useState(0)
+  const [perPage] = useState(16)
+  const [pageCount, setPageCount] = useState(0)
 
-  useEffect(() => {
-    getProducts()
-  }, [])
+  useEffect(
+    () => {
+      getProducts()
+    },
+    [offset]
+  )
+
+  const handlePageClick = event => {
+    const selectedPage = event.selected
+    setOffset(selectedPage + 1)
+  }
 
   return (
     <div>
@@ -18,7 +30,7 @@ const AllProducts = props => {
         <FilterProducts />
         <div className="row">
           {products.length !== 0
-            ? products.map(product => (
+            ? products.slice(offset, offset + perPage).map(product => (
                 <div key={product.id}>
                   <div className="col s12 m3">
                     <div className="card medium">
@@ -40,8 +52,49 @@ const AllProducts = props => {
                 </div>
               ))
             : 'No Products on Database'}
+          {/* setPageCount(Math.ceil({products.length} / perPage)) */}
+          <ReactPaginate
+            previousLabel="prev"
+            nextLabel="next"
+            breakLabel="..."
+            breakClassName="break-me"
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageClick}
+            containerClassName="center pagination"
+            subContainerClassName="pages pagination"
+            activeClassName="active"
+          />
         </div>
       </div>
+      {/* <ul className="center pagination">
+        <li className="disabled">
+          <a href="#!">
+            <i className="material-icons">chevron_left</i>
+          </a>
+        </li>
+        <li className="active">
+          <a href="#!">1</a>
+        </li>
+        <li className="waves-effect">
+          <a href="#!">2</a>
+        </li>
+        <li className="waves-effect">
+          <a href="#!">3</a>
+        </li>
+        <li className="waves-effect">
+          <a href="#!">4</a>
+        </li>
+        <li className="waves-effect">
+          <a href="#!">5</a>
+        </li>
+        <li className="waves-effect">
+          <a href="#!">
+            <i className="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul> */}
     </div>
   )
 }
