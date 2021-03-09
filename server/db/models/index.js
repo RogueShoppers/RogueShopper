@@ -5,7 +5,8 @@ const Pet = require('./pet')
 const Tag = require('./tag')
 const Order = require('./order')
 const OrderProduct = require('./order-product')
-
+const ProductTag = require('./product-tag')
+//
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -54,5 +55,6 @@ module.exports = {
   Pet,
   Tag,
   Order,
-  OrderProduct
+  OrderProduct,
+  ProductTag
 }

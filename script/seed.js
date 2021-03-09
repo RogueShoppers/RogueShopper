@@ -7,7 +7,8 @@ const {
   Pet,
   Tag,
   Order,
-  OrderProduct
+  OrderProduct,
+  ProductTag
 } = require('../server/db/models')
 
 const seed = async () => {
@@ -1029,6 +1030,7 @@ const seed = async () => {
     patrons,
     {returning: ['id']}
   )
+  console.log('Seeded users')
 
   const pets = [
     {
@@ -1069,15 +1071,16 @@ const seed = async () => {
     }
   ]
 
+  //Tags
   const tags = [
-    'chase',
-    'chew',
-    'destroy',
-    'brain teaser',
-    'fetch',
-    'feed',
-    'tug',
-    'squishy'
+    {type: 'chase'},
+    {type: 'chew'},
+    {type: 'destroy'},
+    {type: 'brain teaser'},
+    {type: 'fetch'},
+    {type: 'feed'},
+    {type: 'tug'},
+    {type: 'squishy'}
   ]
 
   const [
@@ -1089,7 +1092,8 @@ const seed = async () => {
     feed,
     tug,
     squishy
-  ] = await Tag.bulkCreate(tags, {returning: ['id']})
+  ] = await Tag.bulkCreate(tags) //, {returning: ['id']})
+  console.log('Seeded tags')
 
   const products = [
     {
@@ -2197,6 +2201,23 @@ const seed = async () => {
     }
   ]
 
+  const createdProducts = await Product.bulkCreate(products)
+  console.log('Seeded products')
+
+  //ProductTag
+  const flattenProductTags = products => {
+    return products.reduce((acc, currProduct, idx) => {
+      const currProductTags = currProduct.tags.map(tag => {
+        return {productId: idx + 1, tag}
+      })
+      return acc.concat(currProductTags)
+    }, [])
+  }
+
+  const productTags = flattenProductTags(products)
+  await ProductTag.bulkCreate(productTags)
+  console.log('Seeded product-tag')
+
   const [avo, carrot, whiskey, coffee] = await Product.bulkCreate(products)
   const [whisk, jade, opie, theo, romeo] = await Pet.bulkCreate(pets)
 
@@ -2249,7 +2270,7 @@ const seed = async () => {
   ]
   const [orderproductsAdded] = await OrderProduct.bulkCreate(orderproducts)
 
-  console.log(`seeded users, products, and pets`)
+  console.log(`seeded pets`)
   console.log(`seeded successfully`)
 }
 
