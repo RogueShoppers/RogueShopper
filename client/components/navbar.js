@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchMyOpenOrder} from '../store/orders'
+import CartItemCount from './utils/CartItemCount'
 
 const Navbar = props => {
   const {
@@ -21,16 +22,6 @@ const Navbar = props => {
     [loggedInUser]
   )
 
-  const calculateTotalQty = () => {
-    if (myOpenOrder.id) {
-      return myOpenOrder.products.reduce((total, product) => {
-        return total + product['order-product'].orderQuantity
-      }, 0)
-    } else {
-      return 0
-    }
-  }
-
   return (
     <div>
       <img
@@ -43,7 +34,9 @@ const Navbar = props => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
+            <Link to="/mycart">
+              My Cart (<CartItemCount myOrder={myOpenOrder} />)
+            </Link>
             {/*The navbar will show these links if you are admin*/}
             <Link to="/me/dashboard">Admin Dashboard</Link>
             <NavLink to="/me" className="btn btn-floating indigo lighten-1">
@@ -66,7 +59,9 @@ const Navbar = props => {
               {`${calculateTotalQty()}`})
             </Link> */}
 
-            <Link to="/mycart">My Cart ({`${calculateTotalQty()}`})</Link>
+            <Link to="/mycart">
+              My Cart (<CartItemCount myOrder={myOpenOrder} />)
+            </Link>
             <NavLink to="/me" className="btn btn-floating pink lighten-1">
               {loggedInUser.firstName[0] + loggedInUser.lastName[0]}
             </NavLink>
@@ -81,7 +76,9 @@ const Navbar = props => {
             {/* The navbar will show these links before you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products">Products</Link>
-            <Link to="/mycart">My Cart ({calculateTotalQty()})</Link>
+            <Link to="/mycart">
+              My Cart (<CartItemCount myOrder={myOpenOrder} />)
+            </Link>
             <div className="right">
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
