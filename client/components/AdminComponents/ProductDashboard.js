@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../../store/products'
+import {_toggleEdit} from '../../store/products'
+import {EditProduct} from './EditProduct'
 
 const ProductDashboard = props => {
-  const {products, getProducts} = props
+  const {products, getProducts, toggleEdit, isEditing} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(10)
 
@@ -18,6 +20,10 @@ const ProductDashboard = props => {
   const handlePageClick = event => {
     const selectedPage = event.selected
     setOffset(selectedPage + 1)
+  }
+
+  const handleEditClick = event => {
+    toggleEdit()
   }
 
   return (
@@ -43,12 +49,16 @@ const ProductDashboard = props => {
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
                 <td>
-                  <button>Edit</button>
+                  <button value={product.id} onClick={handleEditClick}>
+                    Edit
+                  </button>
                 </td>
+                <td>{isEditing ? EditProduct : null}</td>
               </tr>
             ))}
         </tbody>
       </table>
+
       <ReactPaginate
         previousLabel="prev"
         nextLabel="next"
@@ -67,16 +77,19 @@ const ProductDashboard = props => {
 }
 
 const mapState = state => {
+  console.log(state)
   return {
     products: state.products.all,
-    selectedProduct: state.selected
+    selectedProduct: state.selected,
+    isEditing: state.products.isEditing
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     getProducts: () => dispatch(fetchAllProducts()),
-    editProduct: product => dispatch(editProduct(product, history))
+    toggleEdit: () => dispatch(_toggleEdit())
+    // editProduct: product => dispatch(editProduct(product, history))
   }
 }
 

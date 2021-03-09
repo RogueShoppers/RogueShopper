@@ -4,6 +4,8 @@ import axios from 'axios'
 const SET_PRODUCTS = 'SET_PRODUCTS'
 const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT'
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
+const TOGGLE_EDIT = 'TOGGLE_EDIT'
 
 //ACTION CREATOR
 export const setProducts = products => ({
@@ -23,6 +25,15 @@ export const filteredAllProducts = (products, toyType) => ({
         ? products
         : products.filter(product => product.type === toyType)
   }
+})
+export const _editProduct = productId => ({
+  type: EDIT_PRODUCT,
+  selected: productId
+})
+
+export const _toggleEdit = () => ({
+  type: TOGGLE_EDIT,
+  isEditing: true
 })
 
 //THUNKS
@@ -46,6 +57,19 @@ export const fetchSingleProduct = id => {
     }
   }
 }
+
+export const editProduct = productId => {
+  const id = productId
+  return async dispatch => {
+    try {
+      const {data: editedProduct} = await axios.put(`/api/products/${id}`)
+      dispatch(_editProduct(editedProduct))
+    } catch (error) {
+      console.log('Error: Could not edit selected product', error)
+    }
+  }
+}
+
 // export const filterAllProducts = (products, toyType) => {
 //   return dispatch => {
 //     payload: {
@@ -62,7 +86,8 @@ export const fetchSingleProduct = id => {
 //INITIAL STATE
 const initialState = {
   all: [],
-  selected: {}
+  selected: {},
+  isEditing: false
 }
 
 //REDUCER
@@ -78,6 +103,10 @@ export default function productsReducer(state = initialState, action) {
         toyType: action.payload.toyType,
         filteredProducts: action.payload.filteredProducts
       }
+    case EDIT_PRODUCT:
+      return {...state, selected: action.product, isEditing: action.isEditing}
+    case TOGGLE_EDIT:
+      return {...state, isEditing: action.isEditing}
     default:
       return state
   }
