@@ -12,6 +12,7 @@ const SET_ORDER_ERROR = 'SET_ORDER_ERROR'
 const CLEAR_ORDER_ERROR = 'CLEAR_ORDER_ERROR'
 const SET_GUEST_INFO = 'SET_GUEST_INFO'
 const SET_GUEST_TO_USER = 'SET_GUEST_TO_USER'
+const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -71,6 +72,13 @@ export const savedGuestToUser = updatedOrder => {
   return {
     type: SET_GUEST_TO_USER,
     updatedOrder
+  }
+}
+
+export const getAllOrders = orders => {
+  return {
+    type: GET_ALL_ORDERS,
+    orders
   }
 }
 
@@ -163,7 +171,18 @@ export const saveGuestToUser = (orderId, userId) => {
       )
       dispatch(savedGuestToUser(updatedOrder))
     } catch (error) {
-      console.log('Error: Counld not set guest to user', error)
+      console.log('Error: Could not set guest to user', error)
+    }
+  }
+}
+
+export const fetchAllOrders = () => {
+  return async dispatch => {
+    try {
+      const {data: orders} = await axios.get('/api/orders')
+      dispatch(getAllOrders(orders))
+    } catch (error) {
+      console.log('Error: Could not fetch orders', error)
     }
   }
 }
@@ -184,7 +203,8 @@ const initialState = {
   myClosedOrder: {},
   allClosedOrders: [],
   orderError: {},
-  guestInfo: {}
+  guestInfo: {},
+  orders: []
 }
 
 //REDUCER
@@ -225,6 +245,8 @@ export default function ordersReducer(state = initialState, action) {
       return {...state, guestInfo: action.guestInfo}
     case SET_GUEST_TO_USER:
       return {...state, myOpenOrder: action.updatedOrder}
+    case GET_ALL_ORDERS:
+      return {...state, orders: action.orders}
     default:
       return state
   }

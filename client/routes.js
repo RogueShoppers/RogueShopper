@@ -6,9 +6,8 @@ import {LogIn, SignUp, Home, MyUserAccount, EditMyAccount} from './components'
 import {getMe} from './store'
 import AllProducts from './components/allproducts'
 import SingleProduct from './components/singleProduct'
-import AllUsers from './components/allUsers'
 import MyCart from './components/MyCart'
-import AdminDashboard from './components/AdminDashboard'
+import AdminDashboard from './components/AdminComponents/AdminDashboard'
 import Confirmation from './components/confirmation'
 import OrderHistoryDetails from './components/OrderHistoryDetails'
 import GuestCheckoutForm from './components/GuestCheckoutForm'
@@ -47,7 +46,6 @@ class Routes extends Component {
               <Route path="/me/edit" component={EditMyAccount} />
               <Route path="/mycart" component={MyCart} />
               <Route path="/confirmation" component={Confirmation} />
-              <Route path="/me/admin" component={AllUsers} />
               <Route path="/me/dashboard" component={AdminDashboard} />
             </Switch>
           )}

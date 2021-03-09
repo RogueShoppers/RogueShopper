@@ -1,6 +1,17 @@
 const router = require('express').Router()
 const {Order, Product, User} = require('../db/models')
+const adminsOnly = require('../utils/adminsOnly')
 module.exports = router
+
+// Admin Only: GET /api/orders
+router.get('/', adminsOnly, async (req, res, next) => {
+  try {
+    const allOrders = await Order.findAll()
+    res.json(allOrders)
+  } catch (error) {
+    next(error)
+  }
+})
 
 // GET /api/orders?status=(open or close)
 router.get('/', async (req, res, next) => {
