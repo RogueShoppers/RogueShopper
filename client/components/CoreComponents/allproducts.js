@@ -85,8 +85,14 @@ const AllProducts = props => {
 }
 
 const mapStateToProps = state => {
+  const visibleProducts =
+    state.products.filter === ''
+      ? state.products.all
+      : state.products.all.filter(product =>
+          product.tags.find(Obj => Obj.type === state.products.filter)
+        )
   return {
-    products: state.products.all,
+    products: visibleProducts,
     product: state.products.selected
   }
 }
