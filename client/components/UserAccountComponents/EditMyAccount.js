@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {editMe} from '../store/user'
+import {editMe} from '../../store/user'
 import {Link} from 'react-router-dom'
 
 class EditMyAccount extends Component {

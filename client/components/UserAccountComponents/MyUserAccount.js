@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getMe} from '../store/user'
+import {getMe} from '../../store/user'
 import {Link} from 'react-router-dom'
-import {fetchMyCompletedOrder} from '../store/orders'
+import {fetchMyCompletedOrder} from '../../store/orders'
 import moment from 'moment'
 
 class MyUserAccount extends Component {

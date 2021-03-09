@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/products'
+import {fetchAllProducts, fetchSingleProduct} from '../../store/products'
 import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 import FilterProducts from './FilterProducts'
-import {createNewOpenOrder} from '../store/orders'
-import StockStatus from './StockStatus'
+import StockStatus from '../../utils/StockStatus'
+import {createNewOpenOrder} from '../../store/orders'
 
 const AllProducts = props => {
   const {products, addToCart, getProducts} = props
