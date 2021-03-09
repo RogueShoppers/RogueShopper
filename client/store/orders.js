@@ -11,6 +11,7 @@ const SET_COMPLETE_ORDER = 'SET_COMPLETE_ORDER'
 const SET_ORDER_ERROR = 'SET_ORDER_ERROR'
 const CLEAR_ORDER_ERROR = 'CLEAR_ORDER_ERROR'
 const SET_GUEST_INFO = 'SET_GUEST_INFO'
+const SET_GUEST_TO_USER = 'SET_GUEST_TO_USER'
 
 //ACTION CREATOR
 export const setOpenOrder = openOrder => {
@@ -64,6 +65,12 @@ export const setGuestInfo = guestInfo => {
   return {
     type: SET_GUEST_INFO,
     guestInfo
+  }
+}
+export const savedGuestToUser = updatedOrder => {
+  return {
+    type: SET_GUEST_TO_USER,
+    updatedOrder
   }
 }
 
@@ -148,6 +155,19 @@ export const fetchMyCompletedOrder = () => {
   }
 }
 
+export const saveGuestToUser = (orderId, userId) => {
+  return async dispatch => {
+    try {
+      const {data: updatedOrder} = await axios.put(
+        `/api/orders/${orderId}/users/${userId}`
+      )
+      dispatch(savedGuestToUser(updatedOrder))
+    } catch (error) {
+      console.log('Error: Counld not set guest to user', error)
+    }
+  }
+}
+
 // export const fetchSingleOrder = (orderId) => {
 //   return async (dispatch) => {
 //     try {
@@ -203,6 +223,8 @@ export default function ordersReducer(state = initialState, action) {
       return {...state, orderError: {}}
     case SET_GUEST_INFO:
       return {...state, guestInfo: action.guestInfo}
+    case SET_GUEST_TO_USER:
+      return {...state, myOpenOrder: action.updatedOrder}
     default:
       return state
   }

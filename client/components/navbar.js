@@ -5,17 +5,18 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchMyOpenOrder} from '../store/orders'
 
-const Navbar = ({
-  handleClick,
-  isLoggedIn,
-  getMyOpenOrder,
-  myOpenOrder,
-  loggedInUser,
-  isAdmin
-}) => {
+const Navbar = props => {
+  const {
+    handleClick,
+    isLoggedIn,
+    getMyOpenOrder,
+    myOpenOrder,
+    loggedInUser,
+    isAdmin
+  } = props
   useEffect(
     () => {
-      getMyOpenOrder(loggedInUser.id)
+      getMyOpenOrder()
     },
     [loggedInUser]
   )
@@ -97,7 +98,6 @@ const Navbar = ({
  * CONTAINER
  */
 const mapState = state => {
-  // console.log('state in Navbar', state)
   return {
     isLoggedIn: !!state.users.selected.id,
     loggedInUser: state.users.selected,

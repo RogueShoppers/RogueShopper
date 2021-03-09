@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signUp} from '../store/user'
+import {fetchMyOpenOrder} from '../store/orders'
 import ErrorFormMessage from './ErrorFormMessage'
 
 class SignUp extends Component {
@@ -16,6 +17,10 @@ class SignUp extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.getMyOpenOrder()
   }
 
   handleChange(evt) {
@@ -120,13 +125,15 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.users.error
+    error: state.users.error,
+    myOpenOrder: state.orders.myOpenOrder
   }
 }
 
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    signUp: newUser => dispatch(signUp(newUser, history))
+    signUp: newUser => dispatch(signUp(newUser, history)),
+    getMyOpenOrder: () => dispatch(fetchMyOpenOrder())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
