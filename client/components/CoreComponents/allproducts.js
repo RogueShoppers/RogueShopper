@@ -1,23 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts, fetchSingleProduct} from '../store/products'
+import {fetchAllProducts, fetchSingleProduct} from '../../store/products'
 import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 import FilterProducts from './FilterProducts'
-import {createNewOpenOrder} from '../store/orders'
+import {createNewOpenOrder} from '../../store/orders'
 
 const AllProducts = props => {
-  const {products, addToCart, getProducts, getSingleProduct} = props
+  const {products, addToCart, getProducts} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(16)
-  // const [pageCount, setPageCount] = useState(0)
-  const [quantity, setQuantity] = useState(1)
-  const productId = props.match.params.productId
 
   useEffect(
     () => {
       getProducts()
-      getSingleProduct(productId)
     },
     [offset]
   )
@@ -25,15 +21,6 @@ const AllProducts = props => {
   const handlePageClick = event => {
     const selectedPage = event.selected
     setOffset(selectedPage + 16)
-  }
-
-  const handleAddToCart = event => {
-    event.preventDefault()
-    const orderInfo = {
-      productId,
-      quantity
-    }
-    addToCart(orderInfo)
   }
 
   return (
@@ -46,7 +33,7 @@ const AllProducts = props => {
             ? products.slice(offset, offset + perPage).map(product => (
                 <div key={product.id}>
                   <div className="col s12 m3">
-                    <div className="card medium">
+                    <div className="card large">
                       <div className="center card-image">
                         <img
                           src={product.imageURL}
@@ -59,16 +46,19 @@ const AllProducts = props => {
                       </Link>
                       <div className="center card-content">
                         <h5>${product.price}</h5>
+                        {/* <h5>{stockStatus}</h5> */}
                       </div>
-                      {/* <div className="card-action">
+                      <div className="center card-action">
                         <button
-                          type="submit"
-                          onClick={handleAddToCart}
+                          type="button"
+                          onClick={() =>
+                            addToCart({productId: product.id, quantity: 1})
+                          }
                           className="center btn waves-effect waves-light btn-small"
                         >
                           Add To Cart
                         </button>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -101,11 +91,10 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
     getProducts: () => dispatch(fetchAllProducts()),
-    getSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addToCart: orderInfo => dispatch(createNewOpenOrder(orderInfo))
+    addToCart: orderInfo => dispatch(createNewOpenOrder(orderInfo, history))
   }
 }
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store/products'
-import {createNewOpenOrder} from '../store/orders'
+import {fetchSingleProduct} from '../../store/products'
+import {createNewOpenOrder} from '../../store/orders'
 
 const singleProduct = props => {
   const {product, addToCart, getSingleProduct} = props
