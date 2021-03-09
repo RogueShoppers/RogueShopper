@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 import FilterProducts from './FilterProducts'
 import {createNewOpenOrder} from '../store/orders'
+import StockStatus from './StockStatus'
 
 const AllProducts = props => {
   const {products, addToCart, getProducts} = props
@@ -46,7 +47,9 @@ const AllProducts = props => {
                       </Link>
                       <div className="center card-content">
                         <h5>${product.price}</h5>
-                        {/* <h5>{stockStatus}</h5> */}
+                        <h6>
+                          <StockStatus product={product} allProd="allProd" />
+                        </h6>
                       </div>
                       <div className="center card-action">
                         <button
@@ -54,7 +57,9 @@ const AllProducts = props => {
                           onClick={() =>
                             addToCart({productId: product.id, quantity: 1})
                           }
-                          className="center btn waves-effect waves-light btn-small"
+                          className={`center btn waves-effect waves-light btn-small ${
+                            product.quantity === 0 ? 'disabled' : ''
+                          }`}
                         >
                           Add To Cart
                         </button>
