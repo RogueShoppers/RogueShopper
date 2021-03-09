@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
-import {fetchAllUsers} from '../store/user.js'
-import {editMe} from '../store/user'
+import {fetchAllUsers} from '../../store/user.js'
+import {editMe} from '../../store/user'
 
 const AllUsers = props => {
   const {users, getUsers} = props
