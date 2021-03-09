@@ -1,19 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {filterProducts} from '../store/products'
+import {setFilter} from '../../store/products'
 
 const FilterProduct = props => {
-  const {products} = props
-
-  console.log('props inside FilterProducts--->', props)
+  const {getFilter} = props
 
   return (
     <div>
       <label>Filter by Category</label>
       <select
         className="browser-default"
-        value={props.toyType}
-        onChange={e => props.filterProducts(props.products, e.target.value)}
+        onChange={event => getFilter(event.target.value)}
       >
         <option value="">All</option>
         <option value="chase">Chase</option>
@@ -29,18 +26,10 @@ const FilterProduct = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    toyType: state.products.toyType,
-    filteredProducts: state.products.filteredItems
-    // filtered: state.products.filtered,
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
-    filterProducts: () => dispatch(filterProducts())
+    getFilter: filter => dispatch(setFilter(filter))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterProduct)
+export default connect(null, mapDispatchToProps)(FilterProduct)
