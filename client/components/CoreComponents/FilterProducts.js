@@ -10,6 +10,7 @@ const FilterProduct = props => {
       <label>Filter by Category</label>
       <select
         className="browser-default"
+        value={props.filter}
         onChange={event => getFilter(event.target.value)}
       >
         <option value="">All</option>
@@ -26,10 +27,16 @@ const FilterProduct = props => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    filter: state.products.filter
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     getFilter: filter => dispatch(setFilter(filter))
   }
 }
 
-export default connect(null, mapDispatchToProps)(FilterProduct)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterProduct)
