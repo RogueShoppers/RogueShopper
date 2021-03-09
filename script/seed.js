@@ -2181,7 +2181,7 @@ const seed = async () => {
       name: 'Riptides Clam',
       shortDescription: 'Riptides Clam',
       longDescription:
-        'Poodle german shephard pit bull chihuahua bite catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
+        'Poodle german shephard pit bull chihuahua catch, play dead shake vet english mastiff dachshund greyhound rottweiler. Sit growl squeak toy bring it come poodle puppies pomeranian. Chow chow leave it poodle dog chow chow fetch pomsky.',
       price: 8.01,
       quantity: 36,
       imageURL:

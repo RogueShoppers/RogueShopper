@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import {usePagination} from 'react-use-pagination'
 import {connect} from 'react-redux'
 import {fetchAllUsers} from '../store/user.js'
 import {editMe} from '../store/user'
@@ -9,6 +10,20 @@ const AllUsers = props => {
   useEffect(() => {
     getUsers()
   }, [])
+
+  const {
+    startIndex,
+    endIndex,
+    setPreviousPage,
+    totalPages,
+    currentPage,
+    setNextPage,
+    nextEnabled,
+    previousEnabled
+  } = usePagination({
+    totalItems: users.length,
+    initialPageSize: 1
+  })
 
   return (
     <div>
@@ -24,8 +39,8 @@ const AllUsers = props => {
         </thead>
         <tbody>
           {users.length !== 0 &&
-            users.map(user => (
-              <tr key={user.id}>
+            users.slice(startIndex, endIndex).map(user => (
+              <tr>
                 <td>
                   {user.firstName} {user.lastName}
                 </td>
@@ -39,6 +54,15 @@ const AllUsers = props => {
             ))}
         </tbody>
       </table>
+      <button onClick={setPreviousPage} disabled={!previousEnabled}>
+        Previous Page
+      </button>
+      <span>
+        Current Page: {currentPage} of {totalPages}
+      </span>
+      <button onClick={setNextPage} disabled={!nextEnabled}>
+        Next Page
+      </button>
     </div>
   )
 }
