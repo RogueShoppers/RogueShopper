@@ -31,7 +31,7 @@ const AllProducts = props => {
             ? products.slice(offset, offset + perPage).map(product => (
                 <div key={product.id}>
                   <div className="col s12 m3">
-                    <div className="card medium">
+                    <div className="card large">
                       <div className="center card-image">
                         <img
                           src={product.imageURL}
@@ -44,8 +44,9 @@ const AllProducts = props => {
                       </Link>
                       <div className="center card-content">
                         <h5>${product.price}</h5>
+                        {/* <h5>{stockStatus}</h5> */}
                       </div>
-                      <div className="card-action">
+                      <div className="center card-action">
                         <button
                           type="button"
                           onClick={() =>

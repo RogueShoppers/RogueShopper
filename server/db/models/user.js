@@ -99,17 +99,17 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex')
 }
 
-User.findUsersAndPets = function() {
-  return this.findAll({
-    where: {
-      attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'isAdmin']
-    },
-    include: {
-      model: Pet,
-      as: 'myPet'
-    }
-  })
-}
+// User.findUsersAndPets = function() {
+//   return this.findAll({
+//     where: {
+//       attributes: ['id', 'firstName', 'lastName', 'email', 'address', 'isAdmin']
+//     },
+//     include: {
+//       model: Pet,
+//       as: 'myPet'
+//     }
+//   })
+// }
 
 // /**
 //  * hooks
