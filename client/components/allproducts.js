@@ -50,6 +50,7 @@ const AllProducts = props => {
                 </div>
               ))
             : 'No Products on Database'}
+          {/* setPageCount(Math.ceil({products.length} / perPage)) */}
           <ReactPaginate
             previousLabel="prev"
             nextLabel="next"
