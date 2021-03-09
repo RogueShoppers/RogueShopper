@@ -9,7 +9,7 @@ const AllProducts = props => {
   const {products, addToCart, getProducts, getSingleProduct} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(16)
-  const [pageCount, setPageCount] = useState(0)
+  // const [pageCount, setPageCount] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const productId = props.match.params.productId
 
@@ -23,7 +23,7 @@ const AllProducts = props => {
 
   const handlePageClick = event => {
     const selectedPage = event.selected
-    setOffset(selectedPage + 1)
+    setOffset(selectedPage + 16)
   }
 
   const handleAddToCart = event => {
@@ -58,7 +58,7 @@ const AllProducts = props => {
                       <div className="center card-content">
                         <h5>${product.price}</h5>
                       </div>
-                      <div className="card-action">
+                      {/* <div className="card-action">
                         <button
                           type="submit"
                           onClick={handleAddToCart}
@@ -66,19 +66,19 @@ const AllProducts = props => {
                         >
                           Add To Cart
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
               ))
             : 'No Products on Database'}
-          {/* setPageCount(Math.ceil({products.length} / perPage)) */}
           <ReactPaginate
+            className="waves-effect"
             previousLabel="prev"
             nextLabel="next"
             breakLabel="..."
             breakClassName="break-me"
-            pageCount={pageCount}
+            pageCount={Math.ceil(products.length / perPage)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}
@@ -88,33 +88,6 @@ const AllProducts = props => {
           />
         </div>
       </div>
-      {/* <ul className="center pagination">
-        <li className="disabled">
-          <a href="#!">
-            <i className="material-icons">chevron_left</i>
-          </a>
-        </li>
-        <li className="active">
-          <a href="#!">1</a>
-        </li>
-        <li className="waves-effect">
-          <a href="#!">2</a>
-        </li>
-        <li className="waves-effect">
-          <a href="#!">3</a>
-        </li>
-        <li className="waves-effect">
-          <a href="#!">4</a>
-        </li>
-        <li className="waves-effect">
-          <a href="#!">5</a>
-        </li>
-        <li className="waves-effect">
-          <a href="#!">
-            <i className="material-icons">chevron_right</i>
-          </a>
-        </li>
-      </ul> */}
     </div>
   )
 }
