@@ -1,7 +1,14 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Pet, Tag, OrderProduct} = require('../server/db/models')
+const {
+  User,
+  Product,
+  Pet,
+  Tag,
+  Order,
+  OrderProduct
+} = require('../server/db/models')
 
 const seed = async () => {
   await db.sync({force: true})
@@ -2193,30 +2200,54 @@ const seed = async () => {
   const [avo, carrot, whiskey, coffee] = await Product.bulkCreate(products)
   const [whisk, jade, opie, theo, romeo] = await Pet.bulkCreate(pets)
 
-  // const orders = [
-  //   {
-  //     productId: avo.id,
-  //     userId: patricia.id,
-  //     orderQuantity: 2
-  //   },
-  //   {
-  //     productId: whiskey.id,
-  //     userId: patricia.id,
-  //     orderQuantity: 1
-  //   },
-  //   {
-  //     productId: carrot.id,
-  //     userId: kiko.id,
-  //     orderQuantity: 4
-  //   },
-  //   {
-  //     productId: coffee.id,
-  //     userId: susan.id,
-  //     orderQuantity: 1
-  //   },
+  const orders = [
+    {
+      completed: false,
+      userId: patricia.id
+    },
+    {
+      completed: true,
+      userId: patricia.id
+    },
+    {
+      completed: false,
+      userId: kiko.id
+    },
+    {
+      completed: false,
+      userId: susan.id
+    }
+  ]
+  const [order1, order2, order3, order4] = await Order.bulkCreate(orders)
 
-  // ]
-  // const [ordersAdded] = await OrderProduct.bulkCreate(orders)
+  const orderproducts = [
+    {
+      orderQuantity: 4,
+      productId: coffee.id,
+      orderId: order1.id
+    },
+    {
+      orderQuantity: 5,
+      productId: carrot.id,
+      orderId: order2.id
+    },
+    {
+      orderQuantity: 2,
+      productId: whiskey.id,
+      orderId: order2.id
+    },
+    {
+      orderQuantity: 1,
+      productId: whiskey.id,
+      orderId: order3.id
+    },
+    {
+      orderQuantity: 1,
+      productId: carrot.id,
+      orderId: order4.id
+    }
+  ]
+  const [orderproductsAdded] = await OrderProduct.bulkCreate(orderproducts)
 
   console.log(`seeded users, products, and pets`)
   console.log(`seeded successfully`)
