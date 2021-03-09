@@ -6,7 +6,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const pets = await Pet.findPetsAndUsers()
-    res.json(pets)
+    res.send(pets)
   } catch (error) {
     next(error)
   }

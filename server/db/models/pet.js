@@ -15,13 +15,14 @@ const Pet = db.define('pet', {
 })
 
 //class methods
-Pet.findPetsAndUsers = function() {
-  return this.findAll({
+Pet.findPetsAndUsers = async function() {
+  const pets = await Pet.findAll({
     include: {
       model: User,
       as: 'myOwner'
     }
   })
+  return pets
 }
 
 module.exports = Pet

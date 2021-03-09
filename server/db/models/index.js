@@ -28,7 +28,7 @@ User.hasMany(Pet, {
   }
 })
 
-Pet.belongsTo(User)
+Pet.belongsTo(User, {as: 'myOwner', foreignKey: 'userId'})
 
 //one to many orders to user
 User.hasMany(Order)
