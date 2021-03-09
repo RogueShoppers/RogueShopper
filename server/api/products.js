@@ -16,7 +16,10 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
-    const singleProduct = await Product.findByPk(id)
+    const singleProduct = await Product.findOne({
+      where: {id: id},
+      include: Tag
+    })
     res.json(singleProduct)
   } catch (err) {
     next(err)
