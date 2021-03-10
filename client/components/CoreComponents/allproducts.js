@@ -11,6 +11,7 @@ const AllProducts = props => {
   const {products, addToCart, getProducts} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(16)
+  const productsLength = products.length
 
   useEffect(
     () => {
@@ -28,7 +29,7 @@ const AllProducts = props => {
     <div>
       <div className="row container">
         <h1 className="header">All Products</h1>
-        <FilterProducts />
+        <FilterProducts productsLength={productsLength} />
         <div className="row">
           {products.length !== 0
             ? products.slice(offset, offset + perPage).map(product => (

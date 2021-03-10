@@ -135,6 +135,20 @@ nav a {
   font-size: 18px;
 }
 
+#similarProducts-img {
+  margin-left: 50px;
+}
+
+/* confirmation */
+#confirmation p {
+  font-size: 20px;
+}
+
+#confirmation-email {
+  text-decoration: underline;
+  color: blue;
+}
+
 /* error messages */
 .error {
   color: red;
