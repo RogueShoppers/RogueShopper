@@ -13,7 +13,7 @@ const EditProduct = props => {
 
   useEffect(
     () => {
-      handleChange().setProduct()
+    //   handleChange().setProduct()
 
       //    const handleChange = (event) => {
       //         setProduct({product: ({
