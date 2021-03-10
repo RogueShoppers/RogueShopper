@@ -50,6 +50,9 @@ const singleProduct = props => {
             style={{height: 500, width: 350}}
           />
           <div id="singleProduct-detail">
+            <div>
+              <StockStatus product={product} />
+            </div>
             <p id="singleProduct-price">Price: ${price}</p>
             <div id="singleProduct-quantityButton">
               <p>
@@ -79,10 +82,8 @@ const singleProduct = props => {
               >
                 Add To Cart
               </button>
-              <div>
-                <StockStatus product={product} />
-              </div>
             </div>
+
             <p>{longDescription}</p>
             <div>
               {tags &&
