@@ -19,9 +19,7 @@ const EditProduct = props => {
 
   setProduct = product => {
     return product.map(p => {
-      {
-        p.name, p.shortDescription, p.longDescription, p.price, p.quantity
-      }
+      return p.name, p.shortDescription, p.longDescription, p.price, p.quantity
     })
   }
 
