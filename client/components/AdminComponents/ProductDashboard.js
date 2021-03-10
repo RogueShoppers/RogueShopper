@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchAllProducts} from '../../store/products'
 
 const ProductDashboard = props => {
-  const {products, getProducts} = props
+  const {products, getProducts, toggleEdit} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(10)
 
@@ -43,7 +44,16 @@ const ProductDashboard = props => {
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
                 <td>
-                  <button>Edit</button>
+                  <Link
+                    to={{
+                      pathname: '/editproduct',
+                      state: {
+                        selectedProduct: product
+                      }
+                    }}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -69,14 +79,14 @@ const ProductDashboard = props => {
 const mapState = state => {
   return {
     products: state.products.all,
-    selectedProduct: state.selected
+    selectedProduct: state.selected,
+    isEditing: state.products.isEditing
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getProducts: () => dispatch(fetchAllProducts()),
-    editProduct: product => dispatch(editProduct(product, history))
+    getProducts: () => dispatch(fetchAllProducts())
   }
 }
 

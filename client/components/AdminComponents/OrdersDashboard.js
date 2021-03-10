@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchAllOrders} from '../../store/orders'
 
 const AllOrders = props => {
@@ -37,7 +38,16 @@ const AllOrders = props => {
                 <td>{order.id}</td>
                 <td>{order.completed ? 'Complete' : 'Incomplete'}</td>
                 <td>
-                  <button>Edit</button>
+                  <Link
+                    to={{
+                      pathname: '/editorder',
+                      state: {
+                        selectedOrder: order
+                      }
+                    }}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
