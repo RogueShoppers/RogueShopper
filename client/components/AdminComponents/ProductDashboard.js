@@ -61,12 +61,17 @@ const ProductDashboard = props => {
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
                 <td>
-                 {/* <Button value={product} component={Link} to="/editproduct">Edit</Button> */}
-                 <Link to={{
-                   pathname: "/editproduct",
-                   state: {
-                     selectedProduct: product
-                   }}}>Edit</Link>
+                  {/* <Button value={product} component={Link} to="/editproduct">Edit</Button> */}
+                  <Link
+                    to={{
+                      pathname: '/editproduct',
+                      state: {
+                        selectedProduct: product
+                      }
+                    }}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -101,7 +106,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getProducts: () => dispatch(fetchAllProducts()),
+    getProducts: () => dispatch(fetchAllProducts())
     // toggleEdit: () => dispatch(_toggleEdit())
   }
 }
