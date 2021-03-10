@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts, setFilter} from '../../store/products'
+import {fetchAllProducts} from '../../store/products'
 import StockStatus from '../../utils/StockStatus'
+import TagChip from './TagChip'
 import {Link} from 'react-router-dom'
 
 const MoreLikeThis = props => {
@@ -23,7 +24,7 @@ const MoreLikeThis = props => {
 
           return (
             <div key={tag.id}>
-              <h1 className="chip">#{tag.type}</h1>
+              <TagChip tag={tag} />
               <div className="row">
                 {similarProducts.map(product => {
                   return (
