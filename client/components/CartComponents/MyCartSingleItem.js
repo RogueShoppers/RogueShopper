@@ -18,29 +18,32 @@ const MyCartSingleItem = props => {
     setQuantity(initialQty)
   }, [])
 
-  const beforeQtyOptions = currentQty => {
+  const QtyOptions = currentQty => {
     let arr = []
-    for (let i = 1; i < currentQty; i++) {
-      arr.push(
-        <option key={i} value={i}>
-          Qty: {i}
-        </option>
-      )
+    for (let i = 1; i <= 20; i++) {
+      if (i < currentQty) {
+        arr.push(
+          <option key={i} value={i}>
+            Qty: {i}
+          </option>
+        )
+      } else if (i === currentQty) {
+        arr.push(
+          <option key={i} value={i}>
+            Qty: {currentQty}
+          </option>
+        )
+      } else if (i > currentQty) {
+        arr.push(
+          <option key={i} value={i}>
+            Qty: {i}
+          </option>
+        )
+      }
     }
     return arr
   }
 
-  const afterQtyOptions = currentQty => {
-    let arr = []
-    for (let i = currentQty + 1; i <= 20; i++) {
-      arr.push(
-        <option key={i} value={i}>
-          Qty: {i}
-        </option>
-      )
-    }
-    return arr
-  }
   const handleChangeQty = event => {
     const orderInfo = {
       quantity: event.target.value,
@@ -62,10 +65,7 @@ const MyCartSingleItem = props => {
             value={quantity}
             onChange={handleChangeQty}
           >
-            {beforeQtyOptions(initialQty)}
-            <option value={initialQty}>Qty: {initialQty}</option>
-            {afterQtyOptions(initialQty)}
-            {initialQty}
+            {QtyOptions(initialQty)}
           </select>
           <button
             type="button"

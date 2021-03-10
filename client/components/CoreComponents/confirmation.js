@@ -16,12 +16,18 @@ const Confirmation = props => {
   }, [])
 
   return (
-    <div>
+    <div className="container" id="confirmation">
       {!user ? (
         <div>
           <h2>Thanks for your order {guestInfo.firstName}!</h2>
-          <p>Your order confirmation number is {myClosedOrder.id}</p>
-          <p>Please check {guestInfo.email} for a confirmation!</p>
+          <p>
+            Your order confirmation number is{' '}
+            <Link to="/me">{myClosedOrder.id}</Link>
+          </p>
+          <p>
+            Please check <span id="confirmation-email">{guestInfo.email}</span>{' '}
+            for a confirmation!
+          </p>
           <p>
             Create an account <Link to="/signup">here</Link> to receive special
             discounts!
@@ -33,8 +39,14 @@ const Confirmation = props => {
       ) : (
         <div>
           <h2>Thanks for your order {user.firstName}!</h2>
-          <p>Your order confirmation number is {myClosedOrder.id}</p>
-          <p>Please check {user.email} for a confirmation!</p>
+          <p>
+            Your order confirmation number is{' '}
+            <Link to="/me">{myClosedOrder.id}</Link>
+          </p>
+          <p>
+            Please check <span id="confirmation-email">{user.email}</span> for a
+            confirmation!
+          </p>
           <p>
             or keep shopping <Link to="/products">our stock!</Link>
           </p>

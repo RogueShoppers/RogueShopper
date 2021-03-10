@@ -36,6 +36,7 @@ const MoreLikeThis = props => {
                               src={product.imageURL}
                               alt="product img"
                               style={{height: 150, width: 150}}
+                              id="similarProducts-img"
                             />
                           </div>
                           <div className="center card-content">
