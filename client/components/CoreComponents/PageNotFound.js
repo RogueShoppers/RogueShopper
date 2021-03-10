@@ -6,7 +6,7 @@ class PageNotFound extends React.Component {
     return (
       <div className="wrapper">
         <h1 className="notfoundpage">Sorry, we couldn't find that page!</h1>
-        <img src="https://lh3.googleusercontent.com/PZ6iYQfmI5C37J6TVEFqHE8FtOgv68aQXAje0aLoix4de0fTqEVs-ILbS9vvbwxu1moFfsjRpdlqr8YFqyIDCCSWErEazLvajE8eYw180zqL_fNgo9YR_IPqfey57-mv8HlgB8wZx5I=w561-h315-p-k" />
+        <img className="error404" src="https://icon2.cleanpng.com/20180602/wll/kisspng-cats-and-the-internet-lolcat-rage-comic-pet-crazy-cat-5b1287740d8f79.8325818015279409800556.jpg" />
         <span />
         <h4 className="notfoundpage">
           If you had a cat...this probably wouldn't be happening...but if you
