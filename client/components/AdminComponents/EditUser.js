@@ -4,8 +4,8 @@ import {editMe} from '../../store/user'
 
 const EditUser = props => {
   const {selectedUser} = props.location.state
-  const [setUser] = useState(null)
-  //   console.log( 'props', selectedUser)
+  let [user, setUser] = useState([])
+
 
   useEffect(() => {
     editMe()
@@ -13,27 +13,36 @@ const EditUser = props => {
 
   useEffect(
     () => {
-      //   handleChange().setUser()
-
-      //    const handleChange = (event) => {
-      //         setUser({product: ({
-      //             [event.target.name]: event.target.defaultValue
-      //           })})
-      //         }
-      //         console.log('product in handle change', setUser)
-      //         return handleChange
-      console.log('inside handle change useEffect', setUser)
+      setUser(user)
     },
     [setUser]
   )
 
   const handleChange = event => {
-    return {[event.target.name]: event.target.value}
+    user = {id: selectedUser.id, [event.target.name]: event.target.value}
+    console.log(user)
+    
   }
+
+  setUser = ((user) => {
+    user.map(u => {
+    {
+      u.firstName,
+      u.lastName,
+      u.preferredName,
+      u.email,
+      u.address,
+      u.isAdmin
+    }
+  }
+)
+})
+  
 
   const handleSubmit = event => {
     event.preventDefault()
-    editUser({...selectedUser})
+    editMe({...user})
+    console.log('submit sent', {...user})
   }
 
   return (
@@ -95,7 +104,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    editUser: user => dispatch(editMe(user))
+    editMe: user => dispatch(editMe(user))
   }
 }
 

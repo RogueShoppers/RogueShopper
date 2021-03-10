@@ -4,8 +4,7 @@ import {closeOpenOrder} from '../../store/orders'
 
 const EditOrder = props => {
   const {selectedOrder} = props.location.state
-  const [setOrder] = useState(null)
-  //   console.log( 'props', selectedOrder)
+  let [order, setOrder] = useState([])
 
   useEffect(() => {
     closeOpenOrder()
@@ -13,27 +12,33 @@ const EditOrder = props => {
 
   useEffect(
     () => {
-      //   handleChange().setOrder()
-
-      //    const handleChange = (event) => {
-      //         setOrder({product: ({
-      //             [event.target.name]: event.target.defaultValue
-      //           })})
-      //         }
-      //         console.log('product in handle change', setOrder)
-      //         return handleChange
+      setOrder(order)
       console.log('inside handle change useEffect', setOrder)
     },
     [setOrder]
   )
 
   const handleChange = event => {
-    return {[event.target.name]: event.target.value}
+    order = {id: selectedOrder.id, [event.target.name]: event.target.value}
   }
+
+  setOrder = ((order) => {
+    order.map(o => {
+    {
+      o.firstName,
+      o.lastName,
+      o.preferredName,
+      o.email,
+      o.address,
+      o.isAdmin
+    }
+  }
+)
+})
 
   const handleSubmit = event => {
     event.preventDefault()
-    editOrder({...selectedOrder})
+    editOrder({...order})
   }
 
   return (
@@ -43,7 +48,7 @@ const EditOrder = props => {
         <input
           name="completed"
           onChange={handleChange}
-          //   defaultValue={String(order.completed)}
+          defaultValue={String(selectedOrder.completed)}
         />
         <button>Submit</button>
       </form>
