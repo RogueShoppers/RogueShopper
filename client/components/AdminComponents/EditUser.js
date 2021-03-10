@@ -19,9 +19,9 @@ const EditUser = props => {
 
   setUser = user => {
     return user.map(u => {
-      {
+      return (
         u.firstName, u.lastName, u.preferredName, u.email, u.address, u.isAdmin
-      }
+      )
     })
   }
 

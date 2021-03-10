@@ -18,10 +18,8 @@ const EditOrder = props => {
   }
 
   setOrder = order => {
-   return order.map(o => {
-      {
-        o.completed
-      }
+    return order.map(o => {
+      return o.completed
     })
   }
 
