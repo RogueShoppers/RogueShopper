@@ -13,6 +13,7 @@ import Confirmation from './components/CoreComponents/confirmation'
 import OrderHistoryDetails from './components/UserAccountComponents/OrderHistoryDetails'
 import GuestCheckoutForm from './components/UserAccountComponents/GuestCheckoutForm'
 import PageNotFound from './components/CoreComponents/PageNotFound'
+import EditProduct from './components/AdminComponents/EditProduct'
 
 /**
  * COMPONENT
@@ -48,6 +49,7 @@ class Routes extends Component {
               <Route path="/mycart" component={MyCart} />
               <Route path="/confirmation" component={Confirmation} />
               <Route path="/me/dashboard" component={AdminDashboard} />
+              <Route path="/editproduct" component={EditProduct} />
             </Switch>
           )}
         {isLoggedIn && (

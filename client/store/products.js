@@ -23,7 +23,8 @@ export const setFilter = filter => ({
 })
 export const _editProduct = productId => ({
   type: EDIT_PRODUCT,
-  selected: productId
+  selected: productId,
+  isEditing: false
 })
 
 export const _toggleEdit = () => ({

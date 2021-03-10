@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchAllProducts} from '../../store/products'
 import {_toggleEdit} from '../../store/products'
-import {EditProduct} from './EditProduct'
+import EditProduct from './EditProduct'
+import Button from '@material-ui/core/Button'
 
 const ProductDashboard = props => {
-  const {products, getProducts, toggleEdit, isEditing} = props
+  const {products, getProducts, toggleEdit} = props
   const [offset, setOffset] = useState(0)
   const [perPage] = useState(10)
+  const {isEditing} = useState()
 
   useEffect(
     () => {
@@ -23,8 +26,17 @@ const ProductDashboard = props => {
   }
 
   const handleEditClick = event => {
-    toggleEdit()
+    // toggleEdit()
+    let prodToEdit = event.target.value
+    return prodToEdit
   }
+
+  useEffect(
+    () => {
+      handleEditClick
+    },
+    [isEditing]
+  )
 
   return (
     <div>
@@ -49,16 +61,18 @@ const ProductDashboard = props => {
                 <td>{product.price}</td>
                 <td>{product.quantity}</td>
                 <td>
-                  <button value={product.id} onClick={handleEditClick}>
-                    Edit
-                  </button>
+                 {/* <Button value={product} component={Link} to="/editproduct">Edit</Button> */}
+                 <Link to={{
+                   pathname: "/editproduct",
+                   state: {
+                     selectedProduct: product
+                   }}}>Edit</Link>
                 </td>
-                <td>{isEditing ? EditProduct : null}</td>
               </tr>
             ))}
         </tbody>
       </table>
-
+      {/* {isEditing && <div><EditProduct selectedProduct={prodToEdit}/></div>} */}
       <ReactPaginate
         previousLabel="prev"
         nextLabel="next"
@@ -88,8 +102,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getProducts: () => dispatch(fetchAllProducts()),
-    toggleEdit: () => dispatch(_toggleEdit())
-    // editProduct: product => dispatch(editProduct(product, history))
+    // toggleEdit: () => dispatch(_toggleEdit())
   }
 }
 
