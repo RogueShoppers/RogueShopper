@@ -29,3 +29,23 @@ router.delete('/:id', adminsOnly, async (req, res, next) => {
     next(error)
   }
 })
+
+//Admin Only: PUT /api/users/:id
+router.put('/:id', adminsOnly, async (req, res, next) => {
+  try {
+    const updatedUser = await User.findByPk(req.params.id)
+    if (!updatedUser) {
+      res.sendStatus(404)
+    } else {
+      await updatedUser.update(req.body)
+      const user = await User.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.send(user)
+    }
+  } catch (error) {
+    next(error)
+  }
+})

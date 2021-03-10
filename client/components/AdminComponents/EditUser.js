@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {editMe} from '../../store/user'
+import {editUser} from '../../store/user'
 
 const EditUser = props => {
-  const {selectedUser} = props.location.state
+  const selectedUser = props.location.state.selectedUser
   let [user, setUser] = useState([])
-
-
-  useEffect(() => {
-    editMe()
-  }, [])
 
   useEffect(
     () => {
@@ -20,29 +15,19 @@ const EditUser = props => {
 
   const handleChange = event => {
     user = {id: selectedUser.id, [event.target.name]: event.target.value}
-    console.log(user)
-    
   }
 
-  setUser = ((user) => {
-    user.map(u => {
-    {
-      u.firstName,
-      u.lastName,
-      u.preferredName,
-      u.email,
-      u.address,
-      u.isAdmin
-    }
+  setUser = user => {
+    return user.map(u => {
+      {
+        u.firstName, u.lastName, u.preferredName, u.email, u.address, u.isAdmin
+      }
+    })
   }
-)
-})
-  
 
   const handleSubmit = event => {
     event.preventDefault()
-    editMe({...user})
-    console.log('submit sent', {...user})
+    editUser({...user})
   }
 
   return (
@@ -97,14 +82,14 @@ const EditUser = props => {
 
 const mapState = state => {
   return {
-    selectedUser: state.user,
-    setUser: state.user
+    selectedUser: state.users.selected,
+    setUser: state.users.selected
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    editMe: user => dispatch(editMe(user))
+    editUser: user => dispatch(editUser(user))
   }
 }
 

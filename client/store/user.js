@@ -83,6 +83,21 @@ export const editMe = user => {
   }
 }
 
+export const editUser = user => {
+  console.log('edit user called', user)
+  const id = user.id
+  return async dispatch => {
+    try {
+      const {data: updated} = await axios.put(`/api/users/${id}`, user)
+      console.log('edit user after update', updated)
+      dispatch(updatedUser(updated))
+      historyFunc.push('/edituser')
+    } catch (error) {
+      console.log('Error editing logged-in user!', error)
+    }
+  }
+}
+
 export const fetchAllUsers = () => {
   return async dispatch => {
     try {

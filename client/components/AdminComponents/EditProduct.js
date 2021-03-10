@@ -4,36 +4,30 @@ import {editProduct} from '../../store/products'
 
 const EditProduct = props => {
   const {selectedProduct} = props.location.state
-  const [setProduct] = useState(null)
-  //   console.log( 'props', selectedProduct)
-
-  useEffect(() => {
-    editProduct()
-  }, [])
+  let [product, setProduct] = useState([])
 
   useEffect(
     () => {
-      //   handleChange().setProduct()
-
-      //    const handleChange = (event) => {
-      //         setProduct({product: ({
-      //             [event.target.name]: event.target.defaultValue
-      //           })})
-      //         }
-      //         console.log('product in handle change', setProduct)
-      //         return handleChange
-      console.log('inside handle change useEffect', setProduct)
+      setProduct(product)
     },
     [setProduct]
   )
 
   const handleChange = event => {
-    return {[event.target.name]: event.target.value}
+    product = {id: selectedProduct.id, [event.target.name]: event.target.value}
+  }
+
+  setProduct = product => {
+    return product.map(p => {
+      {
+        p.name, p.shortDescription, p.longDescription, p.price, p.quantity
+      }
+    })
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-    editProduct({...selectedProduct})
+    editProduct({...product})
   }
 
   return (
@@ -83,7 +77,7 @@ const EditProduct = props => {
 const mapState = state => {
   return {
     selectedProduct: state.selected,
-    setProduct: state.setProduct
+    setProduct: state.products.selected
   }
 }
 

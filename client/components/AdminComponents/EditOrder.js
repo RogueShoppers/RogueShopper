@@ -6,14 +6,9 @@ const EditOrder = props => {
   const {selectedOrder} = props.location.state
   let [order, setOrder] = useState([])
 
-  useEffect(() => {
-    closeOpenOrder()
-  }, [])
-
   useEffect(
     () => {
       setOrder(order)
-      console.log('inside handle change useEffect', setOrder)
     },
     [setOrder]
   )
@@ -22,23 +17,17 @@ const EditOrder = props => {
     order = {id: selectedOrder.id, [event.target.name]: event.target.value}
   }
 
-  setOrder = ((order) => {
-    order.map(o => {
-    {
-      o.firstName,
-      o.lastName,
-      o.preferredName,
-      o.email,
-      o.address,
-      o.isAdmin
-    }
+  setOrder = order => {
+   return order.map(o => {
+      {
+        o.completed
+      }
+    })
   }
-)
-})
 
   const handleSubmit = event => {
     event.preventDefault()
-    editOrder({...order})
+    closeOpenOrder({...order})
   }
 
   return (
@@ -65,7 +54,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    editOrder: order => dispatch(closeOpenOrder(order))
+    closeOpenOrder: order => dispatch(closeOpenOrder(order))
   }
 }
 
