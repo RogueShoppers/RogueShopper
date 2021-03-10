@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts, fetchSingleProduct} from '../../store/products'
+import {fetchAllProducts} from '../../store/products'
 import ReactPaginate from 'react-paginate'
 import {Link} from 'react-router-dom'
 import FilterProducts from './FilterProducts'
