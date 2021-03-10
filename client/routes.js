@@ -13,7 +13,9 @@ import Confirmation from './components/CoreComponents/confirmation'
 import OrderHistoryDetails from './components/UserAccountComponents/OrderHistoryDetails'
 import GuestCheckoutForm from './components/UserAccountComponents/GuestCheckoutForm'
 import PageNotFound from './components/CoreComponents/PageNotFound'
+import EditUser from './components/AdminComponents/EditUser'
 import EditProduct from './components/AdminComponents/EditProduct'
+import EditOrder from './components/AdminComponents/EditOrder'
 
 /**
  * COMPONENT
@@ -55,6 +57,8 @@ class Routes extends Component {
               <Route path="/confirmation" component={Confirmation} />
               <Route path="/me/dashboard" component={AdminDashboard} />
               <Route path="/editproduct" component={EditProduct} />
+              <Route path="/edituser" component={EditUser} />
+              <Route path="/editorder" component={EditOrder} />
             </Switch>
           )}
         {isLoggedIn && (

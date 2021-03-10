@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
 import AllUsers from './allUsers'
 import ProductDashboard from './ProductDashboard'
 import AllOrders from './OrdersDashboard'

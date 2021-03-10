@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ReactPaginate from 'react-paginate'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchAllUsers} from '../../store/user.js'
 import {editMe} from '../../store/user'
 
@@ -44,7 +45,16 @@ const AllUsers = props => {
                 <td>{user.address}</td>
                 <td>{String(user.isAdmin)}</td>
                 <td>
-                  <button>Edit</button>
+                  <Link
+                    to={{
+                      pathname: '/edituser',
+                      state: {
+                        selectedUser: user
+                      }
+                    }}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
