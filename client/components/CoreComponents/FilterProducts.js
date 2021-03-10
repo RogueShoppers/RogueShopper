@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 import {setFilter} from '../../store/products'
 
 const FilterProduct = props => {
-  const {getFilter} = props
+  const {getFilter, productsLength} = props
 
   return (
     <div>
-      <label>Filter by Category</label>
+      <label>Filter by Category ({`${productsLength} matched!`})</label>
       <select
         className="browser-default"
         value={props.filter}
