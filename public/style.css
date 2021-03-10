@@ -135,6 +135,10 @@ nav a {
   font-size: 18px;
 }
 
+#similarProducts-img {
+  margin-left: 50px;
+}
+
 /* confirmation */
 #confirmation p {
   font-size: 20px;
