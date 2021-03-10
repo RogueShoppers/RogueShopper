@@ -34,7 +34,12 @@ class Routes extends Component {
         <Route path="/mycart" component={MyCart} />
         <Route path="/confirmation" component={Confirmation} />
         <Route exact path="/products" component={AllProducts} />
-        <Route path="/products/:productId" component={SingleProduct} />
+        <Route
+          path="/products/:productId"
+          component={props => (
+            <SingleProduct {...props} key={window.location.pathname} />
+          )}
+        />
         <Route path="/guestcheckout" component={GuestCheckoutForm} />
         {isAdmin &&
           isLoggedIn && (
